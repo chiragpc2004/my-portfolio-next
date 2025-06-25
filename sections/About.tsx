@@ -1,10 +1,55 @@
 "use client";
 
+import { FaChartLine } from "react-icons/fa";
+import {
+  SiPython, SiCplusplus, SiJavascript, SiMysql,
+  SiPandas, SiNumpy, SiScikitlearn, SiTensorflow, SiPytorch,
+  SiReact, SiTailwindcss, SiFastapi, SiNodedotjs,
+  SiGit, SiDocker, SiSupabase, SiRender, SiVercel,
+  SiSpring // replacing Java with Spring (if desired)
+} from "react-icons/si";
+
 const categories = [
-  { title: "Languages", items: ["Python", "Java", "C++", "JavaScript", "SQL"] },
-  { title: "ML & AI", items: ["Pandas", "NumPy", "Matplotlib", "Scikit-Learn", "TensorFlow", "PyTorch"] },
-  { title: "Frameworks & Libraries", items: ["React", "Tailwind CSS", "FastAPI", "Node.js"] },
-  { title: "DevOps & Tools", items: ["Git", "Docker", "Supabase", "Render", "Vercel"] },
+  {
+    title: "Languages",
+    items: [
+      { label: "Python", icon: <SiPython /> },
+      { label: "Java", icon: <SiSpring /> },
+      { label: "C++", icon: <SiCplusplus /> },
+      { label: "JavaScript", icon: <SiJavascript /> },
+      { label: "SQL", icon: <SiMysql /> },
+    ],
+  },
+  {
+    title: "ML & AI",
+    items: [
+      { label: "Pandas", icon: <SiPandas /> },
+      { label: "NumPy", icon: <SiNumpy /> },
+      { label: "Matplotlib", icon: <FaChartLine /> },
+      { label: "Scikit-Learn", icon: <SiScikitlearn /> },
+      { label: "TensorFlow", icon: <SiTensorflow /> },
+      { label: "PyTorch", icon: <SiPytorch /> },
+    ],
+  },
+  {
+    title: "Frameworks & Libraries",
+    items: [
+      { label: "React", icon: <SiReact /> },
+      { label: "Tailwind CSS", icon: <SiTailwindcss /> },
+      { label: "FastAPI", icon: <SiFastapi /> },
+      { label: "Node.js", icon: <SiNodedotjs /> },
+    ],
+  },
+  {
+    title: "DevOps & Tools",
+    items: [
+      { label: "Git", icon: <SiGit /> },
+      { label: "Docker", icon: <SiDocker /> },
+      { label: "Supabase", icon: <SiSupabase /> },
+      { label: "Render", icon: <SiRender /> },
+      { label: "Vercel", icon: <SiVercel /> },
+    ],
+  },
 ];
 
 export default function About() {
@@ -33,10 +78,11 @@ export default function About() {
               <div className="flex flex-wrap gap-3">
                 {cat.items.map((item) => (
                   <span
-                    key={item}
-                    className="px-3 py-1.5 bg-gray-100 dark:bg-[#1e293b] text-sm text-blue-900 dark:text-blue-300 rounded-full font-mono border border-gray-300 dark:border-white/10 hover:scale-105 transition-transform"
+                    key={item.label}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-[#1e293b] text-sm text-blue-900 dark:text-blue-300 rounded-full font-mono border border-gray-300 dark:border-white/10 hover:scale-105 transition-transform"
                   >
-                    {item}
+                    <span className="text-lg">{item.icon}</span>
+                    {item.label}
                   </span>
                 ))}
               </div>
