@@ -56,32 +56,46 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen px-6 sm:px-10 py-24 bg-lightBg dark:bg-darkBg text-black dark:text-white scroll-mt-16 flex items-center"
+      className="min-h-screen px-6 sm:px-10 py-16 bg-[#f9fafb] text-[#1f2937] dark:bg-[#0d1117] dark:text-[#c9d1d9] scroll-mt-16 flex items-center transition-colors duration-300"
     >
-      <div className="max-w-5xl mx-auto w-full space-y-16">
-        <div className="space-y-6 text-center md:text-left">
-          <h2 className="text-4xl sm:text-5xl font-bold inline-block border-b-4 border-[#1e40af] dark:border-[#58a6ff] pb-2 font-[Poppins]">
+      <div className="max-w-6xl mx-auto w-full space-y-12">
+        {/* Intro */}
+        <div className="space-y-4 text-center md:text-left">
+          <h2 className="text-5xl font-bold inline-block border-b-4 border-indigo-500 dark:border-[#58a6ff] pb-1 font-[Poppins]">
             About Me
           </h2>
           <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto md:mx-0">
-            I'm <strong>Chirag</strong>, a Machine Learning Engineer, AI Enthusiast, and Full Stack Developer. I build intelligent systems that fuse data-driven AI with human-friendly design. From model training to scalable deployment, I handle the full ML pipeline.
+            I'm <strong>Chirag</strong>, a Machine Learning Engineer, AI Enthusiast, and Full Stack Developer. I build intelligent systems that fuse data-driven AI with human-friendly design—from model training to scalable deployment.
           </p>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
             Outside of code, I love building things, learning new software, and doing graphic design.
           </p>
         </div>
 
-        <div className="space-y-10">
+        {/* Tech Summary Heading */}
+        <div className="space-y-1 text-center md:text-left">
+          <h3 className="text-2xl font-semibold text-indigo-600 dark:text-[#58a6ff] font-[Poppins]">
+            My Tech Toolbox
+          </h3>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
+            A quick look at the languages, tools, and frameworks I use—from backend APIs and AI to UI/UX and deployment.
+          </p>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="space-y-8">
           {categories.map((cat) => (
             <div key={cat.title}>
-              <h3 className="text-xl font-semibold text-[#1e40af] dark:text-[#58a6ff] mb-3">{cat.title}</h3>
-              <div className="flex flex-wrap gap-3">
+              <h4 className="text-xl font-semibold text-indigo-600 dark:text-[#58a6ff] mb-2">
+                {cat.title}
+              </h4>
+              <div className="flex flex-wrap gap-2">
                 {cat.items.map((item) => (
                   <span
                     key={item.label}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-[#1e293b] text-sm rounded-full font-mono border border-gray-300 dark:border-white/10 hover:scale-105 transition-transform"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-300 dark:bg-[#1e293b] dark:border-white/10 text-sm rounded-full font-mono hover:scale-105 transition-transform shadow-sm"
                   >
-                    <span className="text-lg">{item.icon}</span>
+                    <span className="text-base">{item.icon}</span>
                     {item.label}
                   </span>
                 ))}

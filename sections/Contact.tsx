@@ -14,8 +14,6 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // ✅ Optimistically show success before API completes
     setStatus("success");
 
     const formData = new FormData();
@@ -46,36 +44,36 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center px-6 sm:px-10 py-24 bg-lightBg dark:bg-darkBg text-black dark:text-white font-[Poppins] scroll-mt-16"
+      className="min-h-screen flex items-center px-6 sm:px-10 py-24 bg-[#f9fafb] text-[#1f2937] dark:bg-[#0d1117] dark:text-[#c9d1d9] font-[Poppins] scroll-mt-16 transition-colors duration-300"
     >
-      <div className="max-w-5xl mx-auto w-full space-y-14">
+      <div className="max-w-5xl mx-auto w-full space-y-12 sm:space-y-14">
         {/* Header */}
         <div className="text-center md:text-left space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold inline-block border-b-4 border-[#1e40af] dark:border-[#58a6ff] pb-2">
+          <h2 className="text-4xl sm:text-5xl font-bold inline-block border-b-4 border-indigo-500 dark:border-[#58a6ff] pb-2">
             Contact
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 max-w-2xl text-base sm:text-lg">
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl text-base sm:text-lg">
             Got a project in mind or just want to connect? I’m always open to opportunities and collaborations.
           </p>
         </div>
 
-        {/* Contact Links */}
-        <div className="grid sm:grid-cols-3 gap-4">
-          <HoverLink href="mailto:chiragpc2004@gmail.com" icon={<Mail size={18} />} label="chiragpc2004@gmail.com" />
-          <HoverLink href="https://github.com/chiragpc2004" icon={<Github size={18} />} label="GitHub" />
-          <HoverLink href="https://linkedin.com/in/chiragpc2004" icon={<Linkedin size={18} />} label="LinkedIn" />
-        </div>
-
-        {/* Socials */}
-        <div className="grid sm:grid-cols-4 gap-4">
-          <HoverLink href="https://www.kaggle.com/chiragpoojarikodi" icon={<SiKaggle size={16} />} label="Kaggle" />
-          <HoverLink href="https://x.com/chiragpc_2004" icon={<SiX size={16} />} label="Twitter" />
-          <HoverLink href="https://www.instagram.com/chiragpc_2004/" icon={<SiInstagram size={16} />} label="Instagram" />
-          <HoverLink href="https://www.facebook.com/chirag.poojarikodi" icon={<SiFacebook size={16} />} label="Facebook" />
+        {/* Contact & Social Links (merged spacing) */}
+        <div className="space-y-4 sm:space-y-6">
+          <div className="grid sm:grid-cols-3 gap-3">
+            <HoverLink href="mailto:chiragpc2004@gmail.com" icon={<Mail size={18} />} label="chiragpc2004@gmail.com" />
+            <HoverLink href="https://github.com/chiragpc2004" icon={<Github size={18} />} label="GitHub" />
+            <HoverLink href="https://linkedin.com/in/chiragpc2004" icon={<Linkedin size={18} />} label="LinkedIn" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <HoverLink href="https://www.kaggle.com/chiragpoojarikodi" icon={<SiKaggle size={16} />} label="Kaggle" />
+            <HoverLink href="https://x.com/chiragpc_2004" icon={<SiX size={16} />} label="Twitter" />
+            <HoverLink href="https://www.instagram.com/chiragpc_2004/" icon={<SiInstagram size={16} />} label="Instagram" />
+            <HoverLink href="https://www.facebook.com/chirag.poojarikodi" icon={<SiFacebook size={16} />} label="Facebook" />
+          </div>
         </div>
 
         {/* Form */}
-        <div className="bg-white/80 dark:bg-[#161b22]/60 border border-gray-300 dark:border-white/10 rounded-xl p-6 shadow-sm">
+        <div className="bg-white dark:bg-[#161b22] border border-gray-200 dark:border-white/10 rounded-xl p-6 shadow-sm">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <input
@@ -84,7 +82,7 @@ export default function Contact() {
                 placeholder="Your name"
                 value={form.name}
                 onChange={handleChange}
-                className="px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-black dark:text-white border border-gray-300 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e40af] dark:focus:ring-[#58a6ff]"
+                className="px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-[#1f2937] dark:text-white border border-gray-200 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-[#58a6ff]"
               />
               <input
                 name="email"
@@ -93,7 +91,7 @@ export default function Contact() {
                 placeholder="Your email"
                 value={form.email}
                 onChange={handleChange}
-                className="px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-black dark:text-white border border-gray-300 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e40af] dark:focus:ring-[#58a6ff]"
+                className="px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-[#1f2937] dark:text-white border border-gray-200 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-[#58a6ff]"
               />
             </div>
             <textarea
@@ -103,12 +101,12 @@ export default function Contact() {
               rows={4}
               value={form.message}
               onChange={handleChange}
-              className="w-full px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-black dark:text-white border border-gray-300 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-[#1e40af] dark:focus:ring-[#58a6ff]"
+              className="w-full px-4 py-2 text-sm bg-white dark:bg-[#0d1117] text-[#1f2937] dark:text-white border border-gray-200 dark:border-white/10 rounded-md placeholder-gray-500 dark:placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-[#58a6ff]"
             />
             <div className="text-right">
               <button
                 type="submit"
-                className="px-6 py-2 bg-[#1e40af] dark:bg-[#58a6ff] hover:bg-[#1e3a8a] dark:hover:bg-[#4698ff] text-white text-sm font-semibold rounded-md transition"
+                className="px-6 py-2 bg-indigo-600 dark:bg-[#58a6ff] hover:bg-indigo-700 dark:hover:bg-[#4698ff] text-white text-sm font-semibold rounded-md transition"
               >
                 Send Message
               </button>
@@ -156,7 +154,7 @@ function HoverLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-3 px-5 py-3 rounded-md border border-gray-300 dark:border-white/10 bg-white/80 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-white/10 backdrop-blur text-gray-700 dark:text-gray-300 hover:text-[#1e40af] dark:hover:text-[#58a6ff] transition-all w-full shadow-sm"
+      className="group flex items-center gap-3 px-5 py-3 rounded-md border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 hover:bg-indigo-50 dark:hover:bg-white/10 backdrop-blur text-gray-700 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-[#58a6ff] transition-all w-full shadow-sm"
     >
       <span className="shrink-0">{icon}</span>
       <span className="truncate">{label}</span>
