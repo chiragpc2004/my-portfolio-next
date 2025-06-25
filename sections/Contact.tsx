@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Mail, Github, Linkedin } from "lucide-react";
 import { SiKaggle, SiInstagram, SiFacebook, SiX } from "react-icons/si";
 
@@ -14,6 +14,9 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // ✅ Optimistically show success before API completes
+    setStatus("success");
 
     const formData = new FormData();
     formData.append("name", form.name);
@@ -29,10 +32,9 @@ export default function Contact() {
       });
 
       if (res.ok) {
-        setStatus("success");
         setForm({ name: "", email: "", message: "" });
       } else {
-        throw new Error();
+        setStatus("error");
       }
     } catch {
       setStatus("error");
@@ -112,7 +114,7 @@ export default function Contact() {
               </button>
             </div>
 
-            {/* Status */}
+            {/* Status Message */}
             <p
               className={`text-sm text-center transition-opacity duration-500 ${
                 status === "success"
@@ -131,6 +133,7 @@ export default function Contact() {
           </form>
         </div>
 
+        {/* Footer Note */}
         <p className="text-xs text-gray-500 dark:text-gray-400 text-center sm:text-left">
           © {new Date().getFullYear()} Chirag P C — All rights reserved.
         </p>
