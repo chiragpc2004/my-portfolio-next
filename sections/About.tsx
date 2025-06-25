@@ -6,48 +6,48 @@ import {
   SiPandas, SiNumpy, SiScikitlearn, SiTensorflow, SiPytorch,
   SiReact, SiTailwindcss, SiFastapi, SiNodedotjs,
   SiGit, SiDocker, SiSupabase, SiRender, SiVercel,
-  SiSpring // replacing Java with Spring (if desired)
+  SiSpring
 } from "react-icons/si";
 
 const categories = [
   {
     title: "Languages",
     items: [
-      { label: "Python", icon: <SiPython /> },
-      { label: "Java", icon: <SiSpring /> },
-      { label: "C++", icon: <SiCplusplus /> },
-      { label: "JavaScript", icon: <SiJavascript /> },
-      { label: "SQL", icon: <SiMysql /> },
+      { label: "Python", icon: <SiPython className="text-[#3776AB]" /> },
+      { label: "Java", icon: <SiSpring className="text-[#6DB33F]" /> },
+      { label: "C++", icon: <SiCplusplus className="text-[#00599C]" /> },
+      { label: "JavaScript", icon: <SiJavascript className="text-[#F7DF1E]" /> },
+      { label: "SQL", icon: <SiMysql className="text-[#4479A1]" /> },
     ],
   },
   {
     title: "ML & AI",
     items: [
-      { label: "Pandas", icon: <SiPandas /> },
-      { label: "NumPy", icon: <SiNumpy /> },
-      { label: "Matplotlib", icon: <FaChartLine /> },
-      { label: "Scikit-Learn", icon: <SiScikitlearn /> },
-      { label: "TensorFlow", icon: <SiTensorflow /> },
-      { label: "PyTorch", icon: <SiPytorch /> },
+      { label: "Pandas", icon: <SiPandas className="text-[#150458]" /> },
+      { label: "NumPy", icon: <SiNumpy className="text-[#013243]" /> },
+      { label: "Matplotlib", icon: <FaChartLine className="text-[#11557C]" /> },
+      { label: "Scikit-Learn", icon: <SiScikitlearn className="text-[#F7931E]" /> },
+      { label: "TensorFlow", icon: <SiTensorflow className="text-[#FF6F00]" /> },
+      { label: "PyTorch", icon: <SiPytorch className="text-[#EE4C2C]" /> },
     ],
   },
   {
     title: "Frameworks & Libraries",
     items: [
-      { label: "React", icon: <SiReact /> },
-      { label: "Tailwind CSS", icon: <SiTailwindcss /> },
-      { label: "FastAPI", icon: <SiFastapi /> },
-      { label: "Node.js", icon: <SiNodedotjs /> },
+      { label: "React", icon: <SiReact className="text-[#61DAFB]" /> },
+      { label: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" /> },
+      { label: "FastAPI", icon: <SiFastapi className="text-[#009688]" /> },
+      { label: "Node.js", icon: <SiNodedotjs className="text-[#339933]" /> },
     ],
   },
   {
     title: "DevOps & Tools",
     items: [
-      { label: "Git", icon: <SiGit /> },
-      { label: "Docker", icon: <SiDocker /> },
-      { label: "Supabase", icon: <SiSupabase /> },
-      { label: "Render", icon: <SiRender /> },
-      { label: "Vercel", icon: <SiVercel /> },
+      { label: "Git", icon: <SiGit className="text-[#F05032]" /> },
+      { label: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
+      { label: "Supabase", icon: <SiSupabase className="text-[#3ECF8E]" /> },
+      { label: "Render", icon: <SiRender className="text-[#46E3B7]" /> },
+      { label: "Vercel", icon: <SiVercel className="text-black dark:text-white" /> },
     ],
   },
 ];
@@ -79,7 +79,7 @@ export default function About() {
                 {cat.items.map((item) => (
                   <span
                     key={item.label}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-[#1e293b] text-sm text-blue-900 dark:text-blue-300 rounded-full font-mono border border-gray-300 dark:border-white/10 hover:scale-105 transition-transform"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-[#1e293b] text-sm rounded-full font-mono border border-gray-300 dark:border-white/10 hover:scale-105 transition-transform"
                   >
                     <span className="text-lg">{item.icon}</span>
                     {item.label}

@@ -5,7 +5,7 @@ const projects = [
     title: "Iris Classifier",
     description: "A full-stack ML app classifying Iris flower species using scikit-learn, FastAPI backend, and React frontend.",
     tech: ["scikit-learn", "FastAPI", "React"],
-    github: "https://github.com/chiragpc2004/Iris-classifier",
+    github: "https://iris-classifier-one.vercel.app/",
     demo: "#",
   },
   {
@@ -19,7 +19,7 @@ const projects = [
     title: "AI Chatbot",
     description: "Conversational chatbot built on transformer models. Multi-turn and human-like.",
     tech: ["Python", "TensorFlow", "Transformers"],
-    github: "https://github.com/chiragpc2004/AI_Chatbot",
+    github: "https://chiragchatbot.streamlit.app/",
     demo: "#",
   },
   {
