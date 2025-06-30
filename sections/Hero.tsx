@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText } from "lucide-react";
 
 function Hero() {
   return (
@@ -35,12 +35,23 @@ function Hero() {
             I work at the intersection of AI, engineering, and product thinking to deliver real-world impact.
           </p>
 
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 border border-gray-300 dark:border-[#30363d] text-indigo-700 dark:text-[#c9d1d9] px-5 py-3 rounded hover:bg-indigo-50 dark:hover:bg-[#21262d] transition duration-150 font-mono"
-          >
-            View My Work <ArrowRight size={16} />
-          </a>
+          {/* Button Row */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 border border-gray-300 dark:border-[#30363d] text-indigo-700 dark:text-[#c9d1d9] px-5 py-3 rounded font-mono transition-all duration-200 hover:bg-indigo-100 dark:hover:bg-[#21262d] hover:scale-[1.05] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:focus:ring-[#58a6ff]"
+            >
+              View My Work <ArrowRight size={16} />
+            </a>
+            <a
+              href="https://drive.google.com/file/d/1MqBCPuny9TtlQzVwvJF-CjXk2pC9pJfw/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-gray-300 dark:border-[#30363d] text-indigo-700 dark:text-[#c9d1d9] px-5 py-3 rounded font-mono transition-all duration-200 hover:bg-indigo-100 dark:hover:bg-[#21262d] hover:scale-[1.05] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-300 dark:focus:ring-[#58a6ff]"
+            >
+              Resume <FileText size={16} />
+            </a>
+          </div>
         </div>
 
         {/* Right Profile Image */}
