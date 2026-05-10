@@ -12,6 +12,7 @@ import {
 const categories = [
   {
     title: "Languages",
+    color: "from-blue-500 to-indigo-500",
     items: [
       { label: "Python", icon: <SiPython className="text-[#3776AB]" /> },
       { label: "Java", icon: <SiSpring className="text-[#6DB33F]" /> },
@@ -22,9 +23,10 @@ const categories = [
   },
   {
     title: "ML & AI",
+    color: "from-orange-500 to-red-500",
     items: [
       { label: "Pandas", icon: <SiPandas className="text-[#150458]" /> },
-      { label: "NumPy", icon: <SiNumpy className="text-[#013243]" /> },
+      { label: "NumPy", icon: <SiNumpy className="text-[#4DABCF]" /> },
       { label: "Matplotlib", icon: <FaChartLine className="text-[#11557C]" /> },
       { label: "Scikit-Learn", icon: <SiScikitlearn className="text-[#F7931E]" /> },
       { label: "TensorFlow", icon: <SiTensorflow className="text-[#FF6F00]" /> },
@@ -33,6 +35,7 @@ const categories = [
   },
   {
     title: "Frameworks & Libraries",
+    color: "from-cyan-500 to-teal-500",
     items: [
       { label: "React", icon: <SiReact className="text-[#61DAFB]" /> },
       { label: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" /> },
@@ -42,6 +45,7 @@ const categories = [
   },
   {
     title: "DevOps & Tools",
+    color: "from-violet-500 to-purple-500",
     items: [
       { label: "Git", icon: <SiGit className="text-[#F05032]" /> },
       { label: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
@@ -61,13 +65,14 @@ export default function About() {
       <div className="max-w-6xl mx-auto w-full space-y-12">
         {/* Intro */}
         <div className="space-y-4 text-center md:text-left">
-          <h2 className="text-5xl font-bold inline-block border-b-4 border-indigo-500 dark:border-[#58a6ff] pb-1 font-[Poppins]">
+          <h2 className="text-5xl font-bold pb-1 font-[Poppins] relative inline-block">
             About Me
+            <span className="absolute left-0 -bottom-1 w-full h-1 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full" />
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto md:mx-0">
-            I'm <strong>Chirag</strong>, a Machine Learning Engineer, AI Enthusiast, and Full Stack Developer. I build intelligent systems that fuse data-driven AI with human-friendly design—from model training to scalable deployment.
+          <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto md:mx-0 pt-2">
+            I&apos;m <strong>Chirag</strong>, a Machine Learning Engineer, AI Enthusiast, and Full Stack Developer. I build intelligent systems that fuse data-driven AI with human-friendly design—from model training to scalable deployment.
           </p>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
             Outside of code, I love building things, learning new software, and doing graphic design.
           </p>
         </div>
@@ -77,25 +82,31 @@ export default function About() {
           <h3 className="text-2xl font-semibold text-indigo-600 dark:text-[#58a6ff] font-[Poppins]">
             My Tech Toolbox
           </h3>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
+          <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto md:mx-0">
             A quick look at the languages, tools, and frameworks I use—from backend APIs and AI to UI/UX and deployment.
           </p>
         </div>
 
         {/* Tech Stack */}
-        <div className="space-y-8">
+        <div className="grid sm:grid-cols-2 gap-6">
           {categories.map((cat) => (
-            <div key={cat.title}>
-              <h4 className="text-xl font-semibold text-indigo-600 dark:text-[#58a6ff] mb-2">
-                {cat.title}
-              </h4>
+            <div
+              key={cat.title}
+              className="bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/8 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className={`w-1 h-5 rounded-full bg-gradient-to-b ${cat.color} shrink-0`} />
+                <h4 className="text-base font-semibold text-gray-800 dark:text-[#c9d1d9] font-[Poppins]">
+                  {cat.title}
+                </h4>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {cat.items.map((item) => (
                   <span
                     key={item.label}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-300 dark:bg-[#1e293b] dark:border-white/10 text-sm rounded-full font-mono hover:scale-105 transition-transform shadow-sm"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/8 text-xs sm:text-sm rounded-lg font-mono text-gray-700 dark:text-gray-300 hover:scale-105 hover:border-indigo-300 dark:hover:border-[#58a6ff]/40 transition-all duration-200 shadow-sm cursor-default"
                   >
-                    <span className="text-base">{item.icon}</span>
+                    <span className="text-base leading-none">{item.icon}</span>
                     {item.label}
                   </span>
                 ))}

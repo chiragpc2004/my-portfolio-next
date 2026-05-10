@@ -64,10 +64,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-lightBg/80 dark:bg-darkBg/80 border-b border-black/10 dark:border-white/10 shadow font-[Poppins] text-black dark:text-white">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-lightBg/75 dark:bg-darkBg/75 border-b border-black/8 dark:border-white/8 shadow-sm font-[Poppins] text-black dark:text-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="#home" className="text-xl sm:text-2xl font-bold">
-          Chirag's Portfolio
+        <a href="#home" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-500 dark:from-[#58a6ff] dark:to-[#a78bfa] bg-clip-text text-transparent">
+          Chirag&apos;s Portfolio
         </a>
 
         <ul className="hidden sm:flex gap-8 md:gap-10 text-sm md:text-base font-semibold">
