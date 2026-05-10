@@ -8,6 +8,25 @@ import {
   SiReact, SiTailwindcss, SiFastapi, SiNodedotjs,
   SiGit, SiDocker, SiSupabase, SiRender, SiVercel, SiSpring,
 } from "react-icons/si";
+import { Brain, Code2, Layers } from "lucide-react";
+
+const specialties = [
+  {
+    icon: <Brain size={22} />,
+    title: "Machine Learning",
+    description: "Designing and training models — from classical ML to deep learning — deployed at scale.",
+  },
+  {
+    icon: <Code2 size={22} />,
+    title: "Full Stack Development",
+    description: "End-to-end web apps with React, FastAPI, and Node.js, backed by robust data pipelines.",
+  },
+  {
+    icon: <Layers size={22} />,
+    title: "AI Integration",
+    description: "Embedding LLMs, vision models, and NLP into real products with clean, maintainable APIs.",
+  },
+];
 
 const categories = [
   {
@@ -58,45 +77,65 @@ export default function About() {
       id="about"
       className="h-screen bg-[#f9fafb] dark:bg-[#0d1117] text-[#1f2937] dark:text-[#c9d1d9] transition-colors duration-300 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-between pt-24 pb-14">
+      <div className="max-w-6xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-between pt-20 pb-12">
 
-        {/* Top — big statement */}
+        {/* Top — heading + bio */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-indigo-500 dark:text-indigo-400 mb-4">
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-indigo-500 dark:text-indigo-400 mb-3">
             About Me
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white font-[Poppins] max-w-3xl">
-            Building intelligent<br className="hidden sm:block" /> systems that matter.
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white font-[Poppins] max-w-3xl">
+            Building intelligent systems that matter.
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl">
-            I&apos;m <span className="text-gray-800 dark:text-gray-200 font-medium">Chirag</span> — a Machine Learning Engineer and Full Stack Developer fusing data-driven AI with human-friendly design. I love building things at the intersection of engineering and creativity.
+          <p className="mt-3 text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl">
+            I&apos;m <span className="text-gray-800 dark:text-gray-200 font-medium">Chirag</span> — a Machine Learning Engineer and Full Stack Developer fusing data-driven AI with human-friendly design.
           </p>
         </motion.div>
 
-        {/* Bottom — skill columns */}
+        {/* Middle — specialty cards */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className="grid sm:grid-cols-3 gap-4"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <p className="text-xs font-mono tracking-[0.25em] uppercase text-gray-400 dark:text-gray-600 mb-6">
+          {specialties.map((s) => (
+            <div
+              key={s.title}
+              className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-white/[0.06] rounded-2xl p-5"
+            >
+              <div className="text-indigo-600 dark:text-indigo-400 mb-3">{s.icon}</div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1.5 font-[Poppins]">{s.title}</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{s.description}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Bottom — tech toolbox */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-xs font-mono tracking-[0.25em] uppercase text-gray-400 dark:text-gray-600 mb-5">
             Tech Toolbox
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4">
             {categories.map((cat) => (
               <div key={cat.title}>
-                <h4 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-4">
+                <h4 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3">
                   {cat.title}
                 </h4>
-                <ul className="space-y-2.5">
+                <ul className="space-y-2">
                   {cat.items.map((item) => (
-                    <li key={item.label} className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
+                    <li key={item.label} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <span className="text-base leading-none shrink-0">{item.icon}</span>
                       {item.label}
                     </li>

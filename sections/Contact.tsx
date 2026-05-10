@@ -49,7 +49,7 @@ export default function Contact() {
       id="contact"
       className="h-screen bg-[#f9fafb] dark:bg-[#0d1117] text-[#1f2937] dark:text-[#c9d1d9] font-[Poppins] transition-colors duration-300 overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-between pt-24 pb-14">
+      <div className="max-w-4xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-center gap-10 pt-20">
 
         {/* Header */}
         <motion.div
