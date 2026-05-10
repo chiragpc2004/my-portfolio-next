@@ -22,11 +22,9 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [darkMode, setDarkMode] = useState(true);
 
-  // Persistent theme from localStorage
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
     if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
       setDarkMode(true);
       document.documentElement.classList.add("dark");
@@ -50,23 +48,20 @@ export default function Navbar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { threshold: 0.5 }
     );
-
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((el) => observer.observe(el));
     return () => sections.forEach((el) => observer.unobserve(el));
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-lightBg/75 dark:bg-darkBg/75 border-b border-black/8 dark:border-white/8 shadow-sm font-[Poppins] text-black dark:text-white transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-lightBg/75 dark:bg-darkBg/80 border-b border-blue-100 dark:border-blue-900/30 shadow-sm font-[Poppins] text-black dark:text-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="#home" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-500 dark:from-[#58a6ff] dark:to-[#a78bfa] bg-clip-text text-transparent">
+        <a href="#home" className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
           Chirag&apos;s Portfolio
         </a>
 
@@ -77,19 +72,19 @@ export default function Navbar() {
                 href={item.href}
                 aria-current={activeSection === item.id ? "page" : undefined}
                 className={`flex items-center gap-1.5 md:gap-2 group relative transition-all duration-300 ${
-                  activeSection === item.id ? "text-blue-600 dark:text-[#58a6ff]" : ""
+                  activeSection === item.id ? "text-blue-600 dark:text-blue-400" : ""
                 }`}
               >
                 <span
-                  className={`transition group-hover:text-blue-600 dark:group-hover:text-[#58a6ff] ${
-                    activeSection === item.id ? "text-blue-600 dark:text-[#58a6ff]" : "text-gray-500 dark:text-gray-300"
+                  className={`transition group-hover:text-blue-600 dark:group-hover:text-blue-400 ${
+                    activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "text-gray-400 dark:text-slate-400"
                   }`}
                 >
                   {item.icon}
                 </span>
                 <span>{item.label}</span>
                 <span
-                  className={`absolute left-0 -bottom-1 h-0.5 bg-blue-600 dark:bg-[#58a6ff] rounded transition-all duration-300 ${
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded transition-all duration-300 ${
                     activeSection === item.id ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -102,7 +97,7 @@ export default function Navbar() {
           <button
             onClick={() => setDarkMode(!darkMode)}
             aria-label="Toggle Theme"
-            className="hover:text-blue-600 dark:hover:text-[#58a6ff] transition"
+            className="hover:text-blue-500 dark:hover:text-blue-400 transition"
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -111,7 +106,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               aria-label={link.label}
-              className="hover:text-blue-600 dark:hover:text-[#58a6ff] transition"
+              className="hover:text-blue-500 dark:hover:text-blue-400 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -136,15 +131,15 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="sm:hidden px-4 pb-4 backdrop-blur bg-lightBg/95 dark:bg-darkBg/90 rounded-b-xl">
-          <ul className="flex flex-col gap-4 text-base font-semibold">
+        <div className="sm:hidden px-4 pb-4 backdrop-blur-md bg-lightBg/95 dark:bg-darkBg/95 rounded-b-xl border-t border-blue-100 dark:border-blue-900/30">
+          <ul className="flex flex-col gap-4 text-base font-semibold pt-3">
             {navItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
                   className={`flex items-center gap-3 ${
-                    activeSection === item.id ? "text-blue-600 dark:text-[#58a6ff]" : "hover:text-blue-600 dark:hover:text-[#58a6ff]"
+                    activeSection === item.id ? "text-blue-600 dark:text-blue-400" : "hover:text-blue-500 dark:hover:text-blue-400"
                   } transition`}
                 >
                   {item.icon}

@@ -4,29 +4,30 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+section[id] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4f46e5;
+  background: #3b82f6;
   border-radius: 9999px;
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #58a6ff;
-}
 
-/* Subtle selection highlight */
+/* Text selection */
 ::selection {
-  background: #6366f1;
+  background: #3b82f6;
   color: #fff;
-}
-.dark ::selection {
-  background: #58a6ff;
-  color: #0d1117;
 }
