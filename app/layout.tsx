@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="bg-[#0b1120] text-white font-[Poppins]">{children}</body>
+      <body className="bg-[#0d1117] text-white font-[Poppins]">{children}</body>
     </html>
   );
 }
