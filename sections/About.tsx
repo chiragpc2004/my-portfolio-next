@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { FaChartLine } from "react-icons/fa";
 import {
   SiPython, SiCplusplus, SiJavascript, SiMysql,
@@ -31,7 +32,7 @@ const categories = [
     ],
   },
   {
-    title: "Frameworks & Libraries",
+    title: "Frameworks",
     items: [
       { label: "React", icon: <SiReact className="text-[#61DAFB]" /> },
       { label: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" /> },
@@ -55,50 +56,57 @@ export default function About() {
   return (
     <section
       id="about"
-      className="h-screen px-6 sm:px-10 bg-[#f9fafb] text-[#1f2937] dark:bg-[#0d1117] dark:text-[#c9d1d9] transition-colors duration-300"
+      className="h-screen bg-[#f9fafb] dark:bg-[#0d1117] text-[#1f2937] dark:text-[#c9d1d9] transition-colors duration-300 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto w-full h-full flex flex-col justify-center gap-7 pt-16">
-        {/* Intro */}
-        <div className="space-y-2 text-center md:text-left">
-          <h2 className="text-4xl sm:text-5xl font-bold font-[Poppins] relative inline-block pb-1">
-            About Me
-            <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-indigo-500 rounded-full" />
-          </h2>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto md:mx-0 pt-1">
-            I&apos;m <strong className="text-gray-800 dark:text-gray-200">Chirag</strong>, a Machine Learning Engineer and Full Stack Developer. I build intelligent systems that fuse data-driven AI with human-friendly design — from model training to scalable deployment. Outside of code, I love building things and doing graphic design.
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-between pt-24 pb-14">
 
-        {/* Tech stack */}
-        <div className="space-y-3">
-          <h3 className="text-base font-semibold text-indigo-600 dark:text-indigo-400 font-[Poppins] text-center md:text-left">
+        {/* Top — big statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-indigo-500 dark:text-indigo-400 mb-4">
+            About Me
+          </p>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white font-[Poppins] max-w-3xl">
+            Building intelligent<br className="hidden sm:block" /> systems that matter.
+          </h2>
+          <p className="mt-5 text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl">
+            I&apos;m <span className="text-gray-800 dark:text-gray-200 font-medium">Chirag</span> — a Machine Learning Engineer and Full Stack Developer fusing data-driven AI with human-friendly design. I love building things at the intersection of engineering and creativity.
+          </p>
+        </motion.div>
+
+        {/* Bottom — skill columns */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <p className="text-xs font-mono tracking-[0.25em] uppercase text-gray-400 dark:text-gray-600 mb-6">
             Tech Toolbox
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-3">
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-6">
             {categories.map((cat) => (
-              <div
-                key={cat.title}
-                className="bg-white dark:bg-[#161b22] border border-gray-200 dark:border-white/8 rounded-xl p-4 shadow-sm"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-1 h-4 rounded-full bg-indigo-500 shrink-0" />
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 font-[Poppins]">{cat.title}</h4>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
+              <div key={cat.title}>
+                <h4 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-4">
+                  {cat.title}
+                </h4>
+                <ul className="space-y-2.5">
                   {cat.items.map((item) => (
-                    <span
-                      key={item.label}
-                      className="flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/8 text-xs rounded-lg font-mono text-gray-700 dark:text-gray-300 hover:border-indigo-300 dark:hover:border-indigo-700 hover:scale-105 transition-all duration-150 cursor-default"
-                    >
-                      <span className="text-sm leading-none">{item.icon}</span>
+                    <li key={item.label} className="flex items-center gap-2.5 text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-base leading-none shrink-0">{item.icon}</span>
                       {item.label}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
