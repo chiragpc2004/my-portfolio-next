@@ -2,31 +2,161 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+ * Tokens. Channels (r g b) so Tailwind can apply alpha: bg-ink/10 etc.
+ * Light is the base; .dark overrides; .theme-invert flips a section to the other set.
+ * ------------------------------------------------------------------------- */
+:root,
+.dark .theme-invert {
+  --ground: 238 240 234;   /* #eef0ea  pale stone */
+  --surface: 226 230 221;  /* #e2e6dd */
+  --surface-2: 213 219 207;/* #d5dbcf */
+  --ink: 18 28 20;         /* #121c14 */
+  --muted: 74 86 76;       /* #4a564c  6.6:1 on ground */
+  --accent: 36 69 42;      /* #24452a  forest */
+  --accent-ink: 214 245 182;
+  --setosa: 46 94 170;
+  --versicolor: 128 66 168;
+  --virginica: 158 104 20;
+  color-scheme: light;
+}
+
+.dark,
+.theme-invert {
+  --ground: 14 21 16;      /* #0e1510  green-black */
+  --surface: 22 32 24;     /* #162018 */
+  --surface-2: 31 44 33;   /* #1f2c21 */
+  --ink: 236 241 234;      /* #ecf1ea */
+  --muted: 168 179 168;    /* #a8b3a8  8.4:1 on ground */
+  --accent: 198 241 157;   /* #c6f19d  pale lime */
+  --accent-ink: 14 21 16;
+  --setosa: 150 186 240;
+  --versicolor: 204 160 236;
+  --virginica: 232 196 122;
+  color-scheme: dark;
+}
+
+:root {
+  --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 2.6vw, 3.75rem);
+  --step-display: clamp(3.5rem, 1rem + 8.6vw, 8rem);
+  --nav-h: 4rem;
+}
+
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  /* Offset in-page anchor jumps so headings don't land under the fixed navbar */
+  scroll-padding-top: var(--nav-h);
 }
 
-section[id] {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  height: 100vh;
-  overflow: hidden;
+body {
+  font-feature-settings: "ss01", "cv11";
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 5px;
+/*
+ * Full-page snap with fixed-height sections only when the viewport is large
+ * enough for every section to fit. On phones and short screens, sections grow
+ * to their content (min-h-screen) and scroll normally, so nothing is clipped.
+ * Keep this query in sync with the `snap` screen in tailwind.config.js.
+ */
+@media (min-width: 1024px) and (min-height: 700px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 0;
+  }
+
+  section[id] {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+  }
 }
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #6366f1;
-  border-radius: 9999px;
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid rgb(var(--ink));
+  outline-offset: 3px;
 }
 
 ::selection {
-  background: #6366f1;
-  color: #fff;
+  background: rgb(var(--accent));
+  color: rgb(var(--accent-ink));
+}
+
+/* ---------------------------------------------------------------------------
+ * Reveal: parts of each section rise in as it enters. Only hidden when JS is
+ * running (html.js is set before paint), so content never stays invisible.
+ * ------------------------------------------------------------------------- */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+html.js [data-reveal][data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Slow drift on a photograph: the page's one moving picture. */
+@keyframes drift {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to   { transform: scale(1.1) translate3d(-2%, -1.5%, 0); }
+}
+.drift {
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+/* Range inputs for the iris lab, drawn in the page's colours. */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+.range::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgb(var(--ink) / 0.18);
+}
+.range::-moz-range-track {
+  height: 4px;
+  background: rgb(var(--ink) / 0.18);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border-radius: 9999px;
+  background: rgb(var(--ink));
+  transition: transform 0.15s ease;
+}
+.range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(var(--ink));
+}
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js [data-reveal] {
+    transform: none;
+    transition: opacity 0.4s linear;
+  }
+  .drift {
+    animation: none;
+  }
 }

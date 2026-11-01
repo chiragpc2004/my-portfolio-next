@@ -1,0 +1,1954 @@
+{
+ "url": "http://localhost:3000",
+ "at": "2026-11-01T01:13:41.537Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.18,
+    0.32,
+    0.5,
+    0.18
+   ],
+   "motion": {
+    "elements": 56,
+    "css": 1,
+    "transitions": 43,
+    "scripted": 12,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3600,
+     "screens": 4,
+     "words": 284,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 46,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Chirag P C",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 96,
+     "vw": 6.7,
+     "font": "Poppins",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.34,
+     "top": 412,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Chirag P C",
+     "words": 3,
+     "lines": 1,
+     "size": 96,
+     "font": "Poppins"
+    },
+    "headings": [
+     {
+      "text": "Chirag P C",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 96,
+      "vw": 6.7,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.34,
+      "top": 412,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Building intelligent systems that matter.",
+      "words": 5,
+      "chars": 41,
+      "lines": 2,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.53,
+      "top": 1008,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Projects",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.74,
+      "top": 1928,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's work together.",
+      "words": 3,
+      "chars": 20,
+      "lines": 2,
+      "size": 60,
+      "vw": 4.2,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.57,
+      "top": 2919,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Poppins",
+       "share": 0.89,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.11,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      20,
+      24,
+      48,
+      60,
+      96
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Poppins",
+      "size": 14,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7
+     },
+     "measureChars": 64,
+     "max": {
+      "size": 96,
+      "vw": 6.7,
+      "font": "Poppins",
+      "text": "Chirag P C"
+     },
+     "monoShare": 0.11,
+     "monoProseShare": 0.11,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "Machine Learning Engineer",
+      "Scroll",
+      "About Me",
+      "Tech Toolbox",
+      "Selected Work",
+      "01"
+     ],
+     "microLabels": 10,
+     "microLabelShare": 0.067,
+     "microSamples": [
+      "Machine Learning Engineer",
+      "Scroll",
+      "About Me",
+      "Tech Toolbox",
+      "Languages",
+      "ML & AI"
+     ],
+     "upperShare": 0.07,
+     "centerShare": 0.12,
+     "smallText": 13
+    },
+    "eyebrows": [
+     {
+      "text": "Machine Learning Engineer",
+      "above": "Chirag P C",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 380
+     },
+     {
+      "text": "About Me",
+      "above": "Building intelligent systems that matter",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 980
+     },
+     {
+      "text": "Selected Work",
+      "above": "Projects",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 1896
+     },
+     {
+      "text": "Get in Touch",
+      "above": "Let's work together.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 2887
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 12,
+      "top": 2117
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 2117
+     },
+     {
+      "text": "03",
+      "size": 12,
+      "top": 2403
+     },
+     {
+      "text": "04",
+      "size": 12,
+      "top": 2403
+     }
+    ],
+    "color": {
+     "bodyBg": "#0d1117",
+     "bodyBgHsl": {
+      "h": 216,
+      "s": 0.28,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0d1117",
+       "top": 0,
+       "hsl": {
+        "h": 216,
+        "s": 0.28,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#4338ca",
+       "top": 100,
+       "hsl": {
+        "h": 245,
+        "s": 0.58,
+        "l": 0.51
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#9ca3af",
+       "share": 0.67
+      },
+      {
+       "color": "#d1d5db",
+       "share": 0.14
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.13
+      },
+      {
+       "color": "#818cf8",
+       "share": 0.05
+      },
+      {
+       "color": "#e5e7eb",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#4f46e5",
+      "hsl": {
+       "h": 243,
+       "s": 0.75,
+       "l": 0.59
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "View My Work",
+      "Resume"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 1,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "div.p-[3px].rounded-full → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(99, 102"
+     ],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 1,
+     "hairlineSamples": [
+      "nav.fixed.top-0 1440px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 9,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 1281
+      },
+      {
+       "count": 4,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 2088
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 8,
+     "fixed": true,
+     "height": 57,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "poppins"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3600,
+    "margins": {
+     "left": 184,
+     "right": 252
+    },
+    "sections": [
+     {
+      "sel": "section#home.relative.min-h-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 900,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Chirag P C",
+       "size": 96,
+       "tag": "h1"
+      },
+      "left": 438,
+      "right": 438,
+      "textLeft": 438,
+      "textRight": 438,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 900,
+      "height": 900,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Building intelligent systems that matter.",
+       "size": 48,
+       "tag": "h2"
+      },
+      "left": 184,
+      "right": 217,
+      "textLeft": 184,
+      "textRight": 217,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#projects.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 1800,
+      "height": 900,
+      "words": 98,
+      "media": 0,
+      "middle": 28,
+      "heading": {
+       "text": "Projects",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 184,
+      "right": 234,
+      "textLeft": 184,
+      "textRight": 234,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#contact.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 2700,
+      "height": 900,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Let's work",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 312,
+      "right": 312,
+      "textLeft": 312,
+      "textRight": 358,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 2612,
+      "height": 272
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Chirag P C",
+      "size": 96,
+      "top": 412,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 205,
+      "n": 5
+     },
+     {
+      "x": 184,
+      "n": 4
+     },
+     {
+      "x": 757,
+      "n": 4
+     },
+     {
+      "x": 312,
+      "n": 3
+     },
+     {
+      "x": 568,
+      "n": 1
+     },
+     {
+      "x": 930,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 18,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.25,
+    "voidBox": {
+     "x": 0,
+     "y": 120,
+     "w": 420,
+     "h": 780
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.24,
+    0.43,
+    0.73,
+    0.39
+   ],
+   "motion": {
+    "elements": 56,
+    "css": 1,
+    "transitions": 43,
+    "scripted": 12,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 4096,
+     "screens": 4,
+     "words": 284,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 46,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Chirag P C",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 96,
+     "vw": 12.5,
+     "font": "Poppins",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.63,
+     "top": 474,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Chirag P C",
+     "words": 3,
+     "lines": 1,
+     "size": 96,
+     "font": "Poppins"
+    },
+    "headings": [
+     {
+      "text": "Chirag P C",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 96,
+      "vw": 12.5,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.63,
+      "top": 474,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Building intelligent systems that matter.",
+      "words": 5,
+      "chars": 41,
+      "lines": 2,
+      "size": 48,
+      "vw": 6.3,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1132,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Projects",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 60,
+      "vw": 7.8,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2176,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's work together.",
+      "words": 3,
+      "chars": 20,
+      "lines": 2,
+      "size": 60,
+      "vw": 7.8,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3353,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Poppins",
+       "share": 0.89,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.11,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      20,
+      48,
+      60,
+      96
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Poppins",
+      "size": 14,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7
+     },
+     "measureChars": 64,
+     "max": {
+      "size": 96,
+      "vw": 12.5,
+      "font": "Poppins",
+      "text": "Chirag P C"
+     },
+     "monoShare": 0.11,
+     "monoProseShare": 0.11,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "Machine Learning Engineer",
+      "Scroll",
+      "About Me",
+      "Tech Toolbox",
+      "Selected Work",
+      "01"
+     ],
+     "microLabels": 10,
+     "microLabelShare": 0.067,
+     "microSamples": [
+      "Machine Learning Engineer",
+      "Scroll",
+      "About Me",
+      "Tech Toolbox",
+      "Languages",
+      "ML & AI"
+     ],
+     "upperShare": 0.07,
+     "centerShare": 0.12,
+     "smallText": 13
+    },
+    "eyebrows": [
+     {
+      "text": "Machine Learning Engineer",
+      "above": "Chirag P C",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 442
+     },
+     {
+      "text": "About Me",
+      "above": "Building intelligent systems that matter",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 1104
+     },
+     {
+      "text": "Selected Work",
+      "above": "Projects",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 2144
+     },
+     {
+      "text": "Get in Touch",
+      "above": "Let's work together.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 3321
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 12,
+      "top": 2365
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 2365
+     },
+     {
+      "text": "03",
+      "size": 12,
+      "top": 2696
+     },
+     {
+      "text": "04",
+      "size": 12,
+      "top": 2696
+     }
+    ],
+    "color": {
+     "bodyBg": "#0d1117",
+     "bodyBgHsl": {
+      "h": 216,
+      "s": 0.28,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0d1117",
+       "top": 0,
+       "hsl": {
+        "h": 216,
+        "s": 0.28,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#4338ca",
+       "top": 162,
+       "hsl": {
+        "h": 245,
+        "s": 0.58,
+        "l": 0.51
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#9ca3af",
+       "share": 0.67
+      },
+      {
+       "color": "#d1d5db",
+       "share": 0.14
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.13
+      },
+      {
+       "color": "#818cf8",
+       "share": 0.05
+      },
+      {
+       "color": "#e5e7eb",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#4f46e5",
+      "hsl": {
+       "h": 243,
+       "s": 0.75,
+       "l": 0.59
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "View My Work",
+      "Resume"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 1,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "div.p-[3px].rounded-full → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(99, 102"
+     ],
+     "gradients": 1,
+     "scrims": 0,
+     "gradientSamples": [
+      "div.p-[3px].rounded-full → linear-gradient(to right top, rgb(99, 102, 241), rgb(129, 140, 248), rgb(165, 180, 252))"
+     ],
+     "gradientText": 0,
+     "hairlines": 1,
+     "hairlineSamples": [
+      "nav.fixed.top-0 768px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 9,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 1451
+      },
+      {
+       "count": 4,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 2336
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 8,
+     "fixed": true,
+     "height": 53,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "poppins"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 4096,
+    "margins": {
+     "left": 40,
+     "right": 40
+    },
+    "sections": [
+     {
+      "sel": "section#home.relative.min-h-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 1024,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Chirag P C",
+       "size": 96,
+       "tag": "h1"
+      },
+      "left": 102,
+      "right": 102,
+      "textLeft": 102,
+      "textRight": 102,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 1024,
+      "height": 1024,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Building intelligent systems that matter.",
+       "size": 48,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 70,
+      "textLeft": 40,
+      "textRight": 70,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#projects.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 2048,
+      "height": 1024,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Projects",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 73,
+      "textLeft": 40,
+      "textRight": 73,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#contact.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 3072,
+      "height": 1024,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Let's work",
+       "size": 60,
+       "tag": "h2"
+      },
+      "left": 40,
+      "right": 40,
+      "textLeft": 40,
+      "textRight": 86,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 2984,
+      "height": 336
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Chirag P C",
+      "size": 96,
+      "top": 474,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 40,
+      "n": 7
+     },
+     {
+      "x": 61,
+      "n": 5
+     },
+     {
+      "x": 421,
+      "n": 4
+     },
+     {
+      "x": 296,
+      "n": 1
+     },
+     {
+      "x": 530,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 18,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.31,
+    0.73,
+    0.42,
+    0.91,
+    0.56,
+    0.45
+   ],
+   "motion": {
+    "elements": 40,
+    "css": 1,
+    "transitions": 27,
+    "scripted": 12,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 4514,
+     "screens": 5.3,
+     "words": 279,
+     "img": 1,
+     "video": 0,
+     "canvas": 0,
+     "svg": 46,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Chirag P C",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 48,
+     "vw": 12.3,
+     "font": "Poppins",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "center",
+     "position": "center",
+     "widthRatio": 0.62,
+     "top": 390,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Chirag P C",
+     "words": 3,
+     "lines": 1,
+     "size": 48,
+     "font": "Poppins"
+    },
+    "headings": [
+     {
+      "text": "Chirag P C",
+      "words": 3,
+      "chars": 10,
+      "lines": 1,
+      "size": 48,
+      "vw": 12.3,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 390,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Building intelligent systems that matter.",
+      "words": 5,
+      "chars": 41,
+      "lines": 3,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 968,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Projects",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 2408,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's work together.",
+      "words": 3,
+      "chars": 20,
+      "lines": 1,
+      "size": 36,
+      "vw": 9.2,
+      "font": "Poppins",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.25,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 3798,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 0,
+     "centered": 1,
+     "medianWords": 3,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Poppins",
+       "share": 0.89,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.11,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      20,
+      36,
+      48
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "Poppins",
+      "size": 14,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7
+     },
+     "measureChars": 43,
+     "max": {
+      "size": 48,
+      "vw": 12.3,
+      "font": "Poppins",
+      "text": "Chirag P C"
+     },
+     "monoShare": 0.11,
+     "monoProseShare": 0.11,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "Machine Learning Engineer",
+      "About Me",
+      "Tech Toolbox",
+      "Selected Work",
+      "01",
+      "scikit-learn"
+     ],
+     "microLabels": 9,
+     "microLabelShare": 0.064,
+     "microSamples": [
+      "Machine Learning Engineer",
+      "About Me",
+      "Tech Toolbox",
+      "Languages",
+      "ML & AI",
+      "Frameworks"
+     ],
+     "upperShare": 0.07,
+     "centerShare": 0.12,
+     "smallText": 10
+    },
+    "eyebrows": [
+     {
+      "text": "Machine Learning Engineer",
+      "above": "Chirag P C",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 358
+     },
+     {
+      "text": "About Me",
+      "above": "Building intelligent systems that matter",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 940
+     },
+     {
+      "text": "Selected Work",
+      "above": "Projects",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 2376
+     },
+     {
+      "text": "Get in Touch",
+      "above": "Let's work together.",
+      "upper": true,
+      "tracked": true,
+      "mono": true,
+      "pill": false,
+      "size": 12,
+      "top": 3766
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 12,
+      "top": 2602
+     },
+     {
+      "text": "02",
+      "size": 12,
+      "top": 2846
+     },
+     {
+      "text": "03",
+      "size": 12,
+      "top": 3090
+     },
+     {
+      "text": "04",
+      "size": 12,
+      "top": 3369
+     }
+    ],
+    "color": {
+     "bodyBg": "#0d1117",
+     "bodyBgHsl": {
+      "h": 216,
+      "s": 0.28,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#0d1117",
+       "top": 0,
+       "hsl": {
+        "h": 216,
+        "s": 0.28,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#4338ca",
+       "top": 227,
+       "hsl": {
+        "h": 245,
+        "s": 0.58,
+        "l": 0.51
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#9ca3af",
+       "share": 0.67
+      },
+      {
+       "color": "#d1d5db",
+       "share": 0.15
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.12
+      },
+      {
+       "color": "#818cf8",
+       "share": 0.05
+      },
+      {
+       "color": "#e5e7eb",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#4f46e5",
+      "hsl": {
+       "h": 243,
+       "s": 0.75,
+       "l": 0.59
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "View My Work",
+      "Resume"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 1,
+     "shadowOverlay": 1,
+     "shadowSamples": [
+      "div.p-[3px].rounded-full → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(99, 102"
+     ],
+     "gradients": 1,
+     "scrims": 0,
+     "gradientSamples": [
+      "div.p-[3px].rounded-full → linear-gradient(to right top, rgb(99, 102, 241), rgb(129, 140, 248), rgb(165, 180, 252))"
+     ],
+     "gradientText": 0,
+     "hairlines": 1,
+     "hairlineSamples": [
+      "nav.fixed.top-0 390px"
+     ],
+     "outlinedBoxes": 7,
+     "dashed": 0,
+     "blurred": 1,
+     "roundedBoxes": 9,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 1233
+      },
+      {
+       "count": 4,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 2577
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 53,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "poppins"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 4514,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section#home.relative.min-h-screen",
+      "tag": "section",
+      "top": 0,
+      "height": 844,
+      "words": 34,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Chirag P C",
+       "size": 48,
+       "tag": "h1"
+      },
+      "left": 26,
+      "right": 26,
+      "textLeft": 26,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 844,
+      "height": 1436,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Building intelligent systems that matter.",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 32,
+      "textLeft": 24,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#projects.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 2280,
+      "height": 1390,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Projects",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 60,
+      "textLeft": 24,
+      "textRight": 60,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#contact.min-h-screen.snap:h-screen",
+      "tag": "section",
+      "top": 3670,
+      "height": 844,
+      "words": 35,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Let's work",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 616,
+      "height": 324
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Chirag P C",
+      "size": 48,
+      "top": 390,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 45,
+      "n": 14
+     },
+     {
+      "x": 24,
+      "n": 6
+     },
+     {
+      "x": 196,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "4 eyebrow/kicker label(s) above headings: \"Machine Learning Engineer\" above \"Chirag P C\"; \"About Me\" above \"Building intelligent systems that matter\"; \"Selected Work\" above \"Projects\"; \"Get in Touch\" above \"Let's work together.\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "mono",
+   "width": 1440,
+   "message": "Monospace type outside code: ui-monospace — e.g. \"Machine Learning Engineer\", \"Scroll\", \"About Me\", \"Tech Toolbox\"",
+   "fix": "Set it in the text face. Monospace is for literal code inside <pre>/<code> only.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "numbering",
+   "width": 1440,
+   "message": "Decorative index numbers: \"01\", \"02\", \"03\", \"04\"",
+   "fix": "Remove them. If order truly matters, write it into the words (\"First, …\") or use a real <ol>.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "micro-label",
+   "width": 1440,
+   "message": "10 tiny uppercase letter-spaced labels (e.g. \"Machine Learning Engineer\", \"Scroll\", \"About Me\", \"Tech Toolbox\").",
+   "fix": "Use sentence-case text at a readable size, or delete the label.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "shadow",
+   "width": 1440,
+   "message": "1 box-shadow(s) on elements at rest: div.p-[3px].rounded-full → rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(99, 102",
+   "fix": "Remove. Separate surfaces with a tone step or space. Shadows are for things that really float (menus, dialogs, sticky bars).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "hairline",
+   "width": 1440,
+   "message": "1 thin rule(s)/divider line(s): nav.fixed.top-0 1440px",
+   "fix": "Delete. Separate with space, a tone change, or scale. Lines are only for real tables and form fields.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "7 boxes drawn with a 1px outline.",
+   "fix": "Define a surface by its fill (one tone step from the page) or leave the content unboxed.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "icon-cards",
+   "width": 1440,
+   "message": "2 row(s) of identical cards each topped with a small icon (3, 4 cards).",
+   "fix": "Replace with one composed section from the direction: a narrative split, a list set in large type, or real imagery per item.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "palette-purple",
+   "width": 1440,
+   "message": "Indigo / violet (section #4338ca).",
+   "fix": "Use the accent from the drawn palette.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "body-size",
+   "width": 1440,
+   "message": "Body text is 14px (the size most of the running text is set in).",
+   "fix": "Body copy 16–20px. Map small sizes from blueprints onto your body step.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 1440,
+   "message": "13 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The page sits off-centre: its content comes to 184px from the left edge but only to 252px from the right, at 1440px.",
+   "fix": "Give the page one pair of equal margins. Check the wrapper for a max-width without margin-inline: auto, a grid with an empty last column, or padding on one side only. If one side is meant to hold air, it must still be closed by something that reaches the margin (a picture, the navigation's last item, a figure)."
+  },
+  {
+   "level": "FAIL",
+   "id": "empty-screens",
+   "width": 1440,
+   "message": "2 of 4 desktop screens are almost empty ground (under 20% of the screen holds text, a picture or a colour field): screens 1, 4.",
+   "fix": "An empty screen is a rest only once per page. Elsewhere it means the section is underbuilt: set its content larger, give it the full information, put it on a colour field, or cut it."
+  },
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 768,
+   "message": "1 gradient fill(s): div.p-[3px].rounded-full → linear-gradient(to right top, rgb(99, 102, 241), rgb(129, 140, 248), rgb(165, 180, 252))",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 390,
+   "message": "1 headline(s) wrap past two lines at 390px: \"Building intelligent systems that matter.\" → 3 lines (5 words, 36px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 24px or less."
+  },
+  {
+   "level": "WARN",
+   "id": "name-only-title",
+   "width": 390,
+   "message": "The h1 is a bare name (\"Chirag P C\") and nothing else on the first screen says what this is.",
+   "fix": "Keep the name if it leads, and give the line under it (18px or more) the plain words: what it is, for whom, where or when. In the study of 97 Sites of the Day, first screens that named nothing lost usability and content points."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/desktop-fold.jpg",
+   "pages": [
+    "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/tablet-fold.jpg",
+   "pages": [
+    "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/mobile-fold.jpg",
+   "pages": [
+    "/Users/apple/Downloads/my-portfolio-next/.taste-skill/before/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

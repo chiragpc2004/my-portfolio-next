@@ -1,19 +1,51 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Send } from "lucide-react";
-import { SiKaggle, SiInstagram, SiFacebook, SiX } from "react-icons/si";
+import { ArrowUpRight } from "lucide-react";
+
+const EMAIL = "chiragpc2004@gmail.com";
 
 const socials = [
-  { href: "mailto:chiragpc2004@gmail.com", icon: <Mail size={18} />, label: "Email" },
-  { href: "https://github.com/chiragpc2004", icon: <Github size={18} />, label: "GitHub" },
-  { href: "https://linkedin.com/in/chiragpc2004", icon: <Linkedin size={18} />, label: "LinkedIn" },
-  { href: "https://www.kaggle.com/chiragpoojarikodi", icon: <SiKaggle size={17} />, label: "Kaggle" },
-  { href: "https://x.com/chiragpc_2004", icon: <SiX size={17} />, label: "Twitter" },
-  { href: "https://www.instagram.com/chiragpc_2004/", icon: <SiInstagram size={17} />, label: "Instagram" },
-  { href: "https://www.facebook.com/chirag.poojarikodi", icon: <SiFacebook size={17} />, label: "Facebook" },
+  { href: "https://github.com/chiragpc2004", label: "GitHub" },
+  { href: "https://linkedin.com/in/chiragpc2004", label: "LinkedIn" },
+  { href: "https://www.kaggle.com/chiragpoojarikodi", label: "Kaggle" },
+  { href: "https://x.com/chiragpc_2004", label: "Twitter" },
+  { href: "https://www.instagram.com/chiragpc_2004/", label: "Instagram" },
+  { href: "https://www.facebook.com/chirag.poojarikodi", label: "Facebook" },
 ];
+
+const credits = [
+  {
+    title: "Iris setosa var. setosa",
+    href: "https://commons.wikimedia.org/wiki/File:Iris_setosa_var._setosa_(2595031014).jpg",
+    by: "Emma Forsberg",
+    license: "CC BY 2.0",
+    licenseHref: "https://creativecommons.org/licenses/by/2.0",
+  },
+  {
+    title: "Iris versicolor",
+    href: "https://commons.wikimedia.org/wiki/File:Iris_versicolor_-20200620-RM-100933.jpg",
+    by: "Ermell",
+    license: "CC BY-SA 4.0",
+    licenseHref: "https://creativecommons.org/licenses/by-sa/4.0",
+  },
+  {
+    title: "Iris virginica",
+    href: "https://commons.wikimedia.org/wiki/File:Iris_virginica.jpg",
+    by: "Frank Mayfield",
+    license: "CC BY-SA 2.0",
+    licenseHref: "https://creativecommons.org/licenses/by-sa/2.0",
+  },
+  {
+    title: "Rocks at the Lighthouse, Biarritz",
+    href: "https://www.artic.edu/artworks/66144",
+    by: "Joaquín Sorolla, 1906",
+    license: "CC0",
+    licenseHref: "https://creativecommons.org/publicdomain/zero/1.0/",
+  },
+];
+
+const R = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -34,89 +66,102 @@ export default function Contact() {
     fd.append("_captcha", "false");
     fd.append("_template", "box");
     try {
-      const res = await fetch("https://formsubmit.co/chiragpc2004@gmail.com", { method: "POST", body: fd });
-      if (res.ok) { setStatus("success"); setForm({ name: "", email: "", message: "" }); }
-      else setStatus("error");
-    } catch { setStatus("error"); }
+      const res = await fetch(`https://formsubmit.co/${EMAIL}`, { method: "POST", body: fd });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      } else setStatus("error");
+    } catch {
+      setStatus("error");
+    }
     setLoading(false);
     setTimeout(() => setStatus(null), 4000);
   };
 
-  const inputCls = "w-full px-4 py-3 text-sm bg-white dark:bg-[#111827] text-gray-800 dark:text-white border border-gray-200 dark:border-white/[0.06] rounded-xl placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400/40 focus:border-indigo-300 dark:focus:border-indigo-500/40 transition";
+  const field =
+    "w-full bg-surface text-ink placeholder:text-muted px-4 py-3.5 border-0 border-b-2 border-ink/20 focus:border-ink focus:outline-none transition-[border-color] duration-200";
 
   return (
     <section
       id="contact"
-      className="h-screen bg-[#f9fafb] dark:bg-[#0d1117] text-[#1f2937] dark:text-[#c9d1d9] font-[Poppins] transition-colors duration-300 overflow-hidden"
+      aria-labelledby="contact-title"
+      className="theme-invert min-h-svh snap:h-screen bg-ground text-ink pt-[calc(var(--nav-h)+2.5rem)] pb-8"
     >
-      <div className="max-w-4xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-center gap-10 pt-20">
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-indigo-500 dark:text-indigo-400 mb-4">
-            Get in Touch
-          </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white font-[Poppins]">
-            Let&apos;s work<br className="hidden sm:block" /> together.
-          </h2>
-          <p className="mt-4 text-base text-gray-500 dark:text-gray-400 max-w-lg">
-            Got a project in mind or just want to connect? I&apos;m always open to opportunities and collaborations.
-          </p>
-
-          {/* Social icon row */}
-          <div className="flex flex-wrap items-center gap-3 mt-6">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="p-2.5 rounded-xl border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-[#111827] text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-all duration-200 hover:scale-110 hover:shadow-md"
-              >
-                {s.icon}
-              </a>
-            ))}
+      <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8 flex flex-col">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 flex-1 content-center">
+          <div className="lg:col-span-6">
+            <h2 id="contact-title" data-reveal className="font-display font-semibold uppercase text-head max-w-[12ch]">
+              Let&apos;s build something
+            </h2>
+            <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[30ch]">
+              A role, a project or a question about one of mine. I answer every message.
+            </p>
+            <a
+              data-reveal
+              style={R(2)}
+              href={`mailto:${EMAIL}`}
+              className="group mt-10 inline-flex items-center gap-3 py-2 font-display font-semibold text-[clamp(1.125rem,0.7rem+1.6vw,2rem)] tracking-[-0.02em] break-all underline decoration-ink/25 decoration-2 underline-offset-[10px] hover:decoration-ink transition-[text-decoration-color] duration-200"
+            >
+              {EMAIL}
+              <ArrowUpRight aria-hidden="true" className="shrink-0 w-[1em] h-[1em] transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+            <ul data-reveal style={R(3)} className="mt-10 flex flex-wrap gap-x-6 gap-y-1">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center h-11 text-muted hover:text-ink transition-colors duration-200"
+                  >
+                    {s.label}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-        </motion.div>
 
-        {/* Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form data-reveal style={R(2)} onSubmit={handleSubmit} className="lg:col-span-5 lg:col-start-8 grid gap-4 content-center">
+            <h3 className="font-medium">Or write here</h3>
             <div className="grid sm:grid-cols-2 gap-4">
-              <input name="name" required placeholder="Your name" value={form.name} onChange={handleChange} className={inputCls} />
-              <input name="email" type="email" required placeholder="Your email" value={form.email} onChange={handleChange} className={inputCls} />
+              <input name="name" required aria-label="Your name" autoComplete="name" placeholder="Your name" value={form.name} onChange={handleChange} className={field} />
+              <input name="email" type="email" required aria-label="Your email" autoComplete="email" placeholder="Your email" value={form.email} onChange={handleChange} className={field} />
             </div>
-            <textarea name="message" required placeholder="Your message..." rows={4} value={form.message} onChange={handleChange} className={`${inputCls} resize-none`} />
-            <div className="flex items-center justify-between">
-              <p className={`text-sm transition-opacity duration-500 ${status === "success" ? "text-green-500 opacity-100" : status === "error" ? "text-red-500 opacity-100" : "opacity-0 pointer-events-none"}`}>
-                {status === "success" ? "Message sent!" : status === "error" ? "Failed. Try again." : " "}
+            <textarea name="message" required aria-label="Your message" placeholder="Your message" rows={4} value={form.message} onChange={handleChange} className={`${field} resize-none`} />
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+              <p role="status" aria-live="polite" className={`text-small transition-opacity duration-500 ${status ? "opacity-100" : "opacity-0"}`}>
+                {status === "success" ? "Sent. I'll reply soon." : status === "error" ? "That didn't send. Try again, or email me directly." : " "}
               </p>
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 disabled:opacity-60 text-white text-sm font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.03]"
+                className="inline-flex items-center h-12 px-7 rounded-full bg-accent text-accent-ink font-medium hover:bg-accent/85 active:scale-[0.97] disabled:opacity-60 transition-[background-color,transform,opacity] duration-200"
               >
-                {loading ? "Sending…" : "Send message"} <Send size={14} />
+                {loading ? "Sending…" : "Send message"}
               </button>
             </div>
           </form>
+        </div>
 
-          <p className="text-xs text-gray-400 dark:text-gray-700 mt-8">
-            &copy; {new Date().getFullYear()} Chirag P C &mdash; All rights reserved.
+        <footer className="mt-16 snap:mt-8 grid gap-3 sm:grid-cols-[auto_1fr] sm:gap-10 text-small text-muted">
+          <p>© {new Date().getFullYear()} Chirag P C</p>
+          <p className="sm:text-right">
+            Photographs:{" "}
+            {credits.map((c, i) => (
+              <span key={c.href}>
+                <a href={c.href} className="underline underline-offset-2 hover:text-ink">
+                  {c.title}
+                </a>{" "}
+                by {c.by},{" "}
+                <a href={c.licenseHref} className="underline underline-offset-2 hover:text-ink">
+                  {c.license}
+                </a>
+                {i < credits.length - 1 ? "; " : "."}
+              </span>
+            ))}
           </p>
-        </motion.div>
-
+        </footer>
       </div>
     </section>
   );

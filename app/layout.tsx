@@ -1,26 +1,40 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Onest, Unbounded } from "next/font/google";
 
-const poppins = Poppins({
+// Display: a wide, constructed face used only for the name and headings.
+const unbounded = Unbounded({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["600", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+// Text: a clean grotesk for everything people actually read.
+const onest = Onest({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Chirag's Portfolio",
-  description: "Machine Learning Engineer Portfolio",
+  title: "Chirag P C · Machine learning engineer",
+  description:
+    "Chirag P C trains machine learning models and builds the products around them. Selected work, résumé and contact.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Runs before paint: marks JS as available (for reveal animations) and applies
+// the saved or system theme so the page never flashes the wrong colours.
+const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');var dark=true;try{var t=localStorage.getItem('theme');dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;}catch(e){}if(dark)d.classList.add('dark');})();`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={poppins.variable}>
-      <body className="bg-[#0d1117] text-white font-[Poppins]">{children}</body>
+    <html lang="en" className={`${unbounded.variable} ${onest.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+      </head>
+      <body className="bg-ground text-ink font-sans text-body antialiased">{children}</body>
     </html>
   );
 }

@@ -1,100 +1,98 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, FileText } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowDown } from "lucide-react";
+import { SPECIES } from "@/components/species";
+
+const HOLD_MS = 6000;
 
 function Hero() {
+  // Signature move: the three species of the Iris dataset crossfade slowly.
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let timer: number | undefined;
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+    };
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => setCurrent((c) => (c + 1) % SPECIES.length), HOLD_MS);
+    };
+    const onVisibility = () => (document.hidden ? stop() : start());
+    start();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
   return (
-    <motion.section
+    <section
       id="home"
-      className="relative h-screen bg-[#f9fafb] dark:bg-[#0d1117] flex flex-col items-center justify-center px-6 overflow-hidden text-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      className="relative min-h-svh snap:h-screen bg-ground text-ink pt-[calc(var(--nav-h)+1.5rem)] pb-10 snap:pb-12"
     >
-      {/* Ambient glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[700px] h-[700px] bg-indigo-500 dark:bg-indigo-700 rounded-full blur-[200px] opacity-[0.07] dark:opacity-[0.12]" />
-      </div>
-
-      <div className="relative z-10 flex flex-col items-center gap-6 max-w-4xl">
-        {/* Profile image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative"
-        >
-          <div className="p-[3px] rounded-full bg-gradient-to-tr from-indigo-500 via-indigo-400 to-indigo-300 shadow-2xl shadow-indigo-500/20">
-            <img
-              src="https://avatars.githubusercontent.com/u/72426288"
-              alt="Chirag"
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover bg-gray-200 dark:bg-[#161b22]"
-            />
-          </div>
-          {/* Available dot */}
-          <span className="absolute bottom-1 right-1 flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 border-2 border-white dark:border-[#0d1117]" />
-          </span>
-        </motion.div>
-
+      <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8 flex flex-col gap-10 lg:grid lg:grid-cols-12 lg:gap-8 lg:items-end">
         {/* Text */}
-        <motion.div
-          className="flex flex-col items-center gap-4"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-        >
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-gray-400 dark:text-gray-500">
-            Machine Learning Engineer
-          </p>
-
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-none text-gray-900 dark:text-white font-[Poppins]">
-            Chirag P C
+        <div className="lg:col-span-7 lg:pb-2">
+          <h1 data-reveal className="font-display font-semibold uppercase text-display">
+            <span className="block">Chirag</span>
+            <span className="block">P C</span>
           </h1>
-
-          <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl">
-            I build intelligent systems — from machine learning models to scalable
-            web apps — at the intersection of AI, engineering, and product thinking.
+          <p data-reveal style={{ "--i": 1 } as React.CSSProperties} className="mt-8 max-w-[34ch] text-lead text-ink">
+            Machine learning engineer. I train models and build the web products that put them to work.
           </p>
-        </motion.div>
+          <div data-reveal style={{ "--i": 2 } as React.CSSProperties} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-3 h-12 pl-6 pr-5 rounded-full bg-accent text-accent-ink font-medium hover:bg-accent/85 active:scale-[0.97] transition-[background-color,transform] duration-200"
+            >
+              See the work
+              <ArrowDown size={18} aria-hidden="true" className="transition-transform duration-300 ease-out group-hover:translate-y-0.5" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center h-12 font-medium underline decoration-ink/30 underline-offset-[6px] hover:decoration-ink transition-[text-decoration-color] duration-200"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
 
-        {/* CTAs */}
-        <motion.div
-          className="flex items-center gap-3 sm:gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.45 }}
-        >
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-7 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-200 hover:scale-[1.04] hover:shadow-xl hover:shadow-indigo-500/25"
-          >
-            View My Work <ArrowRight size={15} />
-          </a>
-          <a
-            href="https://drive.google.com/file/d/13gG3z98A3viQlp8BNyU-P3B6fLl3JrIc/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-semibold text-sm tracking-wide border border-gray-300 dark:border-white/15 text-gray-700 dark:text-gray-300 hover:border-indigo-400 dark:hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 hover:scale-[1.04]"
-          >
-            Resume <FileText size={15} />
-          </a>
-        </motion.div>
-
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-gray-300 dark:text-gray-600"
-        >
-          <span className="text-[10px] tracking-widest uppercase font-mono">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-gray-300 dark:from-gray-600 to-transparent" />
-        </motion.div>
+        {/* Exhibit: the dataset behind the first project */}
+        <figure data-reveal style={{ "--i": 1 } as React.CSSProperties} className="lg:col-span-5 lg:h-full flex flex-col min-h-0">
+          <div className="relative w-full aspect-[4/5] snap:aspect-auto snap:flex-1 snap:min-h-0 overflow-hidden bg-surface">
+            {SPECIES.map((s, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={s.key}
+                src={s.src}
+                width={s.width}
+                height={s.height}
+                alt={i === current ? s.alt : ""}
+                aria-hidden={i === current ? undefined : true}
+                fetchPriority={i === 0 ? "high" : "low"}
+                style={{ objectPosition: s.focus }}
+                className={`absolute inset-0 w-full h-full object-cover drift transition-opacity duration-[1600ms] ease-in-out ${
+                  i === current ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+          </div>
+          <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-small text-muted">
+            <span aria-live="polite">
+              <span className="text-ink italic">{SPECIES[current].name}</span>, one of the three species my Iris Classifier
+              tells apart
+            </span>
+            <span aria-hidden="true" className="tabular-nums shrink-0">
+              {current + 1} / {SPECIES.length}
+            </span>
+          </figcaption>
+        </figure>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

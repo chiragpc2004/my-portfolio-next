@@ -1,151 +1,77 @@
-"use client";
+const R = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
-import { motion } from "framer-motion";
-import { FaChartLine } from "react-icons/fa";
-import {
-  SiPython, SiCplusplus, SiJavascript, SiMysql,
-  SiPandas, SiNumpy, SiScikitlearn, SiTensorflow, SiPytorch,
-  SiReact, SiTailwindcss, SiFastapi, SiNodedotjs,
-  SiGit, SiDocker, SiSupabase, SiRender, SiVercel, SiSpring,
-} from "react-icons/si";
-import { Brain, Code2, Layers } from "lucide-react";
-
-const specialties = [
-  {
-    icon: <Brain size={22} />,
-    title: "Machine Learning",
-    description: "Designing and training models — from classical ML to deep learning — deployed at scale.",
-  },
-  {
-    icon: <Code2 size={22} />,
-    title: "Full Stack Development",
-    description: "End-to-end web apps with React, FastAPI, and Node.js, backed by robust data pipelines.",
-  },
-  {
-    icon: <Layers size={22} />,
-    title: "AI Integration",
-    description: "Embedding LLMs, vision models, and NLP into real products with clean, maintainable APIs.",
-  },
-];
-
-const categories = [
-  {
-    title: "Languages",
-    items: [
-      { label: "Python", icon: <SiPython className="text-[#3776AB]" /> },
-      { label: "Java", icon: <SiSpring className="text-[#6DB33F]" /> },
-      { label: "C++", icon: <SiCplusplus className="text-[#00599C]" /> },
-      { label: "JavaScript", icon: <SiJavascript className="text-[#F7DF1E]" /> },
-      { label: "SQL", icon: <SiMysql className="text-[#4479A1]" /> },
-    ],
-  },
-  {
-    title: "ML & AI",
-    items: [
-      { label: "Pandas", icon: <SiPandas className="text-[#150458]" /> },
-      { label: "NumPy", icon: <SiNumpy className="text-[#4DABCF]" /> },
-      { label: "Matplotlib", icon: <FaChartLine className="text-[#11557C]" /> },
-      { label: "Scikit-Learn", icon: <SiScikitlearn className="text-[#F7931E]" /> },
-      { label: "TensorFlow", icon: <SiTensorflow className="text-[#FF6F00]" /> },
-      { label: "PyTorch", icon: <SiPytorch className="text-[#EE4C2C]" /> },
-    ],
-  },
-  {
-    title: "Frameworks",
-    items: [
-      { label: "React", icon: <SiReact className="text-[#61DAFB]" /> },
-      { label: "Tailwind CSS", icon: <SiTailwindcss className="text-[#06B6D4]" /> },
-      { label: "FastAPI", icon: <SiFastapi className="text-[#009688]" /> },
-      { label: "Node.js", icon: <SiNodedotjs className="text-[#339933]" /> },
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    items: [
-      { label: "Git", icon: <SiGit className="text-[#F05032]" /> },
-      { label: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
-      { label: "Supabase", icon: <SiSupabase className="text-[#3ECF8E]" /> },
-      { label: "Render", icon: <SiRender className="text-[#46E3B7]" /> },
-      { label: "Vercel", icon: <SiVercel className="text-black dark:text-white" /> },
-    ],
-  },
+const stack = [
+  { title: "Languages", items: ["Python", "Java", "C++", "JavaScript", "SQL"] },
+  { title: "Machine learning", items: ["PyTorch", "TensorFlow", "scikit-learn", "Pandas", "NumPy", "Matplotlib"] },
+  { title: "Web", items: ["React", "Tailwind CSS", "FastAPI", "Node.js"] },
+  { title: "Shipping", items: ["Git", "Docker", "Supabase", "Render", "Vercel"] },
 ];
 
 export default function About() {
   return (
     <section
       id="about"
-      className="h-screen bg-[#f9fafb] dark:bg-[#0d1117] text-[#1f2937] dark:text-[#c9d1d9] transition-colors duration-300 overflow-hidden"
+      aria-labelledby="about-title"
+      className="min-h-svh snap:h-screen bg-ground text-ink pt-[calc(var(--nav-h)+0.5rem)] pb-5 sm:pb-8"
     >
-      <div className="max-w-6xl mx-auto h-full px-6 sm:px-10 flex flex-col justify-between pt-20 pb-12">
-
-        {/* Top — heading + bio */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-indigo-500 dark:text-indigo-400 mb-3">
-            About Me
-          </p>
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-gray-900 dark:text-white font-[Poppins] max-w-3xl">
-            Building intelligent systems that matter.
-          </h2>
-          <p className="mt-3 text-base text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl">
-            I&apos;m <span className="text-gray-800 dark:text-gray-200 font-medium">Chirag</span> — a Machine Learning Engineer and Full Stack Developer fusing data-driven AI with human-friendly design.
-          </p>
-        </motion.div>
-
-        {/* Middle — specialty cards */}
-        <motion.div
-          className="grid sm:grid-cols-3 gap-4"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          {specialties.map((s) => (
+      <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8">
+        {/* Inset panel: one tone step up from the ground */}
+        <div className="h-full bg-surface overflow-hidden grid lg:grid-cols-12 lg:gap-8">
+          {/* Left: the statement and the person */}
+          <div className="lg:col-span-5 flex flex-col px-6 pt-12 sm:px-12 sm:pt-12 lg:pl-14 lg:pr-0 lg:pt-14">
+            <h2 id="about-title" data-reveal className="font-display font-semibold uppercase text-head">
+              Notebook to product
+            </h2>
+            {/* Shaped portrait: an arch, cropped by the panel's bottom edge */}
             <div
-              key={s.title}
-              className="bg-white dark:bg-[#111827] border border-gray-200 dark:border-white/[0.06] rounded-2xl p-5"
+              data-reveal
+              style={R(2)}
+              className="order-last lg:order-none mt-12 lg:mt-auto w-[72%] max-w-[22rem] lg:w-[78%] aspect-[4/5] lg:aspect-auto lg:h-[min(58%,26rem)] overflow-hidden rounded-t-full bg-surface-2 self-start"
             >
-              <div className="text-indigo-600 dark:text-indigo-400 mb-3">{s.icon}</div>
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1.5 font-[Poppins]">{s.title}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{s.description}</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/chirag.jpg"
+                width={460}
+                height={460}
+                loading="lazy"
+                alt="Chirag P C, in a dark suit and white shirt"
+                className="h-full w-full object-cover object-[50%_20%] grayscale brightness-[0.82] contrast-[1.05]"
+              />
             </div>
-          ))}
-        </motion.div>
-
-        {/* Bottom — tech toolbox */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <p className="text-xs font-mono tracking-[0.25em] uppercase text-gray-400 dark:text-gray-600 mb-5">
-            Tech Toolbox
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4">
-            {categories.map((cat) => (
-              <div key={cat.title}>
-                <h4 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-3">
-                  {cat.title}
-                </h4>
-                <ul className="space-y-2">
-                  {cat.items.map((item) => (
-                    <li key={item.label} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <span className="text-base leading-none shrink-0">{item.icon}</span>
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </div>
-        </motion.div>
 
+          {/* Right: what and how, then the toolbox */}
+          <div className="lg:col-span-6 lg:col-start-7 px-6 py-12 sm:px-12 lg:pl-0 lg:pr-14 lg:py-14 flex flex-col gap-12 lg:justify-between">
+            <div className="grid gap-8 max-w-[44ch]">
+              <div data-reveal style={R(1)}>
+                <h3 className="text-lead text-ink">What I do</h3>
+                <p className="mt-3 text-muted">
+                  I&apos;m Chirag, a machine learning engineer and full stack developer. I take a model from training data to
+                  an interface someone can use, and I care about both halves equally.
+                </p>
+              </div>
+              <div data-reveal style={R(2)}>
+                <h3 className="text-lead text-ink">How I work</h3>
+                <p className="mt-3 text-muted">
+                  Start with the simplest model that answers the question and measure it honestly. Then build the API and
+                  the React front end around it, so anyone can try it in a browser.
+                </p>
+              </div>
+            </div>
+
+            <div data-reveal style={R(3)}>
+              <h3 className="text-lead text-ink">Tools I use</h3>
+              <dl className="mt-5 grid grid-cols-2 gap-x-8 gap-y-6">
+                {stack.map((group) => (
+                  <div key={group.title}>
+                    <dt className="text-small font-medium text-ink">{group.title}</dt>
+                    <dd className="mt-1 text-small text-muted leading-relaxed">{group.items.join(", ")}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
