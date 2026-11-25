@@ -135,7 +135,7 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
 
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-20 sm:py-28">
+    <section id="projects" aria-labelledby="projects-title" className="py-16 sm:py-24">
       <div className="wrap">
         <SectionHead title="Projects" id="projects-title">
           Two product case studies from end to end, then the AI and ML builds that came before them.

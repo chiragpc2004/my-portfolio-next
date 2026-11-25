@@ -79,7 +79,7 @@ const facts = [
 
 export default function FieldLog() {
   return (
-    <section id="journey" aria-labelledby="journey-title" className="py-20 sm:py-28">
+    <section id="journey" aria-labelledby="journey-title" className="py-16 sm:py-24">
       <div className="wrap">
         <SectionHead title="Journey" id="journey-title">
           From data science, to testing products at Jar, to building them. Newest first.
@@ -95,7 +95,7 @@ export default function FieldLog() {
               height={460}
               loading="lazy"
               alt="Chirag P C, in a dark suit and white shirt"
-              className="aspect-square w-full rounded-[10px] object-cover object-[50%_20%]"
+              className="h-28 w-28 rounded-[10px] object-cover object-[50%_20%] sm:h-36 sm:w-36 lg:aspect-square lg:h-auto lg:w-full"
             />
             <div className="px-2 pt-5 pb-3">
               <p className="font-medium">Chirag P C</p>
@@ -119,7 +119,7 @@ export default function FieldLog() {
             <span aria-hidden="true" className="absolute left-[calc(1.25rem+5px)] sm:left-[calc(2rem+5px)] top-10 bottom-10 w-px bg-line/10" />
 
             <li data-reveal className="relative pl-8 pb-10">
-              <span aria-hidden="true" className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 border-dashed border-ink/40 bg-card" />
+              <span aria-hidden="true" className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 border-ink/30 bg-card" />
               <p className="text-small text-muted">Next</p>
               <p className="mt-1 text-lead font-medium">APM, Associate PM or AI PM</p>
             </li>
@@ -142,13 +142,13 @@ export default function FieldLog() {
                 {e.tools || e.note || e.award || e.link ? (
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     {e.note ? (
-                      <span className="inline-flex rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
+                      <span className="block rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
                         <span className="text-muted">{e.note.label}:&nbsp;</span>
                         {e.note.text}
                       </span>
                     ) : null}
                     {e.award ? (
-                      <span className="inline-flex rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
+                      <span className="block rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
                         <span className="text-muted">Award:&nbsp;</span>
                         {e.award}
                       </span>

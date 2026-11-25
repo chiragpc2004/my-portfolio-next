@@ -78,16 +78,16 @@ const link =
 
 export default function ProductWork() {
   return (
-    <section id="product-work" aria-labelledby="product-work-title" className="py-20 sm:py-28">
+    <section id="product-work" aria-labelledby="product-work-title" className="py-16 sm:py-24">
       <div className="wrap">
         <SectionHead title="Product work" id="product-work-title">
           Teardowns, PRDs, market cases and a data analysis. Each one starts with a question and ends with a recommendation.
         </SectionHead>
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pieces.map((p, i) => (
-            <li key={p.file} data-reveal style={R(i % 3)} className="card group flex flex-col p-3">
-              <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className="block overflow-hidden rounded-[10px] bg-ink/[0.04] px-6 pt-6">
+            <li key={p.file} data-reveal style={R(i % 4)} className="card group flex flex-col p-3">
+              <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className="block overflow-hidden rounded-[10px] bg-ink/[0.04] px-5 pt-5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/images/work/${p.thumb}.jpg`}
@@ -115,6 +115,22 @@ export default function ProductWork() {
               </div>
             </li>
           ))}
+          <li data-reveal style={R(3)}>
+            <a
+              href="https://github.com/chiragpc2004/Product-Work"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex h-full min-h-[12rem] flex-col justify-between rounded-[14px] p-6 shadow-[inset_0_0_0_1px_rgb(var(--line)/0.12)] transition-colors duration-200 hover:bg-ink/[0.03]"
+            >
+              <p className="text-small text-muted">All seven PDFs in one place</p>
+              <p>
+                <span className="block font-semibold">The Product Work repo</span>
+                <span className="mt-1 inline-flex items-center gap-1 text-small text-muted group-hover:text-ink transition-colors">
+                  Open on GitHub &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                </span>
+              </p>
+            </a>
+          </li>
         </ul>
       </div>
     </section>

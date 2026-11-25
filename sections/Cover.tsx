@@ -13,7 +13,7 @@ const featured = [
   {
     href: "#pol",
     title: "Practice Out Loud",
-    line: "Voice interview practice in ChatGPT",
+    line: "Voice prototype for ChatGPT",
     status: "Clickable prototype",
     src: "/images/work/pol-screens.webp",
     alt: "Annotated phone screens of the Practice Out Loud flow.",
@@ -23,19 +23,19 @@ const featured = [
 
 export default function Cover() {
   return (
-    <section id="home" aria-labelledby="cover-title" className="pt-[calc(var(--nav-h)+4rem)] sm:pt-[calc(var(--nav-h)+6rem)] pb-8 sm:pb-12">
+    <section id="home" aria-labelledby="cover-title" className="pt-[calc(var(--nav-h)+3rem)] sm:pt-[calc(var(--nav-h)+4.5rem)] pb-4 sm:pb-8">
       <div className="wrap">
-        <div className="max-w-[46rem]">
+        <div className="max-w-[52rem]">
           <p data-reveal className="inline-flex items-center gap-2 text-small text-muted">
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-signal" />
             Open to APM, Associate PM and AI PM roles
           </p>
-          <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 text-display font-semibold text-balance">
-            I test products for a living. Now I&apos;m learning to build them.
+          <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 max-w-[22ch] text-display font-semibold text-balance">
+            SDET at Jar, on my way to product management.
           </h1>
-          <p data-reveal style={R(2)} className="mt-5 max-w-[36rem] text-lead text-muted">
-            I&apos;m Chirag, an SDET at Jar and a NextLeap Top Fellow, moving into product management. Below is my journey
-            so far and the product work I&apos;m proudest of.
+          <p data-reveal style={R(2)} className="mt-5 max-w-[40rem] text-lead text-muted">
+            I&apos;m Chirag. By day I test Jar&apos;s app and the APIs behind it. For the last five months I&apos;ve also been
+            researching, designing and shipping products in the NextLeap PM Fellowship, where I graduated as a Top Fellow.
           </p>
           <div data-reveal style={R(3)} className="mt-8 flex flex-wrap gap-3">
             <a href="#projects" className={btn.primary}>
@@ -45,9 +45,14 @@ export default function Cover() {
               Read my journey
             </a>
           </div>
+          <p data-reveal style={R(4)} className="mt-10 text-small text-muted">
+            Jar <span aria-hidden="true" className="mx-2 text-muted/50">/</span> NextLeap
+            <span aria-hidden="true" className="mx-2 text-muted/50">/</span> Pinnacle Labs
+            <span aria-hidden="true" className="mx-2 text-muted/50">/</span> MIT Manipal
+          </p>
         </div>
 
-        <ul className="mt-16 sm:mt-20 grid gap-4 sm:gap-5 md:grid-cols-[1.35fr_1fr]">
+        <ul className="mt-14 sm:mt-20 grid gap-4 sm:gap-5 md:grid-cols-[1.35fr_1fr]">
           {featured.map((f, i) => (
             <li key={f.href} data-reveal style={R(i + 3)}>
               <a href={f.href} className="card group flex h-full flex-col p-3 transition-transform duration-300 ease-out hover:-translate-y-0.5">

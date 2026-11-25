@@ -59,7 +59,7 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" aria-labelledby="contact-title" className="py-20 sm:py-28">
+      <section id="contact" aria-labelledby="contact-title" className="pt-16 pb-12 sm:pt-24 sm:pb-16">
         <div className="wrap">
           <div className="card grid gap-10 p-6 sm:p-10 lg:grid-cols-2 lg:gap-14">
             <div data-reveal>
