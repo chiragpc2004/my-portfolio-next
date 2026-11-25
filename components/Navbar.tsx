@@ -5,9 +5,10 @@ import { Github, Linkedin, Sun, Moon } from "lucide-react";
 import { useReveal } from "./useReveal";
 
 const navItems = [
-  { label: "Field log", href: "#field-log", id: "field-log" },
-  { label: "Experiments", href: "#projects", id: "projects" },
-  { label: "Leave a note", href: "#contact", id: "contact" },
+  { label: "Journey", href: "#journey", id: "journey" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Product work", href: "#product-work", id: "product-work" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 // Résumé link removed until the updated PDF exists; the old one predates the SDET role.

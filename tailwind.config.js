@@ -27,9 +27,6 @@ module.exports = {
         accent: token("accent"),
         pen: token("pen"),
         "accent-ink": token("accent-ink"),
-        setosa: token("setosa"),
-        versicolor: token("versicolor"),
-        virginica: token("virginica"),
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Georgia", "serif"],

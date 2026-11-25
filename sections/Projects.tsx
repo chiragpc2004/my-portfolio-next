@@ -1,223 +1,233 @@
-"use client";
+import { MarginNote, R, SectionHead } from "@/components/notebook";
 
-import { ArrowUpRight } from "lucide-react";
-import IrisLab from "@/components/IrisLab";
-import { SPECIES } from "@/components/species";
+type Link = { href: string; label: string };
 
-const R = (i: number) => ({ "--i": i }) as React.CSSProperties;
-
-type Project = {
+type CaseStudy = {
   id: string;
+  kicker: string;
   title: string;
   summary: string;
-  detail: string;
-  stack: string;
-  link: { href: string; label: string };
-  exhibit: React.ReactNode;
+  stats: { value: string; label: string }[];
+  steps: { label: string; text: string }[];
+  links: Link[];
+  image: { src: string; width: number; height: number; alt: string; caption: string; tall?: boolean };
+  note: { label: string; text: string };
+  disclaimer?: string;
 };
 
-/* ----------------------------------------------------------------------------
- * Exhibits: each project shown through its own material, not a card.
- * -------------------------------------------------------------------------- */
-
-function TeachableExhibit() {
-  // An HTML rendering of the training screen: three classes, a few samples each, live confidence.
-  const classes = [
-    { label: "Setosa", samples: 14, conf: 0.08 },
-    { label: "Versicolor", samples: 11, conf: 0.87 },
-    { label: "Virginica", samples: 12, conf: 0.05 },
-  ];
-  return (
-    <figure className="flex flex-col gap-3 snap:my-auto">
-      <div data-ui className="bg-surface-2 p-5 sm:p-10 grid gap-8">
-        <p className="text-small text-muted">Your model, 3 classes, trained in the browser</p>
-        {classes.map((c, i) => (
-          <div key={c.label} className="grid grid-cols-[6.5rem_1fr] sm:grid-cols-[8rem_1fr_7rem] items-center gap-3 sm:gap-5">
-            <div>
-              <p className="text-small font-medium">{c.label}</p>
-              <p className="text-small text-muted tabular-nums">{c.samples} images</p>
-            </div>
-            <div className="flex gap-2 overflow-hidden" aria-hidden="true">
-              {[0, 1, 2, 3].map((k) => (
-                <div key={k} className={`h-12 w-12 sm:h-20 sm:w-20 snap:h-20 snap:w-20 tall:h-28 tall:w-28 shrink-0 overflow-hidden bg-surface ${k === 3 ? "hidden sm:block" : ""}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={SPECIES[i].src}
-                    alt=""
-                    loading="lazy"
-                    width={80}
-                    height={80}
-                    style={{ objectPosition: SPECIES[i].focus, transform: `scale(${1 + k * 0.45}) rotate(${k % 2 ? -6 : 4}deg)` }}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="col-span-2 sm:col-span-1 flex items-center gap-2">
-              <div className="h-1.5 flex-1 bg-ink/10">
-                <div className="h-full bg-ink" style={{ width: `${c.conf * 100}%` }} />
-              </div>
-              <span className="text-small tabular-nums w-10 text-right">{Math.round(c.conf * 100)}%</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <figcaption className="text-small text-muted">
-        The training screen, redrawn: three classes taught from a handful of images, predicting live.
-      </figcaption>
-    </figure>
-  );
-}
-
-function ChatExhibit() {
-  // Sample exchange: replace with a real transcript from the deployed chatbot.
-  const turns: { who: "you" | "bot"; text: string }[] = [
-    { who: "you", text: "I have an exam on Friday and I keep putting off revising." },
-    { who: "bot", text: "That's common when the pile feels too big. Which subject is it?" },
-    { who: "you", text: "Linear algebra." },
-    { who: "bot", text: "Then start with one past paper question on eigenvectors tonight. Just one. Want me to pick it?" },
-  ];
-  return (
-    <figure className="flex flex-col gap-3 snap:my-auto">
-      <div data-ui className="bg-surface-2 p-4 sm:p-8 tall:p-10 grid gap-4 tall:gap-5 text-body sm:text-lead snap:text-body tall:text-lead" role="log" aria-label="Sample conversation with the chatbot">
-        {turns.map((t, i) => (
-          <p
-            key={i}
-            className={`max-w-[85%] px-5 py-3 tall:py-3.5 ${
-              t.who === "you" ? "justify-self-end bg-ink text-ground rounded-[1.25rem_1.25rem_0.25rem_1.25rem]" : "bg-ground rounded-[1.25rem_1.25rem_1.25rem_0.25rem]"
-            }`}
-          >
-            <span className="sr-only">{t.who === "you" ? "Person: " : "Chatbot: "}</span>
-            {t.text}
-          </p>
-        ))}
-        <div aria-hidden="true" className="mt-2 tall:mt-4 flex items-center gap-3 bg-ground px-5 py-3.5 rounded-full text-muted">
-          <span className="flex-1">Ask a follow-up…</span>
-          <span className="h-8 w-8 rounded-full bg-ink/10" />
-        </div>
-      </div>
-      <figcaption className="text-small text-muted">Four turns, one thread of context: the model remembers it&apos;s linear algebra.</figcaption>
-    </figure>
-  );
-}
-
-function StoryExhibit() {
-  // Sample output: replace with a real caption and story generated by the app for this picture.
-  return (
-    <figure className="flex flex-col gap-5 snap:flex-1 snap:min-h-0">
-      <div className="relative aspect-[16/9] snap:aspect-auto snap:flex-1 snap:min-h-0 overflow-hidden bg-surface-2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/sorolla-biarritz.jpg"
-          width={1400}
-          height={831}
-          loading="lazy"
-          alt="Painting of people in white summer clothes wading at the edge of a rocky beach under yellow cliffs"
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div data-ui className="grid gap-2">
-        <p className="text-small text-muted">
-          Caption: <span className="text-ink">people walking along a rocky beach near cliffs</span>
-        </p>
-        <blockquote className="text-lead text-ink max-w-[46ch]">
-          &ldquo;The tide had gone out further than anyone remembered. By noon the whole town was on the rocks in its summer
-          whites, lifting their hems, looking for whatever the sea had left behind.&rdquo;
-        </blockquote>
-      </div>
-      <figcaption className="sr-only">Joaquín Sorolla, Rocks at the Lighthouse, Biarritz, 1906, with a story generated from it.</figcaption>
-    </figure>
-  );
-}
-
-const projects: Project[] = [
+const caseStudies: CaseStudy[] = [
   {
-    id: "projects",
-    title: "Iris Classifier",
-    summary: "A full stack ML app that names an iris from four measurements of its flower.",
-    detail:
-      "A scikit-learn model trained on Fisher's 150 flowers, served by FastAPI, with a React front end. Try the same idea here: move the sliders.",
-    stack: "scikit-learn, FastAPI, React",
-    link: { href: "https://iris-classifier-one.vercel.app/", label: "Open the live app" },
-    exhibit: <IrisLab />,
+    id: "gr1",
+    kicker: "Case study · NextLeap graduation project",
+    title: "Keep SIP Active",
+    summary:
+      "Raising the share of first-time Groww investors who still have an active SIP 12 months after starting. Research, an AI discovery engine and a shipped AI MVP.",
+    stats: [
+      { value: "7,600", label: "public posts collected and filtered" },
+      { value: "30 / 32", label: "eval cases passed on the latest run" },
+      { value: "0", label: "unsafe answers across all 7 eval runs" },
+    ],
+    steps: [
+      {
+        label: "Problem",
+        text: "Many SIPs stop by accident. A salary comes in late, a payment fails, and three misses in a row cancel the SIP. The lighter options exist, but people find them too late.",
+      },
+      {
+        label: "Insight",
+        text: "7,600 posts narrowed to 219 first-person stories of stopping, coded by AI and checked against 20 hand-labelled posts. Then 6 interviews.",
+      },
+      {
+        label: "Built",
+        text: "GR-1: an assistant that explains what happened and shows every option, best fit first. A rules engine computes every date, code gates handle distress and advice requests before any AI call, and 5 code checks plus an AI reviewer check every answer.",
+      },
+      {
+        label: "Result",
+        text: "A 32-question golden set covering everyday, Hinglish, adversarial and wellbeing cases, run live. 3 user tests on the deployed MVP.",
+      },
+    ],
+    links: [
+      { href: "https://nextleap-groww-mvp.vercel.app", label: "Open the MVP" },
+      { href: "https://nextleap-groww-mvp.vercel.app/#quality", label: "Quality report" },
+      { href: "https://nextleap-groww-sip-discovery-engine.vercel.app", label: "Discovery engine" },
+      { href: "https://github.com/chiragpc2004/Groww-SIP-GR-1", label: "Code and deck" },
+    ],
+    image: {
+      src: "/images/work/gr1-quality.webp",
+      width: 1600,
+      height: 1000,
+      alt: "The GR-1 quality report page: 32 test questions, 7 checks per answer, 0 unsafe answers allowed, and a run showing 30 of 32 cases passed.",
+      caption: "The live quality report. Anyone can rerun all 32 cases.",
+    },
+    note: { label: "Why it matters to me", text: "The eval is the product. Every answer is tested before anyone sees it." },
+    disclaimer: "Independent student case study on public data. Not affiliated with or endorsed by Groww.",
   },
   {
-    id: "work-teachable",
-    title: "Teachable Machine",
-    summary: "Train an image classifier in the browser, from your own photos, in under a minute.",
-    detail: "Built for low-resource settings: the model trains on the device with TensorFlow.js, so nothing has to be uploaded.",
-    stack: "TensorFlow, React, Supabase",
-    link: { href: "https://github.com/chiragpc2004/Teachable_Machine", label: "Read the code" },
-    exhibit: <TeachableExhibit />,
-  },
-  {
-    id: "work-chatbot",
-    title: "AI Chatbot",
-    summary: "A conversational assistant on transformer models that holds context across turns.",
-    detail: "Multi-turn dialogue with a short memory of the conversation, deployed as a Streamlit app.",
-    stack: "Python, TensorFlow, Transformers",
-    link: { href: "https://chiragchatbot.streamlit.app/", label: "Talk to it" },
-    exhibit: <ChatExhibit />,
-  },
-  {
-    id: "work-story",
-    title: "Image to Story",
-    summary: "Give it a picture and it writes the story of what happened there.",
-    detail: "A vision model captions the image, then a language model turns the caption into a short narrative.",
-    stack: "Python, Hugging Face, vision-to-text",
-    link: { href: "https://github.com/chiragpc2004/Image-to-story", label: "Read the code" },
-    exhibit: <StoryExhibit />,
+    id: "pol",
+    kicker: "Case study · ChatGPT voice in India",
+    title: "Practice Out Loud",
+    summary:
+      "Increasing voice input on ChatGPT mobile in India, from market landscape to user research to a clickable prototype.",
+    stats: [
+      { value: "65%", label: "held back by people around them" },
+      { value: "53%", label: "can't review a message before it sends" },
+      { value: "68%", label: "would try voice for mock interviews" },
+    ],
+    steps: [
+      {
+        label: "Problem",
+        text: "India already talks to its phone, and it's ChatGPT's largest market. Yet few Indian users speak to ChatGPT.",
+      },
+      {
+        label: "Insight",
+        text: "For job seekers, the barrier isn't awareness. It's context and control: shared rooms, no way to review before sending, and worry about Hinglish accuracy.",
+      },
+      {
+        label: "Built",
+        text: "A private, reviewable voice mock interview inside ChatGPT: English, Hinglish or Hindi, quiet mode with earphones, an editable transcript with unsure words flagged, then feedback.",
+      },
+      {
+        label: "Metric",
+        text: "North Star: weekly voice messages from India. The 4-week A/B target takes weekly active voice users among job seekers from 15% to 25%.",
+      },
+    ],
+    links: [
+      { href: "https://practice-out-loud.vercel.app", label: "Try the prototype" },
+      { href: "https://github.com/chiragpc2004/Practice-Out-Loud", label: "Decks and 3-pager" },
+    ],
+    image: {
+      src: "/images/work/pol-screens.webp",
+      width: 1800,
+      height: 680,
+      alt: "Six annotated phone screens of the Practice Out Loud flow, from a practice nudge in chat to a session summary.",
+      caption: "The six-screen flow, from the nudge in chat to the session summary.",
+    },
+    note: { label: "Design call", text: "Nothing is scored until you've checked your own transcript." },
+    disclaimer: "The survey (N = 34) and interview quotes are simulated, with mentor approval. Market figures are from cited public sources.",
   },
 ];
 
+const builds: { title: string; text: string; stack: string; link: Link }[] = [
+  {
+    title: "Teachable Machine",
+    text: "Train an image classifier from your own photos, in the browser, in under a minute. Built during my Pinnacle Labs internship.",
+    stack: "TensorFlow.js · React · Supabase",
+    link: { href: "https://github.com/chiragpc2004/Teachable_Machine", label: "Code" },
+  },
+  {
+    title: "Iris Classifier",
+    text: "A full stack ML app: a scikit-learn model on Fisher's 150 flowers, served by FastAPI, with a React front end.",
+    stack: "scikit-learn · FastAPI · React",
+    link: { href: "https://iris-classifier-one.vercel.app/", label: "Live app" },
+  },
+  {
+    title: "AI Chatbot",
+    text: "A conversational assistant on transformer models that holds context across turns, deployed on Streamlit.",
+    stack: "Python · Transformers · Streamlit",
+    link: { href: "https://chiragchatbot.streamlit.app/", label: "Live app" },
+  },
+  {
+    title: "Image to Story",
+    text: "A vision model captions a picture, then a language model turns the caption into a short audio story.",
+    stack: "Python · Hugging Face",
+    link: { href: "https://github.com/chiragpc2004/Image-to-story", label: "Code" },
+  },
+];
+
+function ExtLink({ href, label }: Link) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1 py-1 text-accent underline decoration-accent/30 underline-offset-[5px] hover:decoration-accent transition-[text-decoration-color]"
+    >
+      {label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
 export default function Projects() {
   return (
-    <>
-      {projects.map((p, i) => {
-        const flip = i % 2 === 1;
-        return (
-          <section
-            key={p.id}
-            id={p.id}
-            aria-labelledby={`${p.id}-title`}
-            className={`min-h-svh snap:h-screen text-ink pt-[calc(var(--nav-h)+1.5rem)] pb-16 snap:pb-8 ${i % 2 ? "bg-surface" : "bg-ground"}`}
-          >
-            <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8 grid gap-10 lg:grid-cols-12 lg:gap-8 lg:items-center snap:items-stretch">
-              <div className={`lg:col-span-5 snap:self-center ${flip ? "lg:order-2 lg:col-start-8" : ""}`}>
-                <h2 id={`${p.id}-title`} data-reveal className="font-display font-medium text-head tracking-[-0.02em]">
-                  {p.title}
-                </h2>
-                <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[30ch]">
-                  {p.summary}
-                </p>
-                <p data-reveal style={R(2)} className="mt-4 text-muted max-w-[44ch]">
-                  {p.detail}
-                </p>
-                <div data-reveal style={R(3)} className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-                  <a
-                    href={p.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 h-11 font-medium underline decoration-ink/30 underline-offset-[6px] hover:decoration-ink transition-[text-decoration-color] duration-200"
-                  >
-                    {p.link.label}
-                    <ArrowUpRight
-                      size={18}
-                      aria-hidden="true"
-                      className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                    <span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  <p className="text-small text-muted">{p.stack}</p>
+    <section id="projects" aria-labelledby="projects-title" className="py-16 sm:py-24">
+      <div className="mx-auto max-w-[76rem] px-5 sm:px-8">
+        <SectionHead no="02" title="Projects" id="projects-title">
+          Two product case studies from end to end, then the AI and ML builds that came before them.
+        </SectionHead>
+
+        <div className="mt-14 grid gap-20 sm:gap-28">
+          {caseStudies.map((c) => (
+            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="grid gap-8">
+              <div data-reveal className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+                <div className="lg:col-span-8">
+                  <p className="font-mono text-small text-muted">{c.kicker}</p>
+                  <h3 id={`${c.id}-title`} className="mt-2 font-display text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] font-medium leading-[1.05] tracking-[-0.025em]">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 max-w-[52ch] text-lead text-muted">{c.summary}</p>
+                </div>
+                <div className="lg:col-span-4 lg:pt-8">
+                  <MarginNote label={c.note.label}>{c.note.text}</MarginNote>
                 </div>
               </div>
-              <div data-reveal style={R(1)} className={`lg:col-span-7 snap:min-h-0 snap:flex snap:flex-col ${flip ? "lg:order-1 lg:col-start-1 lg:row-start-1" : ""}`}>
-                {p.exhibit}
+
+              <figure data-reveal style={R(1)} className="grid gap-3">
+                <div className="overflow-hidden rounded-md border border-ink/15 bg-surface shadow-[0_18px_40px_-24px_rgb(0_0_0/0.35)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.image.src} width={c.image.width} height={c.image.height} loading="lazy" alt={c.image.alt} className="w-full h-auto" />
+                </div>
+                <figcaption className="text-small text-muted">{c.image.caption}</figcaption>
+              </figure>
+
+              <dl data-reveal style={R(1)} className="grid gap-px overflow-hidden rounded-md border border-ink/15 bg-ink/15 sm:grid-cols-3">
+                {c.stats.map((s) => (
+                  <div key={s.label} className="bg-ground px-5 py-5">
+                    <dt className="sr-only">{s.label}</dt>
+                    <dd className="font-mono text-[clamp(1.75rem,1.3rem+1.6vw,2.5rem)] leading-none tabular-nums">{s.value}</dd>
+                    <dd className="mt-2 text-small text-muted">{s.label}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div data-reveal style={R(2)} className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+                <dl className="grid gap-6 sm:grid-cols-2 lg:col-span-8">
+                  {c.steps.map((s) => (
+                    <div key={s.label}>
+                      <dt className="font-mono text-small uppercase tracking-[0.12em] text-muted">{s.label}</dt>
+                      <dd className="mt-2 max-w-[48ch]">{s.text}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="lg:col-span-4 grid content-start gap-4">
+                  <ul className="flex flex-wrap gap-x-6 gap-y-1">
+                    {c.links.map((l) => (
+                      <li key={l.href}>
+                        <ExtLink {...l} />
+                      </li>
+                    ))}
+                  </ul>
+                  {c.disclaimer ? <p className="text-small text-muted">{c.disclaimer}</p> : null}
+                </div>
               </div>
-            </div>
-          </section>
-        );
-      })}
-    </>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-24">
+          <h3 data-reveal className="font-display text-lead font-medium">Earlier AI and ML builds</h3>
+          <ul className="mt-6 grid gap-px overflow-hidden rounded-md border border-ink/15 bg-ink/15 sm:grid-cols-2">
+            {builds.map((b, i) => (
+              <li key={b.title} data-reveal style={R(i % 2)} className="flex flex-col gap-2 bg-ground p-6">
+                <h4 className="font-display text-lead font-medium">{b.title}</h4>
+                <p className="max-w-[46ch] text-muted">{b.text}</p>
+                <div className="mt-auto flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2">
+                  <p className="font-mono text-small text-muted">{b.stack}</p>
+                  <ExtLink {...b.link} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }

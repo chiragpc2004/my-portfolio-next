@@ -70,9 +70,9 @@ const entries: Entry[] = [
 
 export default function FieldLog() {
   return (
-    <section id="field-log" aria-labelledby="field-log-title" className="py-16 sm:py-24">
+    <section id="journey" aria-labelledby="journey-title" className="py-16 sm:py-24">
       <div className="mx-auto max-w-[76rem] px-5 sm:px-8">
-        <SectionHead no="01" title="Field log" id="field-log-title">
+        <SectionHead no="01" title="Journey" id="journey-title">
           Where I&apos;ve worked and studied, newest first. The red notes are what I&apos;d point to if you asked what each
           stop was actually for.
         </SectionHead>

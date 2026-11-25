@@ -12,36 +12,6 @@ const socials = [
   { href: "https://x.com/chiragpc_2004", label: "Twitter" },
 ];
 
-const credits = [
-  {
-    title: "Iris setosa var. setosa",
-    href: "https://commons.wikimedia.org/wiki/File:Iris_setosa_var._setosa_(2595031014).jpg",
-    by: "Emma Forsberg",
-    license: "CC BY 2.0",
-    licenseHref: "https://creativecommons.org/licenses/by/2.0",
-  },
-  {
-    title: "Iris versicolor",
-    href: "https://commons.wikimedia.org/wiki/File:Iris_versicolor_-20200620-RM-100933.jpg",
-    by: "Ermell",
-    license: "CC BY-SA 4.0",
-    licenseHref: "https://creativecommons.org/licenses/by-sa/4.0",
-  },
-  {
-    title: "Iris virginica",
-    href: "https://commons.wikimedia.org/wiki/File:Iris_virginica.jpg",
-    by: "Frank Mayfield",
-    license: "CC BY-SA 2.0",
-    licenseHref: "https://creativecommons.org/licenses/by-sa/2.0",
-  },
-  {
-    title: "Rocks at the Lighthouse, Biarritz",
-    href: "https://www.artic.edu/artworks/66144",
-    by: "Joaquín Sorolla, 1906",
-    license: "CC0",
-    licenseHref: "https://creativecommons.org/publicdomain/zero/1.0/",
-  },
-];
 
 const R = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
@@ -88,12 +58,12 @@ export default function Contact() {
       <div className="mx-auto max-w-[76rem] px-5 sm:px-8 flex flex-col">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 flex-1 content-center">
           <div className="lg:col-span-6">
-            <p data-reveal className="font-mono text-small text-muted tracking-wide">§ 05</p>
+            <p data-reveal className="font-mono text-small text-muted tracking-wide">§ 04</p>
             <h2 id="contact-title" data-reveal className="mt-2 font-display font-medium text-head tracking-[-0.02em] max-w-[14ch]">
-              Leave a note
+              Contact
             </h2>
             <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[34ch]">
-              Hiring for an APM, Associate PM or AI PM role, or want to pick apart one of these experiments? I answer every
+              Hiring for an APM, Associate PM or AI PM role, or want to dig into one of these projects? I answer every
               message.
             </p>
             <a
@@ -144,24 +114,9 @@ export default function Contact() {
           </form>
         </div>
 
-        <footer className="mt-24 grid gap-3 sm:grid-cols-[auto_1fr] sm:gap-10 text-small text-muted">
+        <footer className="mt-24 text-small text-muted">
           <p>© {new Date().getFullYear()} Chirag P C</p>
-          <p className="sm:text-right">
-            Photographs:{" "}
-            {credits.map((c, i) => (
-              <span key={c.href}>
-                <a href={c.href} className="underline underline-offset-2 hover:text-ink">
-                  {c.title}
-                </a>{" "}
-                by {c.by},{" "}
-                <a href={c.licenseHref} className="underline underline-offset-2 hover:text-ink">
-                  {c.license}
-                </a>
-                {i < credits.length - 1 ? "; " : "."}
-              </span>
-            ))}
-          </p>
-        </footer>
+                  </footer>
       </div>
     </section>
   );

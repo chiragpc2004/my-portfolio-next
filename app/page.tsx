@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Cover from "@/sections/Cover";
 import FieldLog from "@/sections/FieldLog";
 import Projects from "@/sections/Projects";
+import ProductWork from "@/sections/ProductWork";
 import Contact from "@/sections/Contact";
 
 export default function Home() {
@@ -11,8 +12,8 @@ export default function Home() {
       <main>
         <Cover />
         <FieldLog />
-        {/* Phase 2 replaces these with the Experiments write-ups. */}
         <Projects />
+        <ProductWork />
         <Contact />
       </main>
     </>

@@ -1,11 +1,10 @@
 import { R, Scribble } from "@/components/notebook";
 
 const index = [
-  { no: "01", label: "Field log", href: "#field-log", ready: true },
-  { no: "02", label: "Experiments", href: "#projects", ready: true },
-  { no: "03", label: "Product Lab", href: null, ready: false },
-  { no: "04", label: "Scratch pages", href: null, ready: false },
-  { no: "05", label: "Leave a note", href: "#contact", ready: true },
+  { no: "01", label: "Journey", href: "#journey", ready: true },
+  { no: "02", label: "Projects", href: "#projects", ready: true },
+  { no: "03", label: "Product work", href: "#product-work", ready: true },
+  { no: "04", label: "Contact", href: "#contact", ready: true },
 ];
 
 const timeline = [
@@ -24,7 +23,7 @@ export default function Cover() {
           {/* Title page */}
           <div className="lg:col-span-7">
             <p data-reveal className="font-mono text-small text-muted tracking-wide">
-              Notebook No. 1 &middot; 2022&ndash;2026
+              Portfolio &middot; updated Nov 2026
             </p>
             <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 font-display text-display font-medium tracking-[-0.035em]">
               Chirag P C
@@ -36,8 +35,8 @@ export default function Cover() {
               <Scribble className="mt-1 w-[min(19rem,80%)]" />
             </div>
             <p data-reveal style={R(3)} className="mt-8 max-w-[38ch] text-lead text-muted">
-              I spend my days on the paths users take and the ones they shouldn&apos;t be able to. This notebook is where I
-              bring that habit to product problems: a hypothesis, the evidence, a build, and an honest check.
+              I spend my days on the paths users take and the ones they shouldn&apos;t be able to. Here's the work where I
+              brought that habit to product problems: a hypothesis, the evidence, a build, and an honest check.
             </p>
           </div>
 

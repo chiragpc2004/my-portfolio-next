@@ -19,9 +19,6 @@
   --accent-ink: 245 241 231;
   --pen: 178 45 34;        /* #b22d22  red pen */
   --rule: 32 58 140;       /* graph-paper lines */
-  --setosa: 46 94 170;
-  --versicolor: 128 66 168;
-  --virginica: 158 104 20;
   color-scheme: light;
 }
 
@@ -36,9 +33,6 @@
   --accent-ink: 18 24 38;
   --pen: 255 140 120;      /* #ff8c78 */
   --rule: 160 182 255;
-  --setosa: 150 186 240;
-  --versicolor: 204 160 236;
-  --virginica: 232 196 122;
   color-scheme: dark;
 }
 
@@ -105,52 +99,6 @@ html.js [data-reveal][data-in] {
   transform: none;
 }
 
-/* Slow drift on a photograph: the page's one moving picture. */
-@keyframes drift {
-  from { transform: scale(1.02) translate3d(0, 0, 0); }
-  to   { transform: scale(1.1) translate3d(-2%, -1.5%, 0); }
-}
-.drift {
-  animation: drift 24s ease-in-out infinite alternate;
-}
-
-/* Range inputs for the iris lab, drawn in the page's colours. */
-.range {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 44px;
-  background: transparent;
-  cursor: pointer;
-}
-.range::-webkit-slider-runnable-track {
-  height: 4px;
-  background: rgb(var(--ink) / 0.18);
-}
-.range::-moz-range-track {
-  height: 4px;
-  background: rgb(var(--ink) / 0.18);
-}
-.range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  margin-top: -9px;
-  border-radius: 9999px;
-  background: rgb(var(--ink));
-  transition: transform 0.15s ease;
-}
-.range::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border: 0;
-  border-radius: 9999px;
-  background: rgb(var(--ink));
-}
-.range:active::-webkit-slider-thumb {
-  transform: scale(1.15);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -158,9 +106,6 @@ html.js [data-reveal][data-in] {
   html.js [data-reveal] {
     transform: none;
     transition: opacity 0.4s linear;
-  }
-  .drift {
-    animation: none;
   }
   html.js [data-reveal] .draw path {
     transition: none;
