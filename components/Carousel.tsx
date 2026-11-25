@@ -64,7 +64,7 @@ export default function Carousel({
   return (
     <div>
       <div className="wrap mb-6 flex items-end justify-between gap-4">
-        <div data-reveal>
+        <div>
           <h2 id="projects-title" className="text-[clamp(1.6rem,1.2rem+1.2vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
             {title}
           </h2>

@@ -1,4 +1,4 @@
-import { R, Row } from "@/components/ui";
+import { Row } from "@/components/ui";
 
 const REPO = "https://github.com/chiragpc2004/Product-Work/blob/main/";
 const pdf = (name: string) => REPO + encodeURIComponent(name);
@@ -76,44 +76,49 @@ const pieces: Piece[] = [
 export default function ProductWork() {
   return (
     <Row id="product-work" title="Product work" note="Teardowns, PRDs, market cases and a data analysis">
-      <p data-reveal className="max-w-[40rem] text-muted">
-        Each one starts with a question and ends with a recommendation. Open any sheet to read the PDF.
-      </p>
-      <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3">
-        {pieces.map((p, i) => (
-          <li key={p.file} data-reveal style={R(i % 4)}>
-            <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className="doc group block">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
+        <p className="max-w-[40rem] text-muted">
+          Each one starts with a question and ends with a recommendation. Open any of them to read the PDF.
+        </p>
+        <a
+          href="https://github.com/chiragpc2004/Product-Work"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-small font-medium text-signal underline-offset-4 hover:underline"
+        >
+          All seven on GitHub &#8599;<span className="sr-only"> (opens in a new tab)</span>
+        </a>
+      </div>
+      {/* Phones: thumbnail beside the text. Wider screens: a grid of documents. */}
+      <ul className="mt-8 grid gap-y-7 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4">
+        {pieces.map((p) => (
+          <li key={p.file} className="grid grid-cols-[6rem_1fr] items-start gap-4 sm:block">
+            <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className="doc block">
               <div className="doc-frame">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/images/work/${p.thumb}.jpg`} width={413} height={584} loading="lazy" alt="" />
               </div>
-              <p className="mt-4 text-small text-signal">{p.kind}</p>
-              <p className="mt-0.5 font-medium leading-snug">{p.title}</p>
-              <span className="sr-only"> PDF (opens in a new tab)</span>
             </a>
-            <p className="mt-1.5 text-small text-muted">{p.line}</p>
-            {p.extra ? (
-              <a
-                href={pdf(p.extra.file)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
-              >
-                {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+            <div>
+              <p className="text-small text-signal sm:mt-4">{p.kind}</p>
+              <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className="mt-0.5 block font-medium leading-snug underline-offset-4 hover:underline">
+                {p.title}
+                <span className="sr-only"> PDF (opens in a new tab)</span>
               </a>
-            ) : null}
+              <p className="mt-1.5 text-small text-muted">{p.line}</p>
+              {p.extra ? (
+                <a
+                  href={pdf(p.extra.file)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-small font-medium text-signal underline-offset-4 hover:underline"
+                >
+                  {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              ) : null}
+            </div>
           </li>
         ))}
-        <li data-reveal style={R(3)} className="flex items-center">
-          <a
-            href="https://github.com/chiragpc2004/Product-Work"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
-          >
-            All seven on GitHub &#8599;<span className="sr-only"> (opens in a new tab)</span>
-          </a>
-        </li>
       </ul>
     </Row>
   );

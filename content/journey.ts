@@ -29,7 +29,7 @@ export const journey: Entry[] = [
       "Full time since July, after converting from my internship. I do manual and automation testing for the platform pod, working in the team's Agile sprints.",
       "Most of my automation is backend API coverage, written in Java with TestNG and Rest Assured.",
     ],
-    tools: "Java · TestNG · Rest Assured · Agile",
+    tools: "Java, TestNG, Rest Assured, Agile",
     note: {
       label: "Beyond the ticket",
       text: "Built an internal AI agent with Claude Code that automates API test work.",
@@ -63,7 +63,7 @@ export const journey: Entry[] = [
     body: [
       "Built Teachable Machine: train an image classifier from your own photos, in the browser, in under a minute.",
     ],
-    tools: "TensorFlow.js · React · Supabase",
+    tools: "TensorFlow.js, React, Supabase",
     note: { label: "Design call", text: "Training runs on the device, so no photo ever has to be uploaded." },
     link: { href: "https://github.com/chiragpc2004/Teachable_Machine", label: "Read the code" },
   },

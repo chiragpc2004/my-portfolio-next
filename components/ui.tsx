@@ -3,10 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 /** Stagger index for [data-reveal] children. */
 export const R = (i: number) => ({ "--i": i }) as CSSProperties;
 
-/**
- * A section on one pane of glass: the name in a narrow left column, the
- * content on the right.
- */
+/** A section on one pane of glass: the name on top, the content below at full width. */
 export function Row({
   id,
   title,
@@ -20,12 +17,12 @@ export function Row({
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="wrap py-4 sm:py-6">
-      <div className="glass grid gap-6 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-[11rem_1fr] md:gap-10 md:p-10">
-        <div data-reveal className="md:self-start">
-          <h2 id={`${id}-title`} className="text-head font-semibold tracking-[-0.02em]">
+      <div className="glass rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:p-10">
+        <div className="mb-7 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line/[0.12] pb-5 sm:mb-8">
+          <h2 id={`${id}-title`} className="text-[clamp(1.6rem,1.2rem+1.2vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
             {title}
           </h2>
-          {note ? <p className="mt-1 text-small text-muted">{note}</p> : null}
+          {note ? <p className="text-muted">{note}</p> : null}
         </div>
         <div className="min-w-0">{children}</div>
       </div>

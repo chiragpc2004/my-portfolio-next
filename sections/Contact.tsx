@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { R, Row } from "@/components/ui";
+import { Row } from "@/components/ui";
 
 const EMAIL = "chiragpc2004@gmail.com";
 
@@ -57,11 +57,11 @@ export default function Contact() {
   return (
     <>
       <Row id="contact" title="Contact">
-        <p data-reveal className="max-w-[36rem] text-lead">
+        <p className="max-w-[36rem] text-lead">
           Want to talk about a product role, or dig into one of these projects? I answer every message.
         </p>
 
-        <div data-reveal style={R(1)} className="mt-6 flex flex-wrap items-center gap-2.5">
+        <div className="mt-6 flex flex-wrap items-center gap-2.5">
           <a href={`mailto:${EMAIL}`} className="btn btn-dark">
             {EMAIL}
           </a>
@@ -71,7 +71,7 @@ export default function Contact() {
           </button>
         </div>
 
-        <ul data-reveal style={R(2)} className="mt-4 flex flex-wrap gap-2">
+        <ul className="mt-4 flex flex-wrap gap-2">
           {socials.map((s) => (
             <li key={s.label}>
               <a href={s.href} target="_blank" rel="noopener noreferrer" className="btn btn-light !h-9 !px-3.5 !text-small">
@@ -83,7 +83,7 @@ export default function Contact() {
           ))}
         </ul>
 
-        <form data-reveal style={R(3)} onSubmit={handleSubmit} className="mt-14 grid max-w-[36rem] gap-3">
+        <form onSubmit={handleSubmit} className="mt-14 grid max-w-[36rem] gap-3">
           <h3 className="font-medium">Or send a message</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             <input name="name" required aria-label="Your name" autoComplete="name" placeholder="Your name" value={form.name} onChange={handleChange} className="field" />

@@ -1,11 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { now } from "@/content/journey";
 
 export const metadata: Metadata = {
-  title: "Chirag P C · SDET at Jar, aspiring product manager",
+  title: `Chirag P C, ${now ? `${now.title ?? now.role} at ${now.place}` : "tester"} moving into product`,
   description:
-    "Chirag P C is an SDET at Jar and a NextLeap Top Fellow moving into product. Two product case studies, seven teardowns and PRDs, and the journey behind them.",
+    `Chirag P C: ${now ? `${now.title ?? now.role} at ${now.place}, ` : ""}NextLeap Top Fellow, moving into product. Two product case studies, seven teardowns and PRDs, and the journey behind them.`,
 };
 
 // Runs before paint: marks JS as available, so reveal animations only hide

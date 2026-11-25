@@ -1,25 +1,23 @@
-import { R, Row } from "@/components/ui";
+import { Row } from "@/components/ui";
 import { journey, next } from "@/content/journey";
 
 export default function FieldLog() {
   return (
     <Row id="journey" title="Journey" note="Newest first">
       <ol>
-        <li data-reveal className="grid gap-1 pb-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+        <li className="grid gap-1 pb-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
           <p className="flex items-center gap-2 text-small text-signal"><span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_10px_rgb(var(--signal))]" />Next</p>
           <p className="font-medium">{next}</p>
         </li>
-        {journey.map((e, i) => (
+        {journey.map((e) => (
           <li
             key={e.dates + e.place}
-            data-reveal
-            style={R(i % 3)}
-            className="grid gap-1 border-t border-line/[0.08] py-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
+            className="grid gap-1 border-t border-line/[0.12] py-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
           >
             <p className="text-small text-muted tabular-nums sm:pt-0.5">{e.dates}</p>
             <div>
               <h3 className="font-semibold">
-                {e.role} <span className="font-normal text-muted">· {e.short ?? e.place}</span>
+                {e.role} <span className="font-normal text-muted">at {e.short ?? e.place}</span>
               </h3>
               <div className="mt-2 grid gap-2 max-w-[42rem] text-muted">
                 {e.body.map((p) => (
@@ -46,7 +44,7 @@ export default function FieldLog() {
                   href={e.link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+                  className="mt-3 inline-block text-small font-medium text-signal underline-offset-4 hover:underline"
                 >
                   {e.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
                 </a>

@@ -29,7 +29,7 @@ export default function Cover() {
         </div>
       </div>
 
-      <div data-reveal style={R(2)} className="glass mx-auto w-full max-w-[26rem] rounded-[32px] p-3.5 lg:mr-0">
+      <div data-reveal style={R(2)} className="glass w-full max-w-[26rem] rounded-[32px] p-3.5 lg:ml-auto">
         <div className="relative aspect-[5/4] overflow-hidden rounded-[22px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

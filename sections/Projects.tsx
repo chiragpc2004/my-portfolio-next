@@ -21,7 +21,7 @@ type CaseStudy = {
 const caseStudies: CaseStudy[] = [
   {
     id: "gr1",
-    kicker: "Case study · NextLeap graduation project",
+    kicker: "NextLeap graduation project",
     title: "Keep SIP Active",
     summary:
       "Raising the share of first-time Groww investors who still have an active SIP 12 months after starting. Research, an AI discovery engine and a shipped AI MVP.",
@@ -66,7 +66,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "pol",
-    kicker: "Case study · ChatGPT voice in India",
+    kicker: "Product case study on ChatGPT in India",
     title: "Practice Out Loud",
     summary:
       "Increasing voice input on ChatGPT mobile in India, from market landscape to user research to a clickable prototype.",
@@ -113,25 +113,25 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
   {
     title: "Teachable Machine",
     text: "Train an image classifier from your own photos, in the browser, in under a minute. Built during my Pinnacle Labs internship.",
-    stack: "TensorFlow.js · React · Supabase",
+    stack: "TensorFlow.js, React, Supabase",
     link: { href: "https://github.com/chiragpc2004/Teachable_Machine", label: "Code" },
   },
   {
     title: "Iris Classifier",
     text: "A full stack ML app: a scikit-learn model on Fisher's 150 flowers, served by FastAPI, with a React front end.",
-    stack: "scikit-learn · FastAPI · React",
+    stack: "scikit-learn, FastAPI, React",
     link: { href: "https://iris-classifier-one.vercel.app/", label: "Live app" },
   },
   {
     title: "AI Chatbot",
     text: "A conversational assistant on transformer models that holds context across turns, deployed on Streamlit.",
-    stack: "Python · Transformers · Streamlit",
+    stack: "Python, Transformers, Streamlit",
     link: { href: "https://chiragchatbot.streamlit.app/", label: "Live app" },
   },
   {
     title: "Image to Story",
     text: "A vision model captions a picture, then a language model turns the caption into a short audio story.",
-    stack: "Python · Hugging Face",
+    stack: "Python, Hugging Face",
     link: { href: "https://github.com/chiragpc2004/Image-to-story", label: "Code" },
   },
 ];
@@ -184,11 +184,11 @@ function Slide({ c }: { c: CaseStudy }) {
             </div>
           </dl>
         </details>
-        {c.disclaimer ? <p className="mt-4 text-[0.78rem] text-muted/80">{c.disclaimer}</p> : null}
+        {c.disclaimer ? <p className="mt-4 text-[0.8rem] text-muted">{c.disclaimer}</p> : null}
       </div>
 
       {c.media.kind === "phones" ? (
-        <div className="flex items-start justify-center gap-3.5">
+        <div className="order-first flex items-start justify-center gap-3.5 md:order-none">
           {c.media.screens.map((m, i) => (
             <div key={m.src} className={`phone w-[min(46%,13rem)] ${i ? "mt-8" : ""}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -204,7 +204,7 @@ function Slide({ c }: { c: CaseStudy }) {
           height={c.media.height}
           loading="lazy"
           alt={c.media.alt}
-          className="block h-auto w-full rounded-2xl bg-white shadow-[0_0_0_1px_rgb(255_255_255/0.15)]"
+          className="order-first block h-auto w-full rounded-2xl bg-white shadow-[0_0_0_1px_rgb(255_255_255/0.15)] md:order-none"
         />
       )}
     </article>
@@ -213,7 +213,7 @@ function Slide({ c }: { c: CaseStudy }) {
 
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="pt-20 pb-6 sm:pt-28">
+    <section id="projects" aria-labelledby="projects-title" className="pt-10 pb-6 sm:pt-14">
       <Carousel
         title="Projects"
         note="Swipe through. Case studies first, then earlier builds."
@@ -224,7 +224,7 @@ export default function Projects() {
         ))}
         <article id="builds" aria-labelledby="builds-title" className="glass grid content-start gap-7 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-2 md:p-9">
           <div>
-            <p className="text-small font-semibold text-signal">Earlier builds · ML and AI</p>
+            <p className="text-small font-semibold text-signal">Earlier builds</p>
             <h3 id="builds-title" className="mt-1.5 text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
               Where it started
             </h3>
@@ -235,7 +235,7 @@ export default function Projects() {
               <li key={b.title} className={`grid gap-1 py-4 ${i ? "border-t border-line/[0.12]" : "pt-0"}`}>
                 <p className="font-semibold">{b.title}</p>
                 <p className="text-small text-muted">{b.text}</p>
-                <p className="text-small text-muted/80">{b.stack}</p>
+                <p className="text-small text-muted">{b.stack}</p>
                 <a href={b.link.href} {...out} className="text-small font-medium text-signal hover:underline underline-offset-4">
                   {b.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
                 </a>
