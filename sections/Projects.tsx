@@ -1,5 +1,4 @@
-import { R, SectionHead } from "@/components/ui";
-import ProjectIndex, { type IndexItem } from "@/components/ProjectIndex";
+import { ExtButton, R, SectionHead } from "@/components/ui";
 
 type Link = { href: string; label: string };
 
@@ -134,107 +133,88 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
   },
 ];
 
-const index: IndexItem[] = [
-  { name: "Keep SIP Active", kind: "AI product case study", href: "#gr1", image: { src: "/images/work/gr1-app.webp" } },
-  {
-    name: "Practice Out Loud",
-    kind: "Voice product case study",
-    href: "#pol",
-    image: { src: "/images/work/pol-screens.webp", position: "object-[18%_50%]" },
-  },
-  ...builds.map((b) => ({ name: b.title, kind: "AI and ML build", href: b.link.href, external: true, stack: b.stack })),
-];
-
-function ExtLink({ href, label }: Link) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 py-1 underline decoration-ink/30 underline-offset-[5px] hover:decoration-ink transition-[text-decoration-color]"
-    >
-      {label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
-    </a>
-  );
-}
-
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-24 sm:py-32">
+    <section id="projects" aria-labelledby="projects-title" className="py-20 sm:py-28">
       <div className="wrap">
         <SectionHead title="Projects" id="projects-title">
           Two product case studies from end to end, then the AI and ML builds that came before them.
         </SectionHead>
 
-        <div data-reveal style={R(1)} className="mt-16">
-          <ProjectIndex items={index} />
-        </div>
-
-        <div className="mt-28 grid gap-28 sm:gap-40">
+        <div className="mt-12 grid gap-6 sm:gap-8">
           {caseStudies.map((c) => (
-            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="grid gap-10 scroll-mt-[calc(var(--nav-h)+1rem)]">
-              <div data-reveal className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-8">
-                <div className="lg:col-span-8">
-                  <h3 id={`${c.id}-title`} className="font-display text-display">
+            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="card overflow-hidden">
+              <div data-reveal className="grid gap-6 p-6 sm:p-10 lg:grid-cols-[1fr_20rem] lg:gap-12">
+                <div>
+                  <p className="text-small text-muted">{c.kicker}</p>
+                  <h3 id={`${c.id}-title`} className="mt-2 text-head font-semibold">
                     {c.title}
                   </h3>
-                  <p className="mt-4 text-muted">{c.kicker}</p>
+                  <p className="mt-4 max-w-[38rem] text-lead text-muted">{c.summary}</p>
                 </div>
-                <p className="max-w-[44ch] text-lead lg:col-span-4 lg:pb-2">{c.summary}</p>
+                <div className="flex flex-wrap content-start gap-2 lg:justify-end lg:pt-7">
+                  {c.links.map((l) => (
+                    <ExtButton key={l.href} href={l.href}>
+                      {l.label}
+                    </ExtButton>
+                  ))}
+                </div>
               </div>
 
-              <figure data-reveal style={R(1)} className="grid gap-3">
-                <div className="overflow-hidden bg-surface p-[clamp(0.75rem,2.5vw,2.5rem)]">
+              <figure data-reveal style={R(1)} className="px-3 sm:px-4">
+                <div className="overflow-hidden rounded-[10px] bg-ink/[0.04] p-[clamp(0.5rem,2.5vw,2.5rem)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.image.src} width={c.image.width} height={c.image.height} loading="lazy" alt={c.image.alt} className="w-full h-auto" />
+                  <img
+                    src={c.image.src}
+                    width={c.image.width}
+                    height={c.image.height}
+                    loading="lazy"
+                    alt={c.image.alt}
+                    className="w-full h-auto rounded-md shadow-[0_0_0_1px_rgb(var(--line)/0.08),0_12px_32px_-12px_rgb(0_0_0/0.18)]"
+                  />
                 </div>
-                <figcaption className="text-small text-muted">{c.image.caption}</figcaption>
+                <figcaption className="px-2 pt-3 text-small text-muted">{c.image.caption}</figcaption>
               </figure>
 
-              <dl data-reveal style={R(1)} className="grid gap-8 sm:grid-cols-3 sm:gap-6">
+              <dl data-reveal style={R(1)} className="mx-6 sm:mx-10 mt-8 grid gap-6 sm:grid-cols-3">
                 {c.stats.map((s) => (
                   <div key={s.label} className="flex flex-col-reverse">
-                    <dt className="mt-2 max-w-[26ch] text-muted">{s.label}</dt>
-                    <dd className="font-display text-display tabular-nums">{s.value}</dd>
+                    <dt className="mt-1 text-small text-muted max-w-[22ch]">{s.label}</dt>
+                    <dd className="text-head font-semibold tabular-nums">{s.value}</dd>
                   </div>
                 ))}
               </dl>
 
-              <div data-reveal style={R(2)} className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-                <dl className="grid gap-8 sm:grid-cols-2 sm:gap-x-8 lg:col-span-8">
-                  {c.steps.map((s) => (
-                    <div key={s.label}>
-                      <dt className="font-medium">{s.label}</dt>
-                      <dd className="mt-1.5 max-w-[50ch]">{s.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="grid content-start gap-6 lg:col-span-4">
-                  <p className="font-display text-lead">&ldquo;{c.note.text}&rdquo;</p>
-                  <ul className="flex flex-wrap gap-x-6 gap-y-1">
-                    {c.links.map((l) => (
-                      <li key={l.href}>
-                        <ExtLink {...l} />
-                      </li>
-                    ))}
-                  </ul>
-                  {c.disclaimer ? <p className="text-small text-muted">{c.disclaimer}</p> : null}
-                </div>
+              <dl data-reveal style={R(2)} className="grid gap-x-10 gap-y-6 p-6 sm:p-10 sm:grid-cols-2">
+                {c.steps.map((s) => (
+                  <div key={s.label}>
+                    <dt className="font-medium">{s.label}</dt>
+                    <dd className="mt-1 text-muted">{s.text}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="flex flex-col gap-2 border-t border-line/[0.07] px-6 py-5 sm:px-10 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+                <p className="text-small">
+                  <span className="text-muted">{c.note.label}: </span>
+                  {c.note.text}
+                </p>
+                {c.disclaimer ? <p className="text-small text-muted sm:max-w-[26rem] sm:text-right">{c.disclaimer}</p> : null}
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-36">
-          <h3 data-reveal className="font-display text-head">Earlier AI and ML builds</h3>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-16 sm:mt-20">
+          <h3 data-reveal className="text-lead font-semibold">Earlier AI and ML builds</h3>
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {builds.map((b, i) => (
-              <li key={b.title} data-reveal style={R(i % 2)} className="flex flex-col gap-3 bg-surface p-6 sm:p-8">
-                <h4 className="font-display text-head">{b.title}</h4>
-                <p className="max-w-[46ch]">{b.text}</p>
-                <div className="mt-auto flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-4">
+              <li key={b.title} data-reveal style={R(i % 2)} className="card flex flex-col gap-2 p-6">
+                <h4 className="font-semibold">{b.title}</h4>
+                <p className="text-muted">{b.text}</p>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
                   <p className="text-small text-muted">{b.stack}</p>
-                  <ExtLink {...b.link} />
+                  <ExtButton href={b.link.href}>{b.link.label}</ExtButton>
                 </div>
               </li>
             ))}

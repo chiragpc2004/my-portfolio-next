@@ -3,135 +3,85 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------------
- * Tokens. Channels (r g b) so Tailwind can apply alpha.
- * White paper and black ink carry the page; signal red marks the one action.
- * .theme-invert flips a band (product work, footer) to the other set.
+ * Product showcase. Soft grey ground, white cards, near-black ink.
+ * Channels (r g b) so Tailwind can apply alpha.
  * ------------------------------------------------------------------------- */
-:root,
-.dark .theme-invert {
-  --ground: 255 255 255;
-  --surface: 242 242 242;
-  --ink: 10 10 10;
-  --muted: 102 102 102;
-  --accent: 217 43 33;
-  --accent-ink: 255 255 255;
+:root {
+  --ground: 246 246 245;
+  --card: 255 255 255;
+  --ink: 20 20 20;
+  --muted: 104 104 108;
+  --line: 20 20 20;
+  --signal: 22 128 92; /* the "passed" green of a test run: used only for status dots */
   color-scheme: light;
 }
 
-.dark,
-.theme-invert {
-  --ground: 10 10 10;
-  --surface: 28 28 28;
-  --ink: 245 245 245;
-  --muted: 168 168 168;
-  --accent: 228 58 46;
-  --accent-ink: 255 255 255;
+.dark {
+  --ground: 12 12 13;
+  --card: 24 24 26;
+  --ink: 237 237 239;
+  --muted: 160 160 166;
+  --line: 237 237 239;
+  --signal: 74 200 150;
   color-scheme: dark;
 }
 
 :root {
-  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
-  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-  --step-display: clamp(3.5rem, 1rem + 9vw, 9.5rem);
-  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
-  --nav-h: 4rem;
+  --step-small: 0.875rem;
+  --step-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --step-head: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  --step-display: clamp(2.375rem, 1.6rem + 3.2vw, 4rem);
+  --nav-h: 3.75rem;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-h);
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
 }
 
 .wrap {
   margin-inline: auto;
-  max-width: 120rem;
-  padding-inline: var(--gutter);
+  max-width: 72rem;
+  padding-inline: clamp(1rem, 0.5rem + 2vw, 2rem);
+}
+
+/* A white panel with a hairline edge: the one surface the page uses. */
+.card {
+  background: rgb(var(--card));
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(var(--line) / 0.07),
+    0 1px 2px rgb(0 0 0 / 0.04);
 }
 
 :focus-visible {
   outline: 2px solid rgb(var(--ink));
   outline-offset: 3px;
+  border-radius: 6px;
 }
 
 ::selection {
-  background: rgb(var(--accent));
-  color: rgb(var(--accent-ink));
+  background: rgb(var(--ink));
+  color: rgb(var(--ground));
 }
 
-/* ---------------------------------------------------------------------------
- * The monument. The name scales down a little as the first screen leaves,
- * and grows into place as the footer arrives. Static where unsupported.
- * ------------------------------------------------------------------------- */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .monument-leave {
-      transform-origin: 50% 100%;
-      animation: monument-leave linear both;
-      animation-timeline: view();
-      animation-range: exit 0% exit 100%;
-    }
-    .monument-arrive {
-      transform-origin: 50% 100%;
-      animation: monument-arrive linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 45%;
-    }
-  }
-}
-@keyframes monument-leave {
-  to { transform: scale(0.93) translateY(-4%); }
-}
-@keyframes monument-arrive {
-  from { transform: scale(0.93); }
-  to { transform: none; }
-}
-
-/* ---------------------------------------------------------------------------
- * Reveal: parts of each section rise in as it enters. Hidden only when JS is
- * running (html.js is set before paint), so content never stays invisible.
- * ------------------------------------------------------------------------- */
+/* Reveal: hidden only when JS runs and motion is welcome. */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(16px);
     transition:
-      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--i, 0) * 90ms);
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 70ms);
   }
   html.js [data-reveal][data-in] {
     opacity: 1;
     transform: none;
   }
-
-  /* Hero: the name's letters rise one by one on load. */
-  html.js .rise > span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(0.12em);
-    animation: letter-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: calc(var(--i, 0) * 60ms + 150ms);
-  }
-}
-@keyframes letter-in {
-  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-}
-
-/* The name, sized so its glyphs run exactly from margin to margin.
-   3.34 is the set width of "Chirag P C" in Instrument Serif, in ems. */
-.monument {
-  display: block;
-  font-family: var(--font-display);
-  font-size: calc((min(100vw, 120rem) - 2 * var(--gutter)) / 3.4);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  font-kerning: normal;
-  margin-left: -0.035em;
 }

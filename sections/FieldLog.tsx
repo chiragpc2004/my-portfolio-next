@@ -1,4 +1,4 @@
-import { R } from "@/components/ui";
+import { R, SectionHead } from "@/components/ui";
 
 type Entry = {
   dates: string;
@@ -27,7 +27,7 @@ const entries: Entry[] = [
       label: "Beyond the ticket",
       text: "Built an internal AI agent with Claude Code that automates API test work.",
     },
-    award: "Rocketeer of the Month, for consistent work through the quarter.",
+    award: "Rocketeer of the Month",
   },
   {
     dates: "Jan – Jul 2026",
@@ -64,107 +64,108 @@ const entries: Entry[] = [
     dates: "2022 – 2026",
     place: "Manipal Institute of Technology",
     short: "MIT Manipal",
-    role: "BTech, Data Science & Engineering, Manipal Institute of Technology",
+    role: "BTech, Data Science & Engineering",
     body: ["Where the habit started: state the question, look at the data, and measure the answer honestly."],
     note: { label: "Also", text: "Top 10 at the M# Hackathon." },
   },
 ];
 
-const timeline = [
-  { when: "2022", what: "BTech, Data Science & Engineering", where: "Manipal Institute of Technology" },
-  { when: "Jun 2025", what: "AI intern", where: "Pinnacle Labs" },
-  { when: "Jan 2026", what: "SDET intern", where: "Jar" },
-  { when: "Jul 2026", what: "SDET-1, full time", where: "Jar" },
-  { when: "Nov 2026", what: "Top Fellow", where: "NextLeap PM Fellowship" },
+const facts = [
+  { label: "Now", value: "SDET-1 at Jar, platform pod" },
+  { label: "Studied", value: "BTech, Data Science & Engineering, MIT Manipal" },
+  { label: "Recognition", value: "NextLeap Top Fellow · Rocketeer of the Month · M# Hackathon top 10" },
+  { label: "Looking for", value: "APM, Associate PM or AI PM roles" },
 ];
 
 export default function FieldLog() {
   return (
-    <section id="journey" aria-labelledby="journey-title" className="py-24 sm:py-32">
-      <div className="wrap grid gap-14 lg:grid-cols-12 lg:gap-8">
-        {/* Pinned: the title and the portrait stay while the stops pass beside them. */}
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-[calc(var(--nav-h)+2rem)]">
-            <h2 id="journey-title" data-reveal className="font-display text-display">
-              Journey
-            </h2>
-            <p data-reveal style={R(1)} className="mt-6 max-w-[34ch] text-lead">
-              Where I&apos;ve worked and studied, newest first, and what each stop was actually for.
-            </p>
-            <figure data-reveal style={R(2)} className="mt-10 w-[min(100%,22rem)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/chirag.jpg"
-                width={460}
-                height={460}
-                loading="lazy"
-                alt="Chirag P C, in a dark suit and white shirt"
-                className="aspect-[4/5] w-full object-cover object-[50%_18%] grayscale"
-              />
-              <figcaption className="mt-3 text-small text-muted">Chirag P C, 2026</figcaption>
-            </figure>
-          </div>
-        </div>
+    <section id="journey" aria-labelledby="journey-title" className="py-20 sm:py-28">
+      <div className="wrap">
+        <SectionHead title="Journey" id="journey-title">
+          From data science, to testing products at Jar, to building them. Newest first.
+        </SectionHead>
 
-        <div className="lg:col-span-8 lg:pt-4">
-          {/* The trajectory in one panel, ending in the role I'm moving towards. */}
-          <ol data-reveal className="grid gap-x-6 gap-y-7 bg-surface p-6 sm:grid-cols-3 sm:p-8">
-            {timeline.map((t) => (
-              <li key={t.when}>
-                <p className="text-small text-muted tabular-nums">{t.when}</p>
-                <p className="mt-1 font-medium leading-snug">{t.what}</p>
-                <p className="text-small text-muted leading-snug">{t.where}</p>
-              </li>
-            ))}
-            <li>
-              <p className="text-small font-medium">Next</p>
-              <p className="mt-1 font-display text-lead leading-[1.1]">APM, Associate PM or AI PM</p>
+        <div className="mt-12 grid gap-5 lg:grid-cols-[20rem_1fr] lg:gap-6 lg:items-start">
+          {/* Who I am, at a glance. Stays in view beside the timeline. */}
+          <aside data-reveal className="card p-3 lg:sticky lg:top-[calc(var(--nav-h)+1.5rem)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/chirag.jpg"
+              width={460}
+              height={460}
+              loading="lazy"
+              alt="Chirag P C, in a dark suit and white shirt"
+              className="aspect-square w-full rounded-[10px] object-cover object-[50%_20%]"
+            />
+            <div className="px-2 pt-5 pb-3">
+              <p className="font-medium">Chirag P C</p>
+              <p className="mt-2 text-small text-muted">
+                I spend my days on the paths users take and the ones they shouldn&apos;t be able to. I bring that habit to
+                product problems: a hypothesis, the evidence, a build, and an honest check.
+              </p>
+              <dl className="mt-5 grid gap-3.5">
+                {facts.map((f) => (
+                  <div key={f.label}>
+                    <dt className="text-small text-muted">{f.label}</dt>
+                    <dd className="text-small font-medium">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </aside>
+
+          <ol className="card relative px-5 py-6 sm:px-8 sm:py-8">
+            {/* The line the stops hang from. */}
+            <span aria-hidden="true" className="absolute left-[calc(1.25rem+5px)] sm:left-[calc(2rem+5px)] top-10 bottom-10 w-px bg-line/10" />
+
+            <li data-reveal className="relative pl-8 pb-10">
+              <span aria-hidden="true" className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 border-dashed border-ink/40 bg-card" />
+              <p className="text-small text-muted">Next</p>
+              <p className="mt-1 text-lead font-medium">APM, Associate PM or AI PM</p>
             </li>
-          </ol>
 
-          <ol className="mt-6">
-            {entries.map((e) => (
-              <li key={e.dates + e.place} className="grid gap-5 py-12 sm:grid-cols-8 sm:gap-6">
-                <div data-reveal className="sm:col-span-3">
-                  <h3 className="font-display text-head">{e.short ?? e.place}</h3>
-                  <p className="mt-3">{e.role}</p>
-                  <p className="text-muted tabular-nums">{e.dates}</p>
-                </div>
-
-                <div data-reveal style={R(1)} className="grid content-start gap-4 sm:col-span-5 sm:pt-7">
+            {entries.map((e, i) => (
+              <li key={e.dates + e.place} data-reveal style={R(i % 3)} className="relative pl-8 pb-10 last:pb-0">
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full ${i === 0 ? "bg-signal shadow-[0_0_0_4px_rgb(var(--signal)/0.18)]" : "bg-ink/70"}`}
+                />
+                <p className="text-small text-muted tabular-nums">{e.dates}</p>
+                <h3 className="mt-1 text-lead font-semibold tracking-[-0.015em]">
+                  {e.role} <span className="font-normal text-muted">at {e.place}</span>
+                </h3>
+                <div className="mt-3 grid gap-3 max-w-[40rem]">
                   {e.body.map((p) => (
-                    <p key={p} className="max-w-[56ch]">
-                      {p}
-                    </p>
+                    <p key={p}>{p}</p>
                   ))}
-                  {e.tools ? <p className="text-small text-muted">{e.tools}</p> : null}
-                  {e.note || e.award ? (
-                    <dl className="mt-2 grid gap-3 bg-surface p-5">
-                      {e.note ? (
-                        <div>
-                          <dt className="text-small text-muted">{e.note.label}</dt>
-                          <dd className="mt-0.5 font-medium">{e.note.text}</dd>
-                        </div>
-                      ) : null}
-                      {e.award ? (
-                        <div>
-                          <dt className="text-small text-muted">Award</dt>
-                          <dd className="mt-0.5 font-medium">{e.award}</dd>
-                        </div>
-                      ) : null}
-                    </dl>
-                  ) : null}
-                  {e.link ? (
-                    <a
-                      href={e.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex w-fit items-center gap-1 py-1 underline decoration-ink/30 underline-offset-[5px] hover:decoration-ink transition-[text-decoration-color]"
-                    >
-                      {e.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
                 </div>
+                {e.tools || e.note || e.award || e.link ? (
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    {e.note ? (
+                      <span className="inline-flex rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
+                        <span className="text-muted">{e.note.label}:&nbsp;</span>
+                        {e.note.text}
+                      </span>
+                    ) : null}
+                    {e.award ? (
+                      <span className="inline-flex rounded-lg bg-ink/[0.05] px-3 py-1.5 text-small">
+                        <span className="text-muted">Award:&nbsp;</span>
+                        {e.award}
+                      </span>
+                    ) : null}
+                    {e.tools ? <span className="px-1 text-small text-muted">{e.tools}</span> : null}
+                    {e.link ? (
+                      <a
+                        href={e.link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-1 text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+                      >
+                        {e.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
               </li>
             ))}
           </ol>

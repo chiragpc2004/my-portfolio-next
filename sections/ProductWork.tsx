@@ -74,57 +74,20 @@ const pieces: Piece[] = [
 ];
 
 const link =
-  "py-1 underline decoration-ink/30 underline-offset-[5px] hover:decoration-ink transition-[text-decoration-color]";
+  "text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink transition-[text-decoration-color]";
 
 export default function ProductWork() {
   return (
-    <section id="product-work" aria-labelledby="product-work-title" className="theme-invert bg-ground text-ink py-24 sm:py-32">
+    <section id="product-work" aria-labelledby="product-work-title" className="py-20 sm:py-28">
       <div className="wrap">
         <SectionHead title="Product work" id="product-work-title">
           Teardowns, PRDs, market cases and a data analysis. Each one starts with a question and ends with a recommendation.
         </SectionHead>
 
-        <ol className="mt-20 grid gap-16 sm:gap-20">
-          {pieces.map((p) => (
-            <li key={p.file} className="grid gap-6 lg:grid-cols-12 lg:gap-8">
-              <div data-reveal className="lg:col-span-8">
-                <a
-                  href={pdf(p.file)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-baseline justify-between gap-6"
-                >
-                  <span className="font-display text-display transition-colors duration-200 group-hover:text-accent">{p.word}</span>
-                  <span className="shrink-0 text-body text-muted">{p.kind}</span>
-                  <span className="sr-only"> PDF (opens in a new tab)</span>
-                </a>
-                <div className="mt-5 grid gap-2 sm:grid-cols-8 sm:gap-6">
-                  <h3 className="font-medium sm:col-span-3">{p.title}</h3>
-                  <div className="sm:col-span-5">
-                    <p className="text-muted max-w-[54ch]">{p.line}</p>
-                    <p className="mt-3 flex gap-6">
-                      <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className={link}>
-                        Read the PDF &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                      </a>
-                      {p.extra ? (
-                        <a href={pdf(p.extra.file)} target="_blank" rel="noopener noreferrer" className={link}>
-                          {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                        </a>
-                      ) : null}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <a
-                data-reveal
-                style={R(1)}
-                href={pdf(p.file)}
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={-1}
-                aria-hidden="true"
-                className="group block self-start overflow-hidden bg-surface lg:col-span-3 lg:col-start-10"
-              >
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {pieces.map((p, i) => (
+            <li key={p.file} data-reveal style={R(i % 3)} className="card group flex flex-col p-3">
+              <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className="block overflow-hidden rounded-[10px] bg-ink/[0.04] px-6 pt-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/images/work/${p.thumb}.jpg`}
@@ -132,12 +95,27 @@ export default function ProductWork() {
                   height={584}
                   loading="lazy"
                   alt=""
-                  className="aspect-[4/3] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  className="aspect-[4/3] w-full rounded-t-md object-cover object-top shadow-[0_0_0_1px_rgb(var(--line)/0.08),0_10px_24px_-12px_rgb(0_0_0/0.25)] transition-transform duration-500 ease-out group-hover:-translate-y-1"
                 />
               </a>
+              <div className="flex flex-1 flex-col px-2 pt-4 pb-2">
+                <p className="text-small text-muted">{p.kind}</p>
+                <h3 className="mt-1 font-semibold leading-snug">{p.title}</h3>
+                <p className="mt-2 text-small text-muted">{p.line}</p>
+                <p className="mt-auto flex gap-5 pt-4">
+                  <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className={link}>
+                    Read the PDF &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  {p.extra ? (
+                    <a href={pdf(p.extra.file)} target="_blank" rel="noopener noreferrer" className={link}>
+                      {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : null}
+                </p>
+              </div>
             </li>
           ))}
-        </ol>
+        </ul>
       </div>
     </section>
   );

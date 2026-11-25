@@ -1,69 +1,81 @@
-import { Monument, R } from "@/components/ui";
+import { R, btn } from "@/components/ui";
 
-const corner = "text-small text-muted hover:text-ink transition-colors duration-200 inline-flex items-center h-11";
+const featured = [
+  {
+    href: "#gr1",
+    title: "Keep SIP Active",
+    line: "AI MVP with a live quality report",
+    status: "30 / 32 eval cases passed",
+    src: "/images/work/gr1-quality.webp",
+    alt: "The GR-1 quality report: 32 test questions, 7 checks per answer and a run with 30 of 32 cases passed.",
+    pos: "object-top",
+  },
+  {
+    href: "#pol",
+    title: "Practice Out Loud",
+    line: "Voice interview practice in ChatGPT",
+    status: "Clickable prototype",
+    src: "/images/work/pol-screens.webp",
+    alt: "Annotated phone screens of the Practice Out Loud flow.",
+    pos: "object-[0%_50%]",
+  },
+];
 
 export default function Cover() {
   return (
-    <section id="home" aria-labelledby="cover-title" className="relative">
-      <div className="wrap relative flex min-h-[100svh] flex-col pt-[calc(var(--nav-h)+0.5rem)] pb-0 md:pb-6">
-        {/* Top-left: who this is and the one action. The nav holds the top-right corner. */}
-        <div className="order-2 mt-6 md:order-1 md:mt-0">
-          <p data-reveal style={R(1)} className="max-w-[30ch] text-lead">
-            SDET at Jar and aspiring product manager. Two product case studies, seven teardowns and PRDs, and the builds
-            behind them.
+    <section id="home" aria-labelledby="cover-title" className="pt-[calc(var(--nav-h)+4rem)] sm:pt-[calc(var(--nav-h)+6rem)] pb-8 sm:pb-12">
+      <div className="wrap">
+        <div className="max-w-[46rem]">
+          <p data-reveal className="inline-flex items-center gap-2 text-small text-muted">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-signal" />
+            Open to APM, Associate PM and AI PM roles
           </p>
-          <a
-            data-reveal
-            style={R(2)}
-            href="#projects"
-            className="mt-5 flex h-12 w-full items-center justify-center bg-ink px-6 text-ground transition-[background-color,transform] duration-200 hover:bg-accent active:scale-[0.98] md:inline-flex md:w-auto"
-          >
-            See the projects
-          </a>
-        </div>
-
-        {/* The name, across the middle, margin to margin. */}
-        <div className="order-1 mt-[6svh] md:order-2 md:my-auto md:py-10">
-          <div className="monument-leave">
-            <Monument as="h1" id="cover-title" label="Chirag P C" rise />
+          <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 text-display font-semibold text-balance">
+            I test products for a living. Now I&apos;m learning to build them.
+          </h1>
+          <p data-reveal style={R(2)} className="mt-5 max-w-[36rem] text-lead text-muted">
+            I&apos;m Chirag, an SDET at Jar and a NextLeap Top Fellow, moving into product management. Below is my journey
+            so far and the product work I&apos;m proudest of.
+          </p>
+          <div data-reveal style={R(3)} className="mt-8 flex flex-wrap gap-3">
+            <a href="#projects" className={btn.primary}>
+              See the projects
+            </a>
+            <a href="#journey" className={btn.secondary}>
+              Read my journey
+            </a>
           </div>
         </div>
 
-        {/* Phone only: the first screen ends in the work, not empty paper. */}
-        <div className="order-3 mt-8 -mx-[var(--gutter)] md:hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/work/gr1-app.webp"
-            width={600}
-            height={1296}
-            alt="GR-1, the Keep SIP Active assistant, open on a phone and explaining a missed SIP payment."
-            className="aspect-[4/5] w-full object-cover object-top bg-surface"
-          />
-        </div>
-
-        {/* Bottom corners: what the work is, and where to find more. */}
-        <div className="order-4 hidden items-end justify-between gap-6 md:flex">
-          <p data-reveal style={R(3)} className="text-body">
-            SDET at Jar &middot; NextLeap PM Fellowship, Top Fellow
-          </p>
-          <ul data-reveal style={R(4)} className="flex gap-5">
-            <li>
-              <a className={corner} href="https://github.com/chiragpc2004" target="_blank" rel="noopener noreferrer">
-                GitHub<span className="sr-only"> (opens in a new tab)</span>
+        <ul className="mt-16 sm:mt-20 grid gap-4 sm:gap-5 md:grid-cols-[1.35fr_1fr]">
+          {featured.map((f, i) => (
+            <li key={f.href} data-reveal style={R(i + 3)}>
+              <a href={f.href} className="card group flex h-full flex-col p-3 transition-transform duration-300 ease-out hover:-translate-y-0.5">
+                <div className="relative overflow-hidden rounded-[10px] bg-ink/[0.04] aspect-[16/10] md:aspect-auto md:h-[clamp(16rem,26vw,22rem)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={f.src}
+                    alt={f.alt}
+                    className={`h-full w-full object-cover ${f.pos} transition-transform duration-700 ease-out group-hover:scale-[1.02]`}
+                  />
+                  <span className="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-card/95 px-2.5 py-1 text-small shadow-[0_0_0_1px_rgb(var(--line)/0.08)]">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
+                    {f.status}
+                  </span>
+                </div>
+                <div className="flex items-baseline justify-between gap-4 px-2 pt-4 pb-2">
+                  <p>
+                    <span className="font-medium">{f.title}</span>{" "}
+                    <span className="text-muted">{f.line}</span>
+                  </p>
+                  <span aria-hidden="true" className="text-muted transition-transform duration-300 group-hover:translate-x-0.5">
+                    &rarr;
+                  </span>
+                </div>
               </a>
             </li>
-            <li>
-              <a className={corner} href="https://www.linkedin.com/in/chiragpc2004" target="_blank" rel="noopener noreferrer">
-                LinkedIn<span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </li>
-            <li>
-              <a className={corner} href="#contact">
-                Email
-              </a>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
     </section>
   );

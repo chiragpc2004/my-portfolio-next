@@ -1,22 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Instrument_Sans, Instrument_Serif } from "next/font/google";
-
-// Display: a narrow, sharp serif that holds up at monument sizes. Names and headings only.
-const display = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-display",
-  display: "swap",
-});
-
-// Text: a plain grotesk for everything a visitor reads at length.
-const sans = Instrument_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-sans",
-  display: "swap",
-});
+import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
   title: "Chirag P C · SDET at Jar, aspiring product manager",
@@ -30,7 +14,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={GeistSans.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>

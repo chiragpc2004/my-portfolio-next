@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 import { useReveal } from "./useReveal";
 
 const navItems = [
@@ -14,97 +15,79 @@ const navItems = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [pastHero, setPastHero] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(false);
 
   useReveal();
 
-  // The boot script in layout.tsx has already applied the theme; read it back.
   useEffect(() => {
-    setDarkMode(document.documentElement.classList.contains("dark"));
+    setDark(document.documentElement.classList.contains("dark"));
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    document.querySelectorAll("section[id]").forEach((el) => io.observe(el));
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      io.disconnect();
+    };
   }, []);
 
   const toggleTheme = () => {
-    const next = !darkMode;
-    setDarkMode(next);
+    const next = !dark;
+    setDark(next);
     document.documentElement.classList.toggle("dark", next);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {}
   };
 
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((el) => observer.observe(el));
-
-    // The small name in the bar appears only once the big one has left.
-    const hero = document.getElementById("home");
-    const heroObs = new IntersectionObserver(([e]) => setPastHero(!e.isIntersecting), { threshold: 0.12 });
-    if (hero) heroObs.observe(hero);
-    return () => {
-      observer.disconnect();
-      heroObs.disconnect();
-    };
-  }, []);
-
-  const link = (active: boolean) =>
-    `relative inline-flex items-center h-11 px-2.5 text-small transition-colors duration-200 ${
-      active ? "text-ink" : "text-muted hover:text-ink"
-    }`;
-
   return (
-    <nav aria-label="Main" className="fixed inset-x-0 top-0 z-50 bg-ground text-ink">
+    <nav
+      aria-label="Main"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300 ${
+        scrolled || menuOpen ? "bg-ground/85 backdrop-blur-md shadow-[0_1px_0_rgb(var(--line)/0.07)]" : "bg-transparent"
+      }`}
+    >
       <div className="wrap h-[var(--nav-h)] flex items-center justify-between gap-6">
-        <a
-          href="#home"
-          tabIndex={pastHero ? 0 : -1}
-          aria-hidden={!pastHero}
-          className={`inline-flex items-center h-11 font-display text-lead leading-none whitespace-nowrap transition-[opacity,transform] duration-500 ease-out ${
-            pastHero ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
-          }`}
-        >
+        <a href="#home" className="inline-flex items-center gap-2.5 h-10 font-semibold tracking-[-0.01em]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/chirag.jpg" alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover object-[50%_20%]" />
           Chirag P C
         </a>
 
         <div className="hidden md:flex items-center gap-1">
           <ul className="flex items-center">
-            {navItems.map((item) => {
-              const active = activeSection === item.id;
-              return (
-                <li key={item.id}>
-                  <a href={item.href} aria-current={active ? "location" : undefined} className={link(active)}>
-                    {item.label}
-                    <span
-                      aria-hidden="true"
-                      className={`absolute left-2.5 right-2.5 bottom-2.5 h-0.5 bg-ink origin-left transition-transform duration-300 ease-out ${
-                        active ? "scale-x-100" : "scale-x-0"
-                      }`}
-                    />
-                  </a>
-                </li>
-              );
-            })}
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  aria-current={active === item.id ? "location" : undefined}
+                  className={`inline-flex items-center h-9 px-3 rounded-full text-small transition-colors duration-200 ${
+                    active === item.id ? "text-ink bg-ink/[0.06]" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
           <button
             onClick={toggleTheme}
-            aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"}
-            className="ml-3 inline-flex items-center h-11 px-2.5 text-small text-muted hover:text-ink transition-colors duration-200"
+            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
+            className="ml-1 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted hover:text-ink hover:bg-ink/[0.06] transition-colors duration-200"
           >
-            {darkMode ? "Light" : "Dark"}
+            {dark ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
           </button>
         </div>
 
         <button
-          className="md:hidden inline-flex items-center h-11 -mr-1 px-1 text-small"
+          className="md:hidden inline-flex items-center h-10 px-3 -mr-3 text-small font-medium"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -114,23 +97,21 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div id="mobile-menu" className="md:hidden bg-ground wrap pb-8 h-[calc(100svh-var(--nav-h))] flex flex-col">
-          <ul className="flex flex-col">
+        <div id="mobile-menu" className="md:hidden wrap pb-5">
+          <ul className="card p-2">
             {navItems.map((item) => (
               <li key={item.id}>
-                <a
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`block py-2 font-display text-head ${activeSection === item.id ? "text-ink" : "text-muted"}`}
-                >
+                <a href={item.href} onClick={() => setMenuOpen(false)} className="block px-3 py-3 rounded-lg text-lead hover:bg-ink/[0.04]">
                   {item.label}
                 </a>
               </li>
             ))}
+            <li>
+              <button onClick={toggleTheme} className="w-full text-left px-3 py-3 rounded-lg text-muted hover:bg-ink/[0.04]">
+                {dark ? "Switch to light theme" : "Switch to dark theme"}
+              </button>
+            </li>
           </ul>
-          <button onClick={toggleTheme} className="mt-auto self-start inline-flex items-center h-11 text-small text-muted">
-            {darkMode ? "Switch to light" : "Switch to dark"}
-          </button>
         </div>
       )}
     </nav>
