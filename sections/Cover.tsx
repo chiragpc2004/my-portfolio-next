@@ -1,87 +1,75 @@
-import { R, btn } from "@/components/ui";
-
-const featured = [
-  {
-    href: "#gr1",
-    title: "Keep SIP Active",
-    line: "AI MVP with a live quality report",
-    status: "30 / 32 eval cases passed",
-    src: "/images/work/gr1-quality.webp",
-    alt: "The GR-1 quality report: 32 test questions, 7 checks per answer and a run with 30 of 32 cases passed.",
-    pos: "object-top",
-  },
-  {
-    href: "#pol",
-    title: "Practice Out Loud",
-    line: "Voice prototype for ChatGPT",
-    status: "Clickable prototype",
-    src: "/images/work/pol-screens.webp",
-    alt: "Annotated phone screens of the Practice Out Loud flow.",
-    pos: "object-[0%_50%]",
-  },
-];
+import { R } from "@/components/ui";
+import { now } from "@/content/journey";
 
 export default function Cover() {
   return (
-    <section id="home" aria-labelledby="cover-title" className="pt-[calc(var(--nav-h)+3rem)] sm:pt-[calc(var(--nav-h)+4.5rem)] pb-4 sm:pb-8">
-      <div className="wrap">
-        <div className="max-w-[52rem]">
-          <p data-reveal className="inline-flex items-center gap-2 text-small text-muted">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-signal" />
-            Open to APM, Associate PM and AI PM roles
-          </p>
-          <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 max-w-[22ch] text-display font-semibold text-balance">
-            SDET at Jar, on my way to product management.
+    <header id="home" className="relative overflow-hidden">
+      {/* The colour the glass floats over. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-0">
+        <span className="wash left-[50%] top-[18%] h-[26rem] w-[26rem] bg-[rgb(var(--wash-1))]" />
+        <span className="wash left-[70%] top-[42%] h-[22rem] w-[22rem] bg-[rgb(var(--wash-2))]" />
+        <span className="wash left-[38%] top-[55%] h-[18rem] w-[18rem] bg-[rgb(var(--wash-3))]" />
+      </div>
+
+      <div className="wrap relative grid items-center gap-14 pt-28 pb-16 sm:pt-36 sm:pb-24 lg:grid-cols-2 lg:gap-10">
+        <div>
+          {now ? (
+            <p data-reveal className="glass inline-flex items-center gap-2.5 rounded-full py-1 pl-1 pr-4 text-small text-muted">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/chirag.jpg" alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover object-[50%_20%]" />
+              <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_0_3px_rgb(var(--signal)/0.2)]" />
+              <span>
+                Currently <span className="font-medium text-ink">{now.title ?? now.role} at {now.place}</span>
+              </span>
+            </p>
+          ) : null}
+          <h1 data-reveal style={R(1)} className="mt-6 max-w-[16ch] text-display font-semibold tracking-[-0.04em] leading-[1.05] text-balance">
+            Hi, I&apos;m Chirag. I like finding out why products break, and building ones that don&apos;t.
           </h1>
-          <p data-reveal style={R(2)} className="mt-5 max-w-[40rem] text-lead text-muted">
-            I&apos;m Chirag. By day I test Jar&apos;s app and the APIs behind it. For the last five months I&apos;ve also been
-            researching, designing and shipping products in the NextLeap PM Fellowship, where I graduated as a Top Fellow.
+          <p data-reveal style={R(2)} className="mt-5 max-w-[34rem] text-lead text-muted">
+            I test software for a living and spend the rest of my time on product: research, specs, and small AI products
+            that I ship and measure. Next stop, product management.
           </p>
-          <div data-reveal style={R(3)} className="mt-8 flex flex-wrap gap-3">
-            <a href="#projects" className={btn.primary}>
-              See the projects
+          <div data-reveal style={R(3)} className="mt-8 flex flex-wrap gap-2.5">
+            <a href="#projects" className="btn btn-dark">
+              See my work
             </a>
-            <a href="#journey" className={btn.secondary}>
-              Read my journey
+            <a href="#contact" className="btn btn-light">
+              Say hello
             </a>
           </div>
-          <p data-reveal style={R(4)} className="mt-10 text-small text-muted">
-            Jar <span aria-hidden="true" className="mx-2 text-muted/50">/</span> NextLeap
-            <span aria-hidden="true" className="mx-2 text-muted/50">/</span> Pinnacle Labs
-            <span aria-hidden="true" className="mx-2 text-muted/50">/</span> MIT Manipal
-          </p>
         </div>
 
-        <ul className="mt-14 sm:mt-20 grid gap-4 sm:gap-5 md:grid-cols-[1.35fr_1fr]">
-          {featured.map((f, i) => (
-            <li key={f.href} data-reveal style={R(i + 3)}>
-              <a href={f.href} className="card group flex h-full flex-col p-3 transition-transform duration-300 ease-out hover:-translate-y-0.5">
-                <div className="relative overflow-hidden rounded-[10px] bg-ink/[0.04] aspect-[16/10] md:aspect-auto md:h-[clamp(16rem,26vw,22rem)]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={f.src}
-                    alt={f.alt}
-                    className={`h-full w-full object-cover ${f.pos} transition-transform duration-700 ease-out group-hover:scale-[1.02]`}
-                  />
-                  <span className="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-card/95 px-2.5 py-1 text-small shadow-[0_0_0_1px_rgb(var(--line)/0.08)]">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-signal" />
-                    {f.status}
-                  </span>
-                </div>
-                <div className="flex items-baseline justify-between gap-4 px-2 pt-4 pb-2">
-                  <p>
-                    <span className="font-medium">{f.title}</span>{" "}
-                    <span className="text-muted">{f.line}</span>
-                  </p>
-                  <span aria-hidden="true" className="text-muted transition-transform duration-300 group-hover:translate-x-0.5">
-                    &rarr;
-                  </span>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* The work, in the things it runs on. */}
+        <a
+          href="#gr1"
+          data-reveal
+          style={R(3)}
+          aria-label="Keep SIP Active: jump to the case study"
+          className="group relative block h-[20rem] sm:h-[26rem] lg:h-[28rem]"
+        >
+          <div className="browser absolute left-0 top-[8%] w-[86%] transition-transform duration-500 ease-out group-hover:-translate-y-1">
+            <div className="browser-bar">
+              <i />
+              <i />
+              <i />
+              <span>nextleap-groww-mvp.vercel.app/#quality</span>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/work/gr1-quality.webp" width={1600} height={1000} alt="The GR-1 quality report, showing 32 test questions and a run with 30 of 32 cases passed." className="block w-full" />
+          </div>
+          <div className="phone absolute right-0 top-0 w-[34%] transition-transform duration-500 ease-out group-hover:-translate-y-2">
+            <div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/work/gr1-app.webp" width={600} height={1296} alt="The GR-1 assistant open on a phone." className="h-full w-full object-cover object-top" />
+            </div>
+          </div>
+          <div className="glass absolute bottom-[4%] left-[5%] rounded-xl px-4 py-2.5">
+            <p className="text-lead font-semibold leading-tight tracking-[-0.02em]">30 / 32</p>
+            <p className="text-small text-muted">eval cases passed</p>
+          </div>
+        </a>
       </div>
-    </section>
+    </header>
   );
 }

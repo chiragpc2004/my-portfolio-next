@@ -3,56 +3,218 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------------
- * Product showcase. Soft grey ground, white cards, near-black ink.
+ * Glass and paper. A calm flat page; glass only where something floats over
+ * colour, tactile depth only on things you press or hold.
  * Channels (r g b) so Tailwind can apply alpha.
  * ------------------------------------------------------------------------- */
 :root {
-  --ground: 246 246 245;
-  --card: 255 255 255;
-  --ink: 20 20 20;
-  --muted: 104 104 108;
-  --line: 20 20 20;
-  --signal: 22 128 92; /* the "passed" green of a test run: used only for status dots */
+  --ground: 242 241 238;
+  --paper: 255 255 255;
+  --ink: 23 23 26;
+  --muted: 102 101 108;
+  --line: 23 23 26;
+  --signal: 31 154 107;
+  --wash-1: 207 229 216;
+  --wash-2: 246 220 203;
+  --wash-3: 220 216 243;
+  --glass: 255 255 255;
+  --glass-a: 0.55;
+  --glass-edge: 255 255 255;
+  --glass-edge-a: 0.75;
   color-scheme: light;
 }
 
 .dark {
-  --ground: 12 12 13;
-  --card: 24 24 26;
-  --ink: 237 237 239;
-  --muted: 160 160 166;
-  --line: 237 237 239;
+  --ground: 17 17 19;
+  --paper: 236 234 229;
+  --ink: 236 236 238;
+  --muted: 160 159 166;
+  --line: 236 236 238;
   --signal: 74 200 150;
+  --wash-1: 34 74 58;
+  --wash-2: 84 52 40;
+  --wash-3: 52 46 96;
+  --glass: 40 40 46;
+  --glass-a: 0.5;
+  --glass-edge: 255 255 255;
+  --glass-edge-a: 0.1;
   color-scheme: dark;
 }
 
 :root {
   --step-small: 0.875rem;
   --step-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
-  --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
-  --step-head: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-  --step-display: clamp(2.375rem, 1.6rem + 3.2vw, 4rem);
-  --nav-h: 3.75rem;
+  --step-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --step-head: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --step-display: clamp(2.25rem, 1.5rem + 2.8vw, 3.5rem);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  scroll-padding-top: 5.5rem;
 }
 
 .wrap {
   margin-inline: auto;
-  max-width: 72rem;
+  max-width: 68rem;
   padding-inline: clamp(1rem, 0.5rem + 2vw, 2rem);
 }
 
-/* A white panel with a hairline edge: the one surface the page uses. */
-.card {
-  background: rgb(var(--card));
-  border-radius: 14px;
+/* Glass: frosted, with a bright top edge. */
+.glass {
+  background: rgb(var(--glass) / var(--glass-a));
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
   box-shadow:
-    0 0 0 1px rgb(var(--line) / 0.07),
-    0 1px 2px rgb(0 0 0 / 0.04);
+    0 0 0 1px rgb(var(--glass-edge) / var(--glass-edge-a)),
+    0 1px 0 rgb(255 255 255 / 0.5) inset,
+    0 10px 30px -14px rgb(20 20 30 / 0.25);
+}
+
+/* The colour wash glass sits over. */
+.wash {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Tactile buttons: raised, and they press in. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.625rem;
+  padding: 0 1.125rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-dark {
+  color: #fff;
+  background: linear-gradient(#3a3a40, #17171a);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.18) inset,
+    0 -1px 0 rgb(0 0 0 / 0.4) inset,
+    0 1px 2px rgb(0 0 0 / 0.25),
+    0 6px 14px -6px rgb(0 0 0 / 0.45);
+}
+.btn-dark:hover { filter: brightness(1.15); }
+.btn-dark:active { box-shadow: 0 2px 5px rgb(0 0 0 / 0.55) inset; }
+.btn-light {
+  color: rgb(var(--ink));
+  background: linear-gradient(#ffffff, #ebe9e4);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 0 0 1px rgb(0 0 0 / 0.08),
+    0 1px 2px rgb(0 0 0 / 0.08),
+    0 6px 12px -8px rgb(0 0 0 / 0.25);
+}
+.btn-light:hover { filter: brightness(1.02); }
+.btn-light:active { box-shadow: 0 1px 3px rgb(0 0 0 / 0.18) inset, 0 0 0 1px rgb(0 0 0 / 0.08); }
+.dark .btn-light {
+  color: #ececee;
+  background: linear-gradient(#2f2f35, #222226);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.08) inset,
+    0 0 0 1px rgb(0 0 0 / 0.6),
+    0 6px 12px -8px rgb(0 0 0 / 0.6);
+}
+.dark .btn-dark {
+  color: #17171a;
+  background: linear-gradient(#ffffff, #dedcd6);
+  box-shadow: 0 1px 0 #fff inset, 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 14px -6px rgb(0 0 0 / 0.6);
+}
+
+/* Inset form fields, the other half of the tactile set. */
+.field {
+  width: 100%;
+  border-radius: 12px;
+  background: rgb(var(--ink) / 0.04);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08) inset, 0 0 0 1px rgb(var(--line) / 0.06);
+  padding: 0.75rem 1rem;
+  color: rgb(var(--ink));
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+.field::placeholder { color: rgb(var(--muted)); }
+.field:focus { box-shadow: 0 1px 2px rgb(0 0 0 / 0.08) inset, 0 0 0 2px rgb(var(--ink) / 0.8); }
+
+/* A browser window. */
+.browser {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08), 0 30px 60px -30px rgb(20 20 30 / 0.45);
+}
+.browser-bar {
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  background: linear-gradient(#f7f7f7, #e9e9e9);
+  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+}
+.browser-bar i { width: 9px; height: 9px; border-radius: 9999px; background: #ff5f57; }
+.browser-bar i:nth-child(2) { background: #febc2e; }
+.browser-bar i:nth-child(3) { background: #28c840; }
+.browser-bar span {
+  margin-left: 10px;
+  flex: 1;
+  max-width: 22rem;
+  height: 1rem;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06) inset;
+  font-size: 9px;
+  line-height: 1rem;
+  padding-left: 8px;
+  color: #888;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* A phone. */
+.phone {
+  aspect-ratio: 9 / 19;
+  border-radius: 34px;
+  padding: 9px;
+  background: linear-gradient(145deg, #4a4a50, #121214 60%);
+  box-shadow: 0 0 0 1px #000, 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 40px 60px -25px rgb(10 10 20 / 0.55);
+}
+.phone > div { width: 100%; height: 100%; border-radius: 26px; overflow: hidden; background: #111; }
+
+/* Paper: a sheet with a small stack behind it, lifted on hover. */
+.stack { position: relative; isolation: isolate; }
+.stack::before,
+.stack::after {
+  content: "";
+  position: absolute;
+  border-radius: 3px;
+  z-index: -1;
+}
+.stack::before { inset: 4px -4px -4px 4px; background: #fbfaf7; box-shadow: 0 1px 2px rgb(0 0 0 / 0.12); }
+.stack::after { inset: 8px -8px -8px 8px; background: #f3f1ec; box-shadow: 0 1px 2px rgb(0 0 0 / 0.1); }
+.sheet {
+  position: relative;
+  aspect-ratio: 1 / 1.414;
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.08), 0 10px 20px -10px rgb(0 0 0 / 0.35);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+.paper:hover .sheet,
+.paper:focus-visible .sheet {
+  transform: translateY(-6px) rotate(0deg);
+  box-shadow: 0 2px 3px rgb(0 0 0 / 0.08), 0 22px 30px -14px rgb(0 0 0 / 0.4);
 }
 
 :focus-visible {
@@ -61,27 +223,19 @@ html {
   border-radius: 6px;
 }
 
-::selection {
-  background: rgb(var(--ink));
-  color: rgb(var(--ground));
-}
+::selection { background: rgb(var(--ink)); color: rgb(var(--ground)); }
 
 /* Reveal: hidden only when JS runs and motion is welcome. */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
     opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(14px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: calc(var(--i, 0) * 70ms);
   }
-  html.js [data-reveal][data-in] {
-    opacity: 1;
-    transform: none;
-  }
+  html.js [data-reveal][data-in] { opacity: 1; transform: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .sheet, .btn { transition: none; }
 }

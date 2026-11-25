@@ -1,4 +1,4 @@
-import { ExtButton, R, SectionHead } from "@/components/ui";
+import { ExtButton, R, Row } from "@/components/ui";
 
 type Link = { href: string; label: string };
 
@@ -10,7 +10,7 @@ type CaseStudy = {
   stats: { value: string; label: string }[];
   steps: { label: string; text: string }[];
   links: Link[];
-  image: { src: string; width: number; height: number; alt: string; caption: string; tall?: boolean };
+  image: { src: string; width: number; height: number; alt: string; caption: string; url?: string };
   note: { label: string; text: string };
   disclaimer?: string;
 };
@@ -53,6 +53,7 @@ const caseStudies: CaseStudy[] = [
     ],
     image: {
       src: "/images/work/gr1-quality.webp",
+      url: "nextleap-groww-mvp.vercel.app/#quality",
       width: 1600,
       height: 1000,
       alt: "The GR-1 quality report page: 32 test questions, 7 checks per answer, 0 unsafe answers allowed, and a run showing 30 of 32 cases passed.",
@@ -135,92 +136,105 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
 
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-16 sm:py-24">
-      <div className="wrap">
-        <SectionHead title="Projects" id="projects-title">
-          Two product case studies from end to end, then the AI and ML builds that came before them.
-        </SectionHead>
+    <Row id="projects" title="Projects" note="Two case studies, then earlier builds">
+      <div className="grid gap-20 sm:gap-24">
+        {caseStudies.map((c) => (
+          <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="scroll-mt-24">
+            <div data-reveal>
+              <p className="text-small text-muted">{c.kicker}</p>
+              <h3 id={`${c.id}-title`} className="mt-1 text-display font-semibold tracking-[-0.04em] leading-[1.05] !text-[clamp(1.875rem,1.4rem+1.8vw,2.75rem)]">
+                {c.title}
+              </h3>
+              <p className="mt-3 max-w-[40rem] text-lead text-muted">{c.summary}</p>
+            </div>
 
-        <div className="mt-12 grid gap-6 sm:gap-8">
-          {caseStudies.map((c) => (
-            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="card overflow-hidden">
-              <div data-reveal className="grid gap-6 p-6 sm:p-10 lg:grid-cols-[1fr_20rem] lg:gap-12">
-                <div>
-                  <p className="text-small text-muted">{c.kicker}</p>
-                  <h3 id={`${c.id}-title`} className="mt-2 text-head font-semibold">
-                    {c.title}
-                  </h3>
-                  <p className="mt-4 max-w-[38rem] text-lead text-muted">{c.summary}</p>
-                </div>
-                <div className="flex flex-wrap content-start gap-2 lg:justify-end lg:pt-7">
-                  {c.links.map((l) => (
-                    <ExtButton key={l.href} href={l.href}>
-                      {l.label}
-                    </ExtButton>
-                  ))}
-                </div>
-              </div>
-
-              <figure data-reveal style={R(1)} className="px-3 sm:px-4">
-                <div className="overflow-hidden rounded-[10px] bg-ink/[0.04] p-[clamp(0.5rem,2.5vw,2.5rem)]">
+            <figure data-reveal style={R(1)} className="mt-8">
+              {c.image.url ? (
+                <div className="browser">
+                  <div className="browser-bar">
+                    <i />
+                    <i />
+                    <i />
+                    <span>{c.image.url}</span>
+                  </div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={c.image.src}
-                    width={c.image.width}
-                    height={c.image.height}
-                    loading="lazy"
-                    alt={c.image.alt}
-                    className="w-full h-auto rounded-md shadow-[0_0_0_1px_rgb(var(--line)/0.08),0_12px_32px_-12px_rgb(0_0_0/0.18)]"
-                  />
+                  <img src={c.image.src} width={c.image.width} height={c.image.height} loading="lazy" alt={c.image.alt} className="block w-full h-auto" />
                 </div>
-                <figcaption className="px-2 pt-3 text-small text-muted">{c.image.caption}</figcaption>
-              </figure>
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={c.image.src}
+                  width={c.image.width}
+                  height={c.image.height}
+                  loading="lazy"
+                  alt={c.image.alt}
+                  className="block w-full h-auto rounded-xl bg-white shadow-[0_0_0_1px_rgb(0_0_0/0.06),0_24px_48px_-28px_rgb(20_20_30/0.4)]"
+                />
+              )}
+              <figcaption className="mt-3 text-small text-muted">{c.image.caption}</figcaption>
+            </figure>
 
-              <dl data-reveal style={R(1)} className="mx-6 sm:mx-10 mt-8 grid gap-6 sm:grid-cols-3">
-                {c.stats.map((s) => (
-                  <div key={s.label} className="flex flex-col-reverse">
-                    <dt className="mt-1 text-small text-muted max-w-[22ch]">{s.label}</dt>
-                    <dd className="text-head font-semibold tabular-nums">{s.value}</dd>
-                  </div>
-                ))}
-              </dl>
+            <dl data-reveal style={R(1)} className="mt-10 grid gap-6 sm:grid-cols-3">
+              {c.stats.map((s) => (
+                <div key={s.label} className="flex flex-col-reverse">
+                  <dt className="mt-1 max-w-[22ch] text-small text-muted">{s.label}</dt>
+                  <dd className="text-head font-semibold tabular-nums tracking-[-0.03em]">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
 
-              <dl data-reveal style={R(2)} className="grid gap-x-10 gap-y-6 p-6 sm:p-10 sm:grid-cols-2">
-                {c.steps.map((s) => (
-                  <div key={s.label}>
-                    <dt className="font-medium">{s.label}</dt>
-                    <dd className="mt-1 text-muted">{s.text}</dd>
-                  </div>
-                ))}
-              </dl>
+            <dl data-reveal style={R(2)} className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+              {c.steps.map((s) => (
+                <div key={s.label}>
+                  <dt className="font-medium">{s.label}</dt>
+                  <dd className="mt-1 text-muted">{s.text}</dd>
+                </div>
+              ))}
+            </dl>
 
-              <div className="flex flex-col gap-2 border-t border-line/[0.07] px-6 py-5 sm:px-10 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
-                <p className="text-small">
-                  <span className="text-muted">{c.note.label}: </span>
-                  {c.note.text}
-                </p>
-                {c.disclaimer ? <p className="text-small text-muted sm:max-w-[26rem] sm:text-right">{c.disclaimer}</p> : null}
-              </div>
-            </article>
-          ))}
-        </div>
+            <p data-reveal className="mt-8 text-small">
+              <span className="text-muted">{c.note.label}: </span>
+              {c.note.text}
+            </p>
+            <div data-reveal className="mt-5 flex flex-wrap gap-2">
+              {c.links.map((l) => (
+                <ExtButton key={l.href} href={l.href}>
+                  {l.label}
+                </ExtButton>
+              ))}
+            </div>
+            {c.disclaimer ? <p className="mt-4 max-w-[40rem] text-small text-muted">{c.disclaimer}</p> : null}
+          </article>
+        ))}
 
-        <div className="mt-16 sm:mt-20">
-          <h3 data-reveal className="text-lead font-semibold">Earlier AI and ML builds</h3>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <h3 data-reveal className="font-semibold">Earlier AI and ML builds</h3>
+          <ul className="mt-4">
             {builds.map((b, i) => (
-              <li key={b.title} data-reveal style={R(i % 2)} className="card flex flex-col gap-2 p-6">
-                <h4 className="font-semibold">{b.title}</h4>
-                <p className="text-muted">{b.text}</p>
-                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
-                  <p className="text-small text-muted">{b.stack}</p>
-                  <ExtButton href={b.link.href}>{b.link.label}</ExtButton>
+              <li
+                key={b.title}
+                data-reveal
+                style={R(i % 2)}
+                className="grid gap-2 border-t border-line/[0.08] py-5 sm:grid-cols-[12rem_1fr_auto] sm:items-baseline sm:gap-6"
+              >
+                <p className="font-medium">{b.title}</p>
+                <div>
+                  <p className="text-muted">{b.text}</p>
+                  <p className="mt-1 text-small text-muted">{b.stack}</p>
                 </div>
+                <a
+                  href={b.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+                >
+                  {b.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                </a>
               </li>
             ))}
           </ul>
         </div>
       </div>
-    </section>
+    </Row>
   );
 }

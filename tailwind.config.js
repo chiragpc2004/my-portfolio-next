@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       colors: {
         ground: token("ground"),
-        card: token("card"),
+        paper: token("paper"),
         ink: token("ink"),
         muted: token("muted"),
         line: token("line"),

@@ -1,4 +1,4 @@
-import { R, SectionHead } from "@/components/ui";
+import { R, Row } from "@/components/ui";
 
 const REPO = "https://github.com/chiragpc2004/Product-Work/blob/main/";
 const pdf = (name: string) => REPO + encodeURIComponent(name);
@@ -73,66 +73,52 @@ const pieces: Piece[] = [
   },
 ];
 
-const link =
-  "text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink transition-[text-decoration-color]";
+const tilts = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg", "1deg", "-2.5deg"];
 
 export default function ProductWork() {
   return (
-    <section id="product-work" aria-labelledby="product-work-title" className="py-16 sm:py-24">
-      <div className="wrap">
-        <SectionHead title="Product work" id="product-work-title">
-          Teardowns, PRDs, market cases and a data analysis. Each one starts with a question and ends with a recommendation.
-        </SectionHead>
-
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {pieces.map((p, i) => (
-            <li key={p.file} data-reveal style={R(i % 4)} className="card group flex flex-col p-3">
-              <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true" className="block overflow-hidden rounded-[10px] bg-ink/[0.04] px-5 pt-5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/images/work/${p.thumb}.jpg`}
-                  width={413}
-                  height={584}
-                  loading="lazy"
-                  alt=""
-                  className="aspect-[4/3] w-full rounded-t-md object-cover object-top shadow-[0_0_0_1px_rgb(var(--line)/0.08),0_10px_24px_-12px_rgb(0_0_0/0.25)] transition-transform duration-500 ease-out group-hover:-translate-y-1"
-                />
-              </a>
-              <div className="flex flex-1 flex-col px-2 pt-4 pb-2">
-                <p className="text-small text-muted">{p.kind}</p>
-                <h3 className="mt-1 font-semibold leading-snug">{p.title}</h3>
-                <p className="mt-2 text-small text-muted">{p.line}</p>
-                <p className="mt-auto flex gap-5 pt-4">
-                  <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className={link}>
-                    Read the PDF &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                  {p.extra ? (
-                    <a href={pdf(p.extra.file)} target="_blank" rel="noopener noreferrer" className={link}>
-                      {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : null}
-                </p>
+    <Row id="product-work" title="Product work" note="Teardowns, PRDs, market cases and a data analysis">
+      <p data-reveal className="max-w-[40rem] text-muted">
+        Each one starts with a question and ends with a recommendation. Open any sheet to read the PDF.
+      </p>
+      <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
+        {pieces.map((p, i) => (
+          <li key={p.file} data-reveal style={R(i % 4)}>
+            <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className="paper group block">
+              <div className="stack mr-2">
+                <div className="sheet" style={{ "--tilt": tilts[i % tilts.length] } as React.CSSProperties}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/images/work/${p.thumb}.jpg`} width={413} height={584} loading="lazy" alt="" className="h-full w-full object-cover object-top" />
+                </div>
               </div>
-            </li>
-          ))}
-          <li data-reveal style={R(3)}>
-            <a
-              href="https://github.com/chiragpc2004/Product-Work"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex h-full min-h-[12rem] flex-col justify-between rounded-[14px] p-6 shadow-[inset_0_0_0_1px_rgb(var(--line)/0.12)] transition-colors duration-200 hover:bg-ink/[0.03]"
-            >
-              <p className="text-small text-muted">All seven PDFs in one place</p>
-              <p>
-                <span className="block font-semibold">The Product Work repo</span>
-                <span className="mt-1 inline-flex items-center gap-1 text-small text-muted group-hover:text-ink transition-colors">
-                  Open on GitHub &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                </span>
-              </p>
+              <p className="mt-5 text-small text-muted">{p.kind}</p>
+              <p className="mt-0.5 font-medium leading-snug">{p.title}</p>
+              <span className="sr-only"> PDF (opens in a new tab)</span>
             </a>
+            <p className="mt-1.5 text-small text-muted">{p.line}</p>
+            {p.extra ? (
+              <a
+                href={pdf(p.extra.file)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+              >
+                {p.extra.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : null}
           </li>
-        </ul>
-      </div>
-    </section>
+        ))}
+        <li data-reveal style={R(3)} className="flex items-center">
+          <a
+            href="https://github.com/chiragpc2004/Product-Work"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+          >
+            All seven on GitHub &#8599;<span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+      </ul>
+    </Row>
   );
 }

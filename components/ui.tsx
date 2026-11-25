@@ -3,32 +3,42 @@ import type { CSSProperties, ReactNode } from "react";
 /** Stagger index for [data-reveal] children. */
 export const R = (i: number) => ({ "--i": i }) as CSSProperties;
 
-/** Section heading: a short title and one plain sentence under it. */
-export function SectionHead({ title, id, children }: { title: string; id: string; children?: ReactNode }) {
+/**
+ * A section laid out like a well-kept résumé: the name in a narrow left
+ * column, the content on the right. No boxes.
+ */
+export function Row({
+  id,
+  title,
+  note,
+  children,
+}: {
+  id: string;
+  title: string;
+  note?: string;
+  children: ReactNode;
+}) {
   return (
-    <div data-reveal className="max-w-[40rem]">
-      <h2 id={id} className="text-head font-semibold">
-        {title}
-      </h2>
-      {children ? <p className="mt-3 text-lead text-muted">{children}</p> : null}
-    </div>
+    <section id={id} aria-labelledby={`${id}-title`} className="wrap py-14 sm:py-20">
+      <div className="grid gap-6 md:grid-cols-[11rem_1fr] md:gap-10">
+        <div data-reveal className="md:sticky md:top-24 md:self-start">
+          <h2 id={`${id}-title`} className="text-head font-semibold tracking-[-0.02em]">
+            {title}
+          </h2>
+          {note ? <p className="mt-1 text-small text-muted">{note}</p> : null}
+        </div>
+        <div className="min-w-0">{children}</div>
+      </div>
+    </section>
   );
 }
 
-const btnBase =
-  "inline-flex items-center justify-center gap-1.5 h-10 px-4 rounded-full text-small font-medium transition-[background-color,color,transform,box-shadow] duration-200 active:scale-[0.97]";
-
-export const btn = {
-  primary: `${btnBase} bg-ink text-ground hover:bg-ink/85`,
-  secondary: `${btnBase} card text-ink hover:bg-ink/[0.04]`,
-};
-
-/** An outbound link styled as a small secondary button. */
+/** An outbound link as a small tactile button. */
 export function ExtButton({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={btn.secondary}>
+    <a href={href} target="_blank" rel="noopener noreferrer" className="btn btn-light !h-9 !px-3.5 !text-small">
       {children}
-      <span aria-hidden="true" className="text-muted">&#8599;</span>
+      <span aria-hidden="true" className="opacity-50">&#8599;</span>
       <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );

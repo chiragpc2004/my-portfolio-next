@@ -5,37 +5,29 @@ import { Moon, Sun } from "lucide-react";
 import { useReveal } from "./useReveal";
 
 const navItems = [
+  { label: "About", href: "#home", id: "home", wide: true },
   { label: "Journey", href: "#journey", id: "journey" },
   { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Product work", href: "#product-work", id: "product-work" },
+  { label: "Work", href: "#product-work", id: "product-work" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
-// Résumé link left out until the updated PDF exists; the old one predates the SDET role.
+// Résumé link left out until the updated PDF exists.
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(false);
 
   useReveal();
 
   useEffect(() => {
     setDark(document.documentElement.classList.contains("dark"));
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-40% 0px -55% 0px" }
     );
-    document.querySelectorAll("section[id]").forEach((el) => io.observe(el));
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      io.disconnect();
-    };
+    document.querySelectorAll("section[id], header[id]").forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
   const toggleTheme = () => {
@@ -48,72 +40,33 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      aria-label="Main"
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300 ${
-        scrolled || menuOpen ? "bg-ground/85 backdrop-blur-md shadow-[0_1px_0_rgb(var(--line)/0.07)]" : "bg-transparent"
-      }`}
-    >
-      <div className="wrap h-[var(--nav-h)] flex items-center justify-between gap-6">
-        <a href="#home" className="inline-flex items-center gap-2.5 h-10 font-semibold tracking-[-0.01em]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/chirag.jpg" alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover object-[50%_20%]" />
-          Chirag P C
-        </a>
-
-        <div className="hidden md:flex items-center gap-1">
-          <ul className="flex items-center">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={item.href}
-                  aria-current={active === item.id ? "location" : undefined}
-                  className={`inline-flex items-center h-9 px-3 rounded-full text-small transition-colors duration-200 ${
-                    active === item.id ? "text-ink bg-ink/[0.06]" : "text-muted hover:text-ink"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <button
-            onClick={toggleTheme}
-            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-            className="ml-1 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted hover:text-ink hover:bg-ink/[0.06] transition-colors duration-200"
-          >
-            {dark ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
-          </button>
-        </div>
-
+    <nav aria-label="Main" className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:pt-4">
+      <div className="glass flex items-center gap-0.5 rounded-full p-1.5">
+        {navItems.map((item) => {
+          const on = active === item.id;
+          return (
+            <a
+              key={item.id}
+              href={item.href}
+              aria-current={on ? "location" : undefined}
+              className={`${item.wide ? "hidden sm:inline-flex" : "inline-flex"} items-center h-8 px-2.5 sm:px-3 rounded-full text-small transition-[color,background-color,box-shadow] duration-200 ${
+                on
+                  ? "text-ink bg-paper/80 shadow-[0_1px_2px_rgb(0_0_0/0.08)] dark:bg-white/10"
+                  : "text-muted hover:text-ink"
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
         <button
-          className="md:hidden inline-flex items-center h-10 px-3 -mr-3 text-small font-medium"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
+          onClick={toggleTheme}
+          aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
+          className="inline-flex items-center justify-center w-8 h-8 rounded-full text-muted hover:text-ink transition-colors duration-200"
         >
-          {menuOpen ? "Close" : "Menu"}
+          {dark ? <Sun size={15} aria-hidden="true" /> : <Moon size={15} aria-hidden="true" />}
         </button>
       </div>
-
-      {menuOpen && (
-        <div id="mobile-menu" className="md:hidden wrap pb-5">
-          <ul className="card p-2">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <a href={item.href} onClick={() => setMenuOpen(false)} className="block px-3 py-3 rounded-lg text-lead hover:bg-ink/[0.04]">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-            <li>
-              <button onClick={toggleTheme} className="w-full text-left px-3 py-3 rounded-lg text-muted hover:bg-ink/[0.04]">
-                {dark ? "Switch to light theme" : "Switch to dark theme"}
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
     </nav>
   );
 }
