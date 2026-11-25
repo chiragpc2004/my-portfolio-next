@@ -1,13 +1,14 @@
-import { MarginNote, R, SectionHead, Stamp } from "@/components/notebook";
+import { R } from "@/components/ui";
 
 type Entry = {
   dates: string;
   place: string;
+  short?: string;
   role: string;
   body: string[];
   tools?: string;
   note?: { label: string; text: string };
-  stamp?: { title: string; sub: string };
+  award?: string;
   link?: { href: string; label: string };
 };
 
@@ -26,7 +27,7 @@ const entries: Entry[] = [
       label: "Beyond the ticket",
       text: "Built an internal AI agent with Claude Code that automates API test work.",
     },
-    stamp: { title: "Rocketeer of the Month", sub: "First quarter on the team" },
+    award: "Rocketeer of the Month, for consistent work through the quarter.",
   },
   {
     dates: "Jan – Jul 2026",
@@ -62,65 +63,112 @@ const entries: Entry[] = [
   {
     dates: "2022 – 2026",
     place: "Manipal Institute of Technology",
-    role: "BTech, Data Science & Engineering",
+    short: "MIT Manipal",
+    role: "BTech, Data Science & Engineering, Manipal Institute of Technology",
     body: ["Where the habit started: state the question, look at the data, and measure the answer honestly."],
     note: { label: "Also", text: "Top 10 at the M# Hackathon." },
   },
 ];
 
+const timeline = [
+  { when: "2022", what: "BTech, Data Science & Engineering", where: "Manipal Institute of Technology" },
+  { when: "Jun 2025", what: "AI intern", where: "Pinnacle Labs" },
+  { when: "Jan 2026", what: "SDET intern", where: "Jar" },
+  { when: "Jul 2026", what: "SDET-1, full time", where: "Jar" },
+  { when: "Nov 2026", what: "Top Fellow", where: "NextLeap PM Fellowship" },
+];
+
 export default function FieldLog() {
   return (
-    <section id="journey" aria-labelledby="journey-title" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-[76rem] px-5 sm:px-8">
-        <SectionHead no="01" title="Journey" id="journey-title">
-          Where I&apos;ve worked and studied, newest first. The red notes are what I&apos;d point to if you asked what each
-          stop was actually for.
-        </SectionHead>
+    <section id="journey" aria-labelledby="journey-title" className="py-24 sm:py-32">
+      <div className="wrap grid gap-14 lg:grid-cols-12 lg:gap-8">
+        {/* Pinned: the title and the portrait stay while the stops pass beside them. */}
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-[calc(var(--nav-h)+2rem)]">
+            <h2 id="journey-title" data-reveal className="font-display text-display">
+              Journey
+            </h2>
+            <p data-reveal style={R(1)} className="mt-6 max-w-[34ch] text-lead">
+              Where I&apos;ve worked and studied, newest first, and what each stop was actually for.
+            </p>
+            <figure data-reveal style={R(2)} className="mt-10 w-[min(100%,22rem)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/chirag.jpg"
+                width={460}
+                height={460}
+                loading="lazy"
+                alt="Chirag P C, in a dark suit and white shirt"
+                className="aspect-[4/5] w-full object-cover object-[50%_18%] grayscale"
+              />
+              <figcaption className="mt-3 text-small text-muted">Chirag P C, 2026</figcaption>
+            </figure>
+          </div>
+        </div>
 
-        <ol className="mt-14 border-t border-ink/15">
-          {entries.map((e, i) => (
-            <li
-              key={e.dates + e.place}
-              data-reveal
-              style={R(i % 3)}
-              className="grid gap-5 border-b border-ink/15 py-10 lg:grid-cols-12 lg:gap-10"
-            >
-              <div className="lg:col-span-3">
-                <p className="font-mono text-small text-muted">{e.dates}</p>
-                <h3 className="mt-2 font-display text-lead font-medium">{e.place}</h3>
-                <p className="text-muted">{e.role}</p>
-              </div>
-
-              <div className="lg:col-span-5 grid gap-4 content-start">
-                {e.body.map((p) => (
-                  <p key={p} className="max-w-[52ch]">
-                    {p}
-                  </p>
-                ))}
-                {e.tools ? <p className="font-mono text-small text-muted">{e.tools}</p> : null}
-                {e.link ? (
-                  <a
-                    href={e.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-fit items-center gap-1 py-1 text-accent underline decoration-accent/30 underline-offset-[5px] hover:decoration-accent transition-[text-decoration-color]"
-                  >
-                    {e.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
-                  </a>
-                ) : null}
-              </div>
-
-              <div className="lg:col-span-4 grid gap-5 content-start">
-                {e.note ? <MarginNote label={e.note.label}>{e.note.text}</MarginNote> : null}
-                {e.stamp ? (
-                  <div>
-                    <Stamp title={e.stamp.title} sub={e.stamp.sub} />
-                  </div>
-                ) : null}
-              </div>
+        <div className="lg:col-span-8 lg:pt-4">
+          {/* The trajectory in one panel, ending in the role I'm moving towards. */}
+          <ol data-reveal className="grid gap-x-6 gap-y-7 bg-surface p-6 sm:grid-cols-3 sm:p-8">
+            {timeline.map((t) => (
+              <li key={t.when}>
+                <p className="text-small text-muted tabular-nums">{t.when}</p>
+                <p className="mt-1 font-medium leading-snug">{t.what}</p>
+                <p className="text-small text-muted leading-snug">{t.where}</p>
+              </li>
+            ))}
+            <li>
+              <p className="text-small font-medium">Next</p>
+              <p className="mt-1 font-display text-lead leading-[1.1]">APM, Associate PM or AI PM</p>
             </li>
-          ))}
-        </ol>
+          </ol>
+
+          <ol className="mt-6">
+            {entries.map((e) => (
+              <li key={e.dates + e.place} className="grid gap-5 py-12 sm:grid-cols-8 sm:gap-6">
+                <div data-reveal className="sm:col-span-3">
+                  <h3 className="font-display text-head">{e.short ?? e.place}</h3>
+                  <p className="mt-3">{e.role}</p>
+                  <p className="text-muted tabular-nums">{e.dates}</p>
+                </div>
+
+                <div data-reveal style={R(1)} className="grid content-start gap-4 sm:col-span-5 sm:pt-7">
+                  {e.body.map((p) => (
+                    <p key={p} className="max-w-[56ch]">
+                      {p}
+                    </p>
+                  ))}
+                  {e.tools ? <p className="text-small text-muted">{e.tools}</p> : null}
+                  {e.note || e.award ? (
+                    <dl className="mt-2 grid gap-3 bg-surface p-5">
+                      {e.note ? (
+                        <div>
+                          <dt className="text-small text-muted">{e.note.label}</dt>
+                          <dd className="mt-0.5 font-medium">{e.note.text}</dd>
+                        </div>
+                      ) : null}
+                      {e.award ? (
+                        <div>
+                          <dt className="text-small text-muted">Award</dt>
+                          <dd className="mt-0.5 font-medium">{e.award}</dd>
+                        </div>
+                      ) : null}
+                    </dl>
+                  ) : null}
+                  {e.link ? (
+                    <a
+                      href={e.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-fit items-center gap-1 py-1 underline decoration-ink/30 underline-offset-[5px] hover:decoration-ink transition-[text-decoration-color]"
+                    >
+                      {e.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   );

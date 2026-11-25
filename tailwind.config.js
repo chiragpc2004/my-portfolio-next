@@ -9,38 +9,27 @@ module.exports = {
   ],
   theme: {
     extend: {
-      screens: {
-        // Viewports where full-page snapping (fixed 100vh sections) is enabled.
-        // Must match the media query in app/globals.css.
-        snap: { raw: "(min-width: 1024px) and (min-height: 700px)" },
-        // Tall enough for the larger exhibit type inside a snapped section.
-        tall: { raw: "(min-height: 860px)" },
-      },
       // Colour roles. Values live in app/globals.css so light, dark and the
       // inverted contact field can each redefine them.
       colors: {
         ground: token("ground"),
         surface: token("surface"),
-        "surface-2": token("surface-2"),
         ink: token("ink"),
         muted: token("muted"),
         accent: token("accent"),
-        pen: token("pen"),
         "accent-ink": token("accent-ink"),
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "Georgia", "serif"],
-        display: ["var(--font-display)", "var(--font-sans)", "serif"],
-        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
-        hand: ["var(--font-hand)", "cursive"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
       // The page's five type steps. Nothing else is used.
       fontSize: {
-        small: ["var(--step-small)", { lineHeight: "1.5" }],
-        body: ["var(--step-body)", { lineHeight: "1.6" }],
-        lead: ["var(--step-lead)", { lineHeight: "1.4" }],
-        head: ["var(--step-head)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
-        display: ["var(--step-display)", { lineHeight: "1", letterSpacing: "-0.03em" }],
+        small: ["var(--step-small)", { lineHeight: "1.45" }],
+        body: ["var(--step-body)", { lineHeight: "1.55" }],
+        lead: ["var(--step-lead)", { lineHeight: "1.35" }],
+        head: ["var(--step-head)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
+        display: ["var(--step-display)", { lineHeight: "0.9", letterSpacing: "-0.03em" }],
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",

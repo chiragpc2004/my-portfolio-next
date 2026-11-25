@@ -1,35 +1,27 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Caveat, IBM_Plex_Mono, Newsreader } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 
-// Writing: a bookish serif with optical sizes, for headings and body.
-const newsreader = Newsreader({
+// Display: a narrow, sharp serif that holds up at monument sizes. Names and headings only.
+const display = Instrument_Serif({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-sans",
+  weight: "400",
+  variable: "--font-display",
   display: "swap",
 });
 
-// Data and labels: dates, numbers, page numbers, tools.
-const plexMono = IBM_Plex_Mono({
+// Text: a plain grotesk for everything a visitor reads at length.
+const sans = Instrument_Sans({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-// Margin notes only. Never body text.
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  variable: "--font-hand",
+  variable: "--font-sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Chirag P C · SDET at Jar, aspiring product manager",
   description:
-    "Chirag P C is an SDET at Jar and a NextLeap Top Fellow moving into product. A field notebook of experiments, teardowns and the work behind them.",
+    "Chirag P C is an SDET at Jar and a NextLeap Top Fellow moving into product. Two product case studies, seven teardowns and PRDs, and the journey behind them.",
 };
 
 // Runs before paint: marks JS as available (for reveal animations) and applies
@@ -38,11 +30,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${newsreader.variable} ${plexMono.variable} ${caveat.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>

@@ -1,4 +1,5 @@
-import { MarginNote, R, SectionHead } from "@/components/notebook";
+import { R, SectionHead } from "@/components/ui";
+import ProjectIndex, { type IndexItem } from "@/components/ProjectIndex";
 
 type Link = { href: string; label: string };
 
@@ -133,13 +134,24 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
   },
 ];
 
+const index: IndexItem[] = [
+  { name: "Keep SIP Active", kind: "AI product case study", href: "#gr1", image: { src: "/images/work/gr1-app.webp" } },
+  {
+    name: "Practice Out Loud",
+    kind: "Voice product case study",
+    href: "#pol",
+    image: { src: "/images/work/pol-screens.webp", position: "object-[18%_50%]" },
+  },
+  ...builds.map((b) => ({ name: b.title, kind: "AI and ML build", href: b.link.href, external: true, stack: b.stack })),
+];
+
 function ExtLink({ href, label }: Link) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 py-1 text-accent underline decoration-accent/30 underline-offset-[5px] hover:decoration-accent transition-[text-decoration-color]"
+      className="inline-flex items-center gap-1 py-1 underline decoration-ink/30 underline-offset-[5px] hover:decoration-ink transition-[text-decoration-color]"
     >
       {label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
     </a>
@@ -148,56 +160,57 @@ function ExtLink({ href, label }: Link) {
 
 export default function Projects() {
   return (
-    <section id="projects" aria-labelledby="projects-title" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-[76rem] px-5 sm:px-8">
-        <SectionHead no="02" title="Projects" id="projects-title">
+    <section id="projects" aria-labelledby="projects-title" className="py-24 sm:py-32">
+      <div className="wrap">
+        <SectionHead title="Projects" id="projects-title">
           Two product case studies from end to end, then the AI and ML builds that came before them.
         </SectionHead>
 
-        <div className="mt-14 grid gap-20 sm:gap-28">
+        <div data-reveal style={R(1)} className="mt-16">
+          <ProjectIndex items={index} />
+        </div>
+
+        <div className="mt-28 grid gap-28 sm:gap-40">
           {caseStudies.map((c) => (
-            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="grid gap-8">
-              <div data-reveal className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+            <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="grid gap-10 scroll-mt-[calc(var(--nav-h)+1rem)]">
+              <div data-reveal className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-8">
                 <div className="lg:col-span-8">
-                  <p className="font-mono text-small text-muted">{c.kicker}</p>
-                  <h3 id={`${c.id}-title`} className="mt-2 font-display text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] font-medium leading-[1.05] tracking-[-0.025em]">
+                  <h3 id={`${c.id}-title`} className="font-display text-display">
                     {c.title}
                   </h3>
-                  <p className="mt-4 max-w-[52ch] text-lead text-muted">{c.summary}</p>
+                  <p className="mt-4 text-muted">{c.kicker}</p>
                 </div>
-                <div className="lg:col-span-4 lg:pt-8">
-                  <MarginNote label={c.note.label}>{c.note.text}</MarginNote>
-                </div>
+                <p className="max-w-[44ch] text-lead lg:col-span-4 lg:pb-2">{c.summary}</p>
               </div>
 
               <figure data-reveal style={R(1)} className="grid gap-3">
-                <div className="overflow-hidden rounded-md border border-ink/15 bg-surface shadow-[0_18px_40px_-24px_rgb(0_0_0/0.35)]">
+                <div className="overflow-hidden bg-surface p-[clamp(0.75rem,2.5vw,2.5rem)]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={c.image.src} width={c.image.width} height={c.image.height} loading="lazy" alt={c.image.alt} className="w-full h-auto" />
                 </div>
                 <figcaption className="text-small text-muted">{c.image.caption}</figcaption>
               </figure>
 
-              <dl data-reveal style={R(1)} className="grid gap-px overflow-hidden rounded-md border border-ink/15 bg-ink/15 sm:grid-cols-3">
+              <dl data-reveal style={R(1)} className="grid gap-8 sm:grid-cols-3 sm:gap-6">
                 {c.stats.map((s) => (
-                  <div key={s.label} className="bg-ground px-5 py-5">
-                    <dt className="sr-only">{s.label}</dt>
-                    <dd className="font-mono text-[clamp(1.75rem,1.3rem+1.6vw,2.5rem)] leading-none tabular-nums">{s.value}</dd>
-                    <dd className="mt-2 text-small text-muted">{s.label}</dd>
+                  <div key={s.label} className="flex flex-col-reverse">
+                    <dt className="mt-2 max-w-[26ch] text-muted">{s.label}</dt>
+                    <dd className="font-display text-display tabular-nums">{s.value}</dd>
                   </div>
                 ))}
               </dl>
 
-              <div data-reveal style={R(2)} className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-                <dl className="grid gap-6 sm:grid-cols-2 lg:col-span-8">
+              <div data-reveal style={R(2)} className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+                <dl className="grid gap-8 sm:grid-cols-2 sm:gap-x-8 lg:col-span-8">
                   {c.steps.map((s) => (
                     <div key={s.label}>
-                      <dt className="font-mono text-small uppercase tracking-[0.12em] text-muted">{s.label}</dt>
-                      <dd className="mt-2 max-w-[48ch]">{s.text}</dd>
+                      <dt className="font-medium">{s.label}</dt>
+                      <dd className="mt-1.5 max-w-[50ch]">{s.text}</dd>
                     </div>
                   ))}
                 </dl>
-                <div className="lg:col-span-4 grid content-start gap-4">
+                <div className="grid content-start gap-6 lg:col-span-4">
+                  <p className="font-display text-lead">&ldquo;{c.note.text}&rdquo;</p>
                   <ul className="flex flex-wrap gap-x-6 gap-y-1">
                     {c.links.map((l) => (
                       <li key={l.href}>
@@ -212,15 +225,15 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="mt-24">
-          <h3 data-reveal className="font-display text-lead font-medium">Earlier AI and ML builds</h3>
-          <ul className="mt-6 grid gap-px overflow-hidden rounded-md border border-ink/15 bg-ink/15 sm:grid-cols-2">
+        <div className="mt-36">
+          <h3 data-reveal className="font-display text-head">Earlier AI and ML builds</h3>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {builds.map((b, i) => (
-              <li key={b.title} data-reveal style={R(i % 2)} className="flex flex-col gap-2 bg-ground p-6">
-                <h4 className="font-display text-lead font-medium">{b.title}</h4>
-                <p className="max-w-[46ch] text-muted">{b.text}</p>
-                <div className="mt-auto flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2">
-                  <p className="font-mono text-small text-muted">{b.stack}</p>
+              <li key={b.title} data-reveal style={R(i % 2)} className="flex flex-col gap-3 bg-surface p-6 sm:p-8">
+                <h4 className="font-display text-head">{b.title}</h4>
+                <p className="max-w-[46ch]">{b.text}</p>
+                <div className="mt-auto flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-4">
+                  <p className="text-small text-muted">{b.stack}</p>
                   <ExtLink {...b.link} />
                 </div>
               </li>

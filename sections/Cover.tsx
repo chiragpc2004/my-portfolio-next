@@ -1,110 +1,68 @@
-import { R, Scribble } from "@/components/notebook";
+import { Monument, R } from "@/components/ui";
 
-const index = [
-  { no: "01", label: "Journey", href: "#journey", ready: true },
-  { no: "02", label: "Projects", href: "#projects", ready: true },
-  { no: "03", label: "Product work", href: "#product-work", ready: true },
-  { no: "04", label: "Contact", href: "#contact", ready: true },
-];
-
-const timeline = [
-  { when: "2022", what: "BTech, Data Science & Engineering", where: "Manipal Institute of Technology" },
-  { when: "Jun 2025", what: "AI intern", where: "Pinnacle Labs" },
-  { when: "Jan 2026", what: "SDET intern", where: "Jar" },
-  { when: "Jul 2026", what: "SDET-1, full time", where: "Jar" },
-  { when: "Nov 2026", what: "Top Fellow", where: "NextLeap PM Fellowship" },
-];
+const corner = "text-small text-muted hover:text-ink transition-colors duration-200 inline-flex items-center h-11";
 
 export default function Cover() {
   return (
-    <section id="home" aria-labelledby="cover-title" className="pt-[calc(var(--nav-h)+2.5rem)] pb-16 sm:pb-24">
-      <div className="mx-auto max-w-[76rem] px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* Title page */}
-          <div className="lg:col-span-7">
-            <p data-reveal className="font-mono text-small text-muted tracking-wide">
-              Portfolio &middot; updated Nov 2026
-            </p>
-            <h1 id="cover-title" data-reveal style={R(1)} className="mt-5 font-display text-display font-medium tracking-[-0.035em]">
-              Chirag P C
-            </h1>
-            <div data-reveal style={R(2)} className="mt-4">
-              <p className="text-lead">
-                SDET at Jar. <span className="italic">Aspiring product manager.</span>
-              </p>
-              <Scribble className="mt-1 w-[min(19rem,80%)]" />
-            </div>
-            <p data-reveal style={R(3)} className="mt-8 max-w-[38ch] text-lead text-muted">
-              I spend my days on the paths users take and the ones they shouldn&apos;t be able to. Here's the work where I
-              brought that habit to product problems: a hypothesis, the evidence, a build, and an honest check.
-            </p>
-          </div>
+    <section id="home" aria-labelledby="cover-title" className="relative">
+      <div className="wrap relative flex min-h-[100svh] flex-col pt-[calc(var(--nav-h)+0.5rem)] pb-0 md:pb-6">
+        {/* Top-left: who this is and the one action. The nav holds the top-right corner. */}
+        <div className="order-2 mt-6 md:order-1 md:mt-0">
+          <p data-reveal style={R(1)} className="max-w-[30ch] text-lead">
+            SDET at Jar and aspiring product manager. Two product case studies, seven teardowns and PRDs, and the builds
+            behind them.
+          </p>
+          <a
+            data-reveal
+            style={R(2)}
+            href="#projects"
+            className="mt-5 flex h-12 w-full items-center justify-center bg-ink px-6 text-ground transition-[background-color,transform] duration-200 hover:bg-accent active:scale-[0.98] md:inline-flex md:w-auto"
+          >
+            See the projects
+          </a>
+        </div>
 
-          {/* Taped-in photo and the index */}
-          <div className="lg:col-span-5 flex flex-col gap-10 sm:flex-row lg:flex-col lg:items-end">
-            <div data-reveal style={R(2)} className="shrink-0">
-            <figure className="relative w-[13.5rem] shrink-0 rotate-[2.5deg] bg-white p-3 pb-10 shadow-[0_1px_2px_rgb(0_0_0/0.12),0_8px_24px_-8px_rgb(0_0_0/0.25)] dark:bg-[#f1ede2]">
-              <span aria-hidden="true" className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 -rotate-3 bg-[#e9dfb8]/80" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/chirag.jpg"
-                width={460}
-                height={460}
-                alt="Chirag P C, in a dark suit and white shirt"
-                className="aspect-square w-full object-cover object-[50%_20%] sepia-[0.15]"
-              />
-              <figcaption className="absolute inset-x-3 bottom-2 font-hand text-[1.25rem] leading-none text-[#1a2132]">
-                Chirag, 2026
-              </figcaption>
-            </figure>
-            </div>
-
-            <nav data-reveal style={R(3)} aria-label="Contents" className="w-full max-w-[20rem]">
-              <p className="font-mono text-small uppercase tracking-[0.14em] text-muted">Contents</p>
-              <ol className="mt-3 border-t border-ink/15">
-                {index.map((item) => (
-                  <li key={item.no} className="border-b border-ink/15">
-                    {item.href ? (
-                      <a href={item.href} className="group flex items-baseline gap-4 py-2.5 hover:text-accent transition-colors duration-200">
-                        <span className="font-mono text-small text-muted">{item.no}</span>
-                        <span className="flex-1">{item.label}</span>
-                        <span aria-hidden="true" className="font-mono text-small text-muted group-hover:translate-x-0.5 transition-transform">
-                          &rarr;
-                        </span>
-                      </a>
-                    ) : (
-                      <span className="flex items-baseline gap-4 py-2.5 text-muted">
-                        <span className="font-mono text-small">{item.no}</span>
-                        <span className="flex-1">{item.label}</span>
-                        <span className="font-hand text-[1.125rem] text-pen">being written</span>
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </nav>
+        {/* The name, across the middle, margin to margin. */}
+        <div className="order-1 mt-[6svh] md:order-2 md:my-auto md:py-10">
+          <div className="monument-leave">
+            <Monument as="h1" id="cover-title" label="Chirag P C" rise />
           </div>
         </div>
 
-        {/* Timeline: the trajectory in one line */}
-        <div data-reveal style={R(4)} className="mt-16 sm:mt-20">
-          <h2 className="sr-only">Timeline</h2>
-          <ol className="relative grid gap-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-            <span aria-hidden="true" className="absolute left-[5px] top-2 bottom-2 w-px bg-ink/25 lg:left-0 lg:right-0 lg:top-[5px] lg:bottom-auto lg:h-px lg:w-auto sm:hidden lg:block" />
-            {timeline.map((t) => (
-              <li key={t.when} className="relative pl-6 lg:pl-0 lg:pt-6">
-                <span aria-hidden="true" className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 border-ink bg-ground lg:top-0" />
-                <p className="font-mono text-small text-muted">{t.when}</p>
-                <p className="mt-1 leading-snug">{t.what}</p>
-                <p className="text-small text-muted leading-snug">{t.where}</p>
-              </li>
-            ))}
-            <li className="relative pl-6 lg:pl-0 lg:pt-6">
-              <span aria-hidden="true" className="absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full border-2 border-dashed border-pen bg-ground lg:top-0" />
-              <p className="font-mono text-small text-pen">Next</p>
-              <p className="mt-1 font-hand text-[1.5rem] leading-[1.05] text-pen">APM, Associate PM or AI PM</p>
+        {/* Phone only: the first screen ends in the work, not empty paper. */}
+        <div className="order-3 mt-8 -mx-[var(--gutter)] md:hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/work/gr1-app.webp"
+            width={600}
+            height={1296}
+            alt="GR-1, the Keep SIP Active assistant, open on a phone and explaining a missed SIP payment."
+            className="aspect-[4/5] w-full object-cover object-top bg-surface"
+          />
+        </div>
+
+        {/* Bottom corners: what the work is, and where to find more. */}
+        <div className="order-4 hidden items-end justify-between gap-6 md:flex">
+          <p data-reveal style={R(3)} className="text-body">
+            SDET at Jar &middot; NextLeap PM Fellowship, Top Fellow
+          </p>
+          <ul data-reveal style={R(4)} className="flex gap-5">
+            <li>
+              <a className={corner} href="https://github.com/chiragpc2004" target="_blank" rel="noopener noreferrer">
+                GitHub<span className="sr-only"> (opens in a new tab)</span>
+              </a>
             </li>
-          </ol>
+            <li>
+              <a className={corner} href="https://www.linkedin.com/in/chiragpc2004" target="_blank" rel="noopener noreferrer">
+                LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </li>
+            <li>
+              <a className={corner} href="#contact">
+                Email
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
