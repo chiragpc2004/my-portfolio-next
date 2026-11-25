@@ -5,12 +5,12 @@ import { Github, Linkedin, Sun, Moon } from "lucide-react";
 import { useReveal } from "./useReveal";
 
 const navItems = [
-  { label: "About", href: "#about", id: "about" },
-  { label: "Work", href: "#projects", id: "projects" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Field log", href: "#field-log", id: "field-log" },
+  { label: "Experiments", href: "#projects", id: "projects" },
+  { label: "Leave a note", href: "#contact", id: "contact" },
 ];
 
-const RESUME_URL = "https://drive.google.com/file/d/13gG3z98A3viQlp8BNyU-P3B6fLl3JrIc/view?usp=sharing";
+// Résumé link removed until the updated PDF exists; the old one predates the SDET role.
 
 const socialLinks = [
   { icon: <Github size={20} aria-hidden="true" />, href: "https://github.com/chiragpc2004", label: "GitHub" },
@@ -20,7 +20,7 @@ const socialLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   useReveal();
 
@@ -56,9 +56,9 @@ export default function Navbar() {
     "inline-flex items-center justify-center w-11 h-11 rounded-full text-ink/80 hover:text-ink hover:bg-ink/[0.07] active:scale-95 transition-[color,background-color,transform] duration-200";
 
   return (
-    <nav aria-label="Main" className="fixed inset-x-0 top-0 z-50 bg-ground text-ink">
-      <div className="mx-auto max-w-[88rem] h-[var(--nav-h)] px-5 sm:px-8 flex items-center justify-between gap-6">
-        <a href="#home" className="inline-flex items-center h-11 font-display font-semibold text-small sm:text-body tracking-[-0.01em] whitespace-nowrap">
+    <nav aria-label="Main" className="fixed inset-x-0 top-0 z-50 bg-ground/90 backdrop-blur-sm border-b border-ink/10 text-ink">
+      <div className="mx-auto max-w-[76rem] h-[var(--nav-h)] px-5 sm:px-8 flex items-center justify-between gap-6">
+        <a href="#home" className="inline-flex items-center h-11 font-display font-medium text-body sm:text-lead tracking-[-0.01em] whitespace-nowrap">
           Chirag P C
         </a>
 
@@ -95,15 +95,6 @@ export default function Navbar() {
               {link.icon}
             </a>
           ))}
-          <a
-            href={RESUME_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 inline-flex items-center h-11 px-5 rounded-full bg-ink/[0.08] text-ink text-small font-medium hover:bg-ink/[0.14] active:scale-[0.97] transition-[background-color,transform] duration-200"
-          >
-            Résumé
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
         </div>
 
         <button
@@ -132,17 +123,12 @@ export default function Navbar() {
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeSection === item.id ? "page" : undefined}
-                  className={`block py-3 font-display font-semibold text-lead ${activeSection === item.id ? "text-ink" : "text-muted"}`}
+                  className={`block py-3 font-display font-medium text-lead ${activeSection === item.id ? "text-ink" : "text-muted"}`}
                 >
                   {item.label}
                 </a>
               </li>
             ))}
-            <li>
-              <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="block py-3 font-display font-semibold text-lead text-muted">
-                Résumé<span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </li>
           </ul>
           <div className="flex items-center gap-1 mt-3 -ml-2.5">
             <button onClick={toggleTheme} aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"} className={iconBtn}>

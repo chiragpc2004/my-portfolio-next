@@ -6,15 +6,19 @@
  * Tokens. Channels (r g b) so Tailwind can apply alpha: bg-ink/10 etc.
  * Light is the base; .dark overrides; .theme-invert flips a section to the other set.
  * ------------------------------------------------------------------------- */
+/* Field Notebook palette. Light is paper; dark is the "night notebook".
+ * --pen is the red annotation ink, used only for margin notes and marks. */
 :root,
 .dark .theme-invert {
-  --ground: 238 240 234;   /* #eef0ea  pale stone */
-  --surface: 226 230 221;  /* #e2e6dd */
-  --surface-2: 213 219 207;/* #d5dbcf */
-  --ink: 18 28 20;         /* #121c14 */
-  --muted: 74 86 76;       /* #4a564c  6.6:1 on ground */
-  --accent: 36 69 42;      /* #24452a  forest */
-  --accent-ink: 214 245 182;
+  --ground: 245 241 231;   /* #f5f1e7  paper */
+  --surface: 236 230 215;  /* #ece6d7 */
+  --surface-2: 225 217 198;/* #e1d9c6 */
+  --ink: 26 33 50;         /* #1a2132  blue-black */
+  --muted: 84 90 106;      /* #545a6a */
+  --accent: 32 58 140;     /* #203a8c  fountain-pen blue */
+  --accent-ink: 245 241 231;
+  --pen: 178 45 34;        /* #b22d22  red pen */
+  --rule: 32 58 140;       /* graph-paper lines */
   --setosa: 46 94 170;
   --versicolor: 128 66 168;
   --virginica: 158 104 20;
@@ -23,13 +27,15 @@
 
 .dark,
 .theme-invert {
-  --ground: 14 21 16;      /* #0e1510  green-black */
-  --surface: 22 32 24;     /* #162018 */
-  --surface-2: 31 44 33;   /* #1f2c21 */
-  --ink: 236 241 234;      /* #ecf1ea */
-  --muted: 168 179 168;    /* #a8b3a8  8.4:1 on ground */
-  --accent: 198 241 157;   /* #c6f19d  pale lime */
-  --accent-ink: 14 21 16;
+  --ground: 18 24 38;      /* #121826  night notebook */
+  --surface: 26 34 51;     /* #1a2233 */
+  --surface-2: 36 45 66;   /* #242d42 */
+  --ink: 234 230 218;      /* #eae6da */
+  --muted: 166 172 188;    /* #a6acbc */
+  --accent: 160 182 255;   /* #a0b6ff */
+  --accent-ink: 18 24 38;
+  --pen: 255 140 120;      /* #ff8c78 */
+  --rule: 160 182 255;
   --setosa: 150 186 240;
   --versicolor: 204 160 236;
   --virginica: 232 196 122;
@@ -37,6 +43,7 @@
 }
 
 :root {
+  --font-display: var(--font-sans);
   --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
@@ -52,26 +59,22 @@ html {
 }
 
 body {
-  font-feature-settings: "ss01", "cv11";
+  /* Faint graph paper: a 28px grid in the rule ink. */
+  background-image:
+    linear-gradient(rgb(var(--rule) / 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--rule) / 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
 }
 
-/*
- * Full-page snap with fixed-height sections only when the viewport is large
- * enough for every section to fit. On phones and short screens, sections grow
- * to their content (min-h-screen) and scroll normally, so nothing is clipped.
- * Keep this query in sync with the `snap` screen in tailwind.config.js.
- */
-@media (min-width: 1024px) and (min-height: 700px) {
-  html {
-    scroll-snap-type: y mandatory;
-    scroll-padding-top: 0;
-  }
-
-  section[id] {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    height: 100vh;
-  }
+/* Hand-drawn strokes (underlines, circles) draw themselves in once revealed. */
+html.js [data-reveal] .draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.35s;
+}
+html.js [data-reveal][data-in] .draw path {
+  stroke-dashoffset: 0;
 }
 
 /* Visible keyboard focus everywhere */
@@ -158,5 +161,9 @@ html.js [data-reveal][data-in] {
   }
   .drift {
     animation: none;
+  }
+  html.js [data-reveal] .draw path {
+    transition: none;
+    stroke-dashoffset: 0;
   }
 }

@@ -25,14 +25,17 @@ module.exports = {
         ink: token("ink"),
         muted: token("muted"),
         accent: token("accent"),
+        pen: token("pen"),
         "accent-ink": token("accent-ink"),
         setosa: token("setosa"),
         versicolor: token("versicolor"),
         virginica: token("virginica"),
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "var(--font-sans)", "sans-serif"],
+        sans: ["var(--font-sans)", "Georgia", "serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        hand: ["var(--font-hand)", "cursive"],
       },
       // The page's five type steps. Nothing else is used.
       fontSize: {

@@ -10,8 +10,6 @@ const socials = [
   { href: "https://linkedin.com/in/chiragpc2004", label: "LinkedIn" },
   { href: "https://www.kaggle.com/chiragpoojarikodi", label: "Kaggle" },
   { href: "https://x.com/chiragpc_2004", label: "Twitter" },
-  { href: "https://www.instagram.com/chiragpc_2004/", label: "Instagram" },
-  { href: "https://www.facebook.com/chirag.poojarikodi", label: "Facebook" },
 ];
 
 const credits = [
@@ -85,22 +83,24 @@ export default function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="theme-invert min-h-svh snap:h-screen bg-ground text-ink pt-[calc(var(--nav-h)+2.5rem)] pb-8"
+      className="theme-invert bg-ground text-ink pt-24 pb-8"
     >
-      <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8 flex flex-col">
+      <div className="mx-auto max-w-[76rem] px-5 sm:px-8 flex flex-col">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 flex-1 content-center">
           <div className="lg:col-span-6">
-            <h2 id="contact-title" data-reveal className="font-display font-semibold uppercase text-head max-w-[12ch]">
-              Let&apos;s build something
+            <p data-reveal className="font-mono text-small text-muted tracking-wide">§ 05</p>
+            <h2 id="contact-title" data-reveal className="mt-2 font-display font-medium text-head tracking-[-0.02em] max-w-[14ch]">
+              Leave a note
             </h2>
-            <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[30ch]">
-              A role, a project or a question about one of mine. I answer every message.
+            <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[34ch]">
+              Hiring for an APM, Associate PM or AI PM role, or want to pick apart one of these experiments? I answer every
+              message.
             </p>
             <a
               data-reveal
               style={R(2)}
               href={`mailto:${EMAIL}`}
-              className="group mt-10 inline-flex items-center gap-3 py-2 font-display font-semibold text-[clamp(1.125rem,0.7rem+1.6vw,2rem)] tracking-[-0.02em] break-all underline decoration-ink/25 decoration-2 underline-offset-[10px] hover:decoration-ink transition-[text-decoration-color] duration-200"
+              className="group mt-10 inline-flex items-center gap-3 py-2 font-display font-medium text-[clamp(1.125rem,0.7rem+1.6vw,2rem)] tracking-[-0.02em] break-all underline decoration-ink/25 decoration-2 underline-offset-[10px] hover:decoration-ink transition-[text-decoration-color] duration-200"
             >
               {EMAIL}
               <ArrowUpRight aria-hidden="true" className="shrink-0 w-[1em] h-[1em] transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -123,7 +123,7 @@ export default function Contact() {
           </div>
 
           <form data-reveal style={R(2)} onSubmit={handleSubmit} className="lg:col-span-5 lg:col-start-8 grid gap-4 content-center">
-            <h3 className="font-medium">Or write here</h3>
+            <h3 className="font-hand text-[1.625rem] text-pen">Or write it here</h3>
             <div className="grid sm:grid-cols-2 gap-4">
               <input name="name" required aria-label="Your name" autoComplete="name" placeholder="Your name" value={form.name} onChange={handleChange} className={field} />
               <input name="email" type="email" required aria-label="Your email" autoComplete="email" placeholder="Your email" value={form.email} onChange={handleChange} className={field} />
@@ -144,7 +144,7 @@ export default function Contact() {
           </form>
         </div>
 
-        <footer className="mt-16 snap:mt-8 grid gap-3 sm:grid-cols-[auto_1fr] sm:gap-10 text-small text-muted">
+        <footer className="mt-24 grid gap-3 sm:grid-cols-[auto_1fr] sm:gap-10 text-small text-muted">
           <p>© {new Date().getFullYear()} Chirag P C</p>
           <p className="sm:text-right">
             Photographs:{" "}

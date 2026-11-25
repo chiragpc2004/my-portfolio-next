@@ -184,7 +184,7 @@ export default function Projects() {
           >
             <div className="mx-auto max-w-[88rem] h-full px-5 sm:px-8 grid gap-10 lg:grid-cols-12 lg:gap-8 lg:items-center snap:items-stretch">
               <div className={`lg:col-span-5 snap:self-center ${flip ? "lg:order-2 lg:col-start-8" : ""}`}>
-                <h2 id={`${p.id}-title`} data-reveal className="font-display font-semibold uppercase text-head">
+                <h2 id={`${p.id}-title`} data-reveal className="font-display font-medium text-head tracking-[-0.02em]">
                   {p.title}
                 </h2>
                 <p data-reveal style={R(1)} className="mt-6 text-lead max-w-[30ch]">

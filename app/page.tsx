@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/sections/Hero";
-import About from "@/sections/About";
+import Cover from "@/sections/Cover";
+import FieldLog from "@/sections/FieldLog";
 import Projects from "@/sections/Projects";
 import Contact from "@/sections/Contact";
 
@@ -9,8 +9,9 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <Hero />
-        <About />
+        <Cover />
+        <FieldLog />
+        {/* Phase 2 replaces these with the Experiments write-ups. */}
         <Projects />
         <Contact />
       </main>
