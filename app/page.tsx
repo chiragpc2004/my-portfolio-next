@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/sections/Hero";
-import About from "@/sections/About";
+import Cover from "@/sections/Cover";
+import FieldLog from "@/sections/FieldLog";
 import Projects from "@/sections/Projects";
+import ProductWork from "@/sections/ProductWork";
 import Contact from "@/sections/Contact";
 
 export default function Home() {
@@ -9,9 +10,10 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <Hero />
-        <About />
+        <Cover />
         <Projects />
+        <FieldLog />
+        <ProductWork />
         <Contact />
       </main>
     </>
