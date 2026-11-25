@@ -1,4 +1,4 @@
-import { ExtButton, R, Row } from "@/components/ui";
+import Carousel from "@/components/Carousel";
 
 type Link = { href: string; label: string };
 
@@ -10,7 +10,10 @@ type CaseStudy = {
   stats: { value: string; label: string }[];
   steps: { label: string; text: string }[];
   links: Link[];
-  image: { src: string; width: number; height: number; alt: string; caption: string; url?: string };
+  /** Phone screens are shown side by side; a wide image fills the panel's media side. */
+  media:
+    | { kind: "phones"; screens: { src: string; alt: string }[] }
+    | { kind: "wide"; src: string; width: number; height: number; alt: string };
   note: { label: string; text: string };
   disclaimer?: string;
 };
@@ -23,9 +26,9 @@ const caseStudies: CaseStudy[] = [
     summary:
       "Raising the share of first-time Groww investors who still have an active SIP 12 months after starting. Research, an AI discovery engine and a shipped AI MVP.",
     stats: [
-      { value: "7,600", label: "public posts collected and filtered" },
-      { value: "30 / 32", label: "eval cases passed on the latest run" },
-      { value: "0", label: "unsafe answers across all 7 eval runs" },
+      { value: "219", label: "stories of stopping, from 7,600 posts" },
+      { value: "0", label: "unsafe answers across 7 eval runs" },
+      { value: "3", label: "user tests on the live MVP" },
     ],
     steps: [
       {
@@ -51,13 +54,12 @@ const caseStudies: CaseStudy[] = [
       { href: "https://nextleap-groww-sip-discovery-engine.vercel.app", label: "Discovery engine" },
       { href: "https://github.com/chiragpc2004/Groww-SIP-GR-1", label: "Code and deck" },
     ],
-    image: {
-      src: "/images/work/gr1-quality.webp",
-      url: "nextleap-groww-mvp.vercel.app/#quality",
-      width: 1600,
-      height: 1000,
-      alt: "The GR-1 quality report page: 32 test questions, 7 checks per answer, 0 unsafe answers allowed, and a run showing 30 of 32 cases passed.",
-      caption: "The live quality report. Anyone can rerun all 32 cases.",
+    media: {
+      kind: "phones",
+      screens: [
+        { src: "/images/work/gr1-alert.webp", alt: "GR-1 alert on the phone: your SIP is still active, 1,000 rupees didn't go through, pay by 27 Nov." },
+        { src: "/images/work/gr1-card.webp", alt: "The GR-1 card: what's happening from Groww's rules, and missed 2 of 3 in a row." },
+      ],
     },
     note: { label: "Why it matters to me", text: "The eval is the product. Every answer is tested before anyone sees it." },
     disclaimer: "Independent student case study on public data. Not affiliated with or endorsed by Groww.",
@@ -70,8 +72,8 @@ const caseStudies: CaseStudy[] = [
       "Increasing voice input on ChatGPT mobile in India, from market landscape to user research to a clickable prototype.",
     stats: [
       { value: "65%", label: "held back by people around them" },
-      { value: "53%", label: "can't review a message before it sends" },
       { value: "68%", label: "would try voice for mock interviews" },
+      { value: "15→25%", label: "A/B target, weekly voice users" },
     ],
     steps: [
       {
@@ -95,12 +97,12 @@ const caseStudies: CaseStudy[] = [
       { href: "https://practice-out-loud.vercel.app", label: "Try the prototype" },
       { href: "https://github.com/chiragpc2004/Practice-Out-Loud", label: "Decks and 3-pager" },
     ],
-    image: {
+    media: {
+      kind: "wide",
       src: "/images/work/pol-screens.webp",
       width: 1800,
       height: 680,
       alt: "Six annotated phone screens of the Practice Out Loud flow, from a practice nudge in chat to a session summary.",
-      caption: "The six-screen flow, from the nudge in chat to the session summary.",
     },
     note: { label: "Design call", text: "Nothing is scored until you've checked your own transcript." },
     disclaimer: "The survey (N = 34) and interview quotes are simulated, with mentor approval. Market figures are from cited public sources.",
@@ -134,107 +136,114 @@ const builds: { title: string; text: string; stack: string; link: Link }[] = [
   },
 ];
 
+const out = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+function Slide({ c }: { c: CaseStudy }) {
+  return (
+    <article id={c.id} aria-labelledby={`${c.id}-title`} className="glass grid content-start gap-7 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-[1fr_1.1fr] md:items-center md:p-9">
+      <div className="min-w-0">
+        <p className="text-small font-semibold text-signal">{c.kicker}</p>
+        <h3 id={`${c.id}-title`} className="mt-1.5 text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+          {c.title}
+        </h3>
+        <p className="mt-3 text-muted">{c.summary}</p>
+        <dl className="mt-6 flex flex-wrap gap-x-7 gap-y-4">
+          {c.stats.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse">
+              <dt className="mt-1 max-w-[16ch] text-small text-muted">{s.label}</dt>
+              <dd className="text-head font-semibold tabular-nums tracking-[-0.03em]">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {c.links.map((l, i) => (
+            <a key={l.href} href={l.href} {...out} className={`btn ${i ? "btn-light" : "btn-dark"} !h-9 !px-4 !text-small`}>
+              {l.label}
+              <span aria-hidden="true" className="opacity-60">&#8599;</span>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          ))}
+        </div>
+        <details className="group mt-6 border-t border-line/[0.12] pt-4">
+          <summary className="cursor-pointer list-none text-small font-medium text-ink marker:hidden [&::-webkit-details-marker]:hidden">
+            <span className="inline-flex items-center gap-2">
+              How I got there
+              <span aria-hidden="true" className="text-muted transition-transform duration-200 group-open:rotate-45">+</span>
+            </span>
+          </summary>
+          <dl className="mt-4 grid gap-4">
+            {c.steps.map((s) => (
+              <div key={s.label}>
+                <dt className="text-small font-medium">{s.label}</dt>
+                <dd className="mt-0.5 text-small text-muted">{s.text}</dd>
+              </div>
+            ))}
+            <div>
+              <dt className="text-small font-medium">{c.note.label}</dt>
+              <dd className="mt-0.5 text-small text-muted">{c.note.text}</dd>
+            </div>
+          </dl>
+        </details>
+        {c.disclaimer ? <p className="mt-4 text-[0.78rem] text-muted/80">{c.disclaimer}</p> : null}
+      </div>
+
+      {c.media.kind === "phones" ? (
+        <div className="flex items-start justify-center gap-3.5">
+          {c.media.screens.map((m, i) => (
+            <div key={m.src} className={`phone w-[min(46%,13rem)] ${i ? "mt-8" : ""}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={m.src} width={600} height={1205} loading="lazy" alt={m.alt} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={c.media.src}
+          width={c.media.width}
+          height={c.media.height}
+          loading="lazy"
+          alt={c.media.alt}
+          className="block h-auto w-full rounded-2xl bg-white shadow-[0_0_0_1px_rgb(255_255_255/0.15)]"
+        />
+      )}
+    </article>
+  );
+}
+
 export default function Projects() {
   return (
-    <Row id="projects" title="Projects" note="Two case studies, then earlier builds">
-      <div className="grid gap-20 sm:gap-24">
+    <section id="projects" aria-labelledby="projects-title" className="pt-20 pb-6 sm:pt-28">
+      <Carousel
+        title="Projects"
+        note="Swipe through. Case studies first, then earlier builds."
+        labels={[...caseStudies.map((c) => c.title), "Earlier builds"]}
+      >
         {caseStudies.map((c) => (
-          <article key={c.id} id={c.id} aria-labelledby={`${c.id}-title`} className="scroll-mt-24">
-            <div data-reveal>
-              <p className="text-small text-muted">{c.kicker}</p>
-              <h3 id={`${c.id}-title`} className="mt-1 text-display font-semibold tracking-[-0.04em] leading-[1.05] !text-[clamp(1.875rem,1.4rem+1.8vw,2.75rem)]">
-                {c.title}
-              </h3>
-              <p className="mt-3 max-w-[40rem] text-lead text-muted">{c.summary}</p>
-            </div>
-
-            <figure data-reveal style={R(1)} className="mt-8">
-              {c.image.url ? (
-                <div className="browser">
-                  <div className="browser-bar">
-                    <i />
-                    <i />
-                    <i />
-                    <span>{c.image.url}</span>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.image.src} width={c.image.width} height={c.image.height} loading="lazy" alt={c.image.alt} className="block w-full h-auto" />
-                </div>
-              ) : (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={c.image.src}
-                  width={c.image.width}
-                  height={c.image.height}
-                  loading="lazy"
-                  alt={c.image.alt}
-                  className="block w-full h-auto rounded-xl bg-white shadow-[0_0_0_1px_rgb(0_0_0/0.06),0_24px_48px_-28px_rgb(20_20_30/0.4)]"
-                />
-              )}
-              <figcaption className="mt-3 text-small text-muted">{c.image.caption}</figcaption>
-            </figure>
-
-            <dl data-reveal style={R(1)} className="mt-10 grid gap-6 sm:grid-cols-3">
-              {c.stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse">
-                  <dt className="mt-1 max-w-[22ch] text-small text-muted">{s.label}</dt>
-                  <dd className="text-head font-semibold tabular-nums tracking-[-0.03em]">{s.value}</dd>
-                </div>
-              ))}
-            </dl>
-
-            <dl data-reveal style={R(2)} className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2">
-              {c.steps.map((s) => (
-                <div key={s.label}>
-                  <dt className="font-medium">{s.label}</dt>
-                  <dd className="mt-1 text-muted">{s.text}</dd>
-                </div>
-              ))}
-            </dl>
-
-            <p data-reveal className="mt-8 text-small">
-              <span className="text-muted">{c.note.label}: </span>
-              {c.note.text}
-            </p>
-            <div data-reveal className="mt-5 flex flex-wrap gap-2">
-              {c.links.map((l) => (
-                <ExtButton key={l.href} href={l.href}>
-                  {l.label}
-                </ExtButton>
-              ))}
-            </div>
-            {c.disclaimer ? <p className="mt-4 max-w-[40rem] text-small text-muted">{c.disclaimer}</p> : null}
-          </article>
+          <Slide key={c.id} c={c} />
         ))}
-
-        <div>
-          <h3 data-reveal className="font-semibold">Earlier AI and ML builds</h3>
-          <ul className="mt-4">
+        <article id="builds" aria-labelledby="builds-title" className="glass grid content-start gap-7 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-2 md:p-9">
+          <div>
+            <p className="text-small font-semibold text-signal">Earlier builds · ML and AI</p>
+            <h3 id="builds-title" className="mt-1.5 text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+              Where it started
+            </h3>
+            <p className="mt-3 text-muted">Small things I built to learn how models behave once real people use them.</p>
+          </div>
+          <ul>
             {builds.map((b, i) => (
-              <li
-                key={b.title}
-                data-reveal
-                style={R(i % 2)}
-                className="grid gap-2 border-t border-line/[0.08] py-5 sm:grid-cols-[12rem_1fr_auto] sm:items-baseline sm:gap-6"
-              >
-                <p className="font-medium">{b.title}</p>
-                <div>
-                  <p className="text-muted">{b.text}</p>
-                  <p className="mt-1 text-small text-muted">{b.stack}</p>
-                </div>
-                <a
-                  href={b.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-small font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
-                >
+              <li key={b.title} className={`grid gap-1 py-4 ${i ? "border-t border-line/[0.12]" : "pt-0"}`}>
+                <p className="font-semibold">{b.title}</p>
+                <p className="text-small text-muted">{b.text}</p>
+                <p className="text-small text-muted/80">{b.stack}</p>
+                <a href={b.link.href} {...out} className="text-small font-medium text-signal hover:underline underline-offset-4">
                   {b.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-    </Row>
+        </article>
+      </Carousel>
+    </section>
   );
 }

@@ -1,13 +1,13 @@
 import { R, Row } from "@/components/ui";
-import { journey } from "@/content/journey";
+import { journey, next } from "@/content/journey";
 
 export default function FieldLog() {
   return (
     <Row id="journey" title="Journey" note="Newest first">
       <ol>
         <li data-reveal className="grid gap-1 pb-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
-          <p className="text-small text-muted">Next</p>
-          <p className="font-medium">APM, Associate PM or AI PM</p>
+          <p className="flex items-center gap-2 text-small text-signal"><span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_10px_rgb(var(--signal))]" />Next</p>
+          <p className="font-medium">{next}</p>
         </li>
         {journey.map((e, i) => (
           <li

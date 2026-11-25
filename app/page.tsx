@@ -11,8 +11,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Cover />
-        <FieldLog />
         <Projects />
+        <FieldLog />
         <ProductWork />
         <Contact />
       </main>

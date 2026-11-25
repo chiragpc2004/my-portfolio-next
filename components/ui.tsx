@@ -4,8 +4,8 @@ import type { CSSProperties, ReactNode } from "react";
 export const R = (i: number) => ({ "--i": i }) as CSSProperties;
 
 /**
- * A section laid out like a well-kept résumé: the name in a narrow left
- * column, the content on the right. No boxes.
+ * A section on one pane of glass: the name in a narrow left column, the
+ * content on the right.
  */
 export function Row({
   id,
@@ -19,9 +19,9 @@ export function Row({
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="wrap py-14 sm:py-20">
-      <div className="grid gap-6 md:grid-cols-[11rem_1fr] md:gap-10">
-        <div data-reveal className="md:sticky md:top-24 md:self-start">
+    <section id={id} aria-labelledby={`${id}-title`} className="wrap py-4 sm:py-6">
+      <div className="glass grid gap-6 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-[11rem_1fr] md:gap-10 md:p-10">
+        <div data-reveal className="md:self-start">
           <h2 id={`${id}-title`} className="text-head font-semibold tracking-[-0.02em]">
             {title}
           </h2>

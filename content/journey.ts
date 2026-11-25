@@ -78,3 +78,9 @@ export const journey: Entry[] = [
 ];
 
 export const now = journey.find((e) => e.current);
+
+/** Where you're heading. Shown in the hero and at the top of Journey. */
+export const next = "APM, Associate PM or AI PM";
+
+/** Your degree, for the hero. Reads the education entry, the last one in the list. */
+export const studied = journey[journey.length - 1];

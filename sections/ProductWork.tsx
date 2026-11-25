@@ -73,25 +73,21 @@ const pieces: Piece[] = [
   },
 ];
 
-const tilts = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg", "1deg", "-2.5deg"];
-
 export default function ProductWork() {
   return (
     <Row id="product-work" title="Product work" note="Teardowns, PRDs, market cases and a data analysis">
       <p data-reveal className="max-w-[40rem] text-muted">
         Each one starts with a question and ends with a recommendation. Open any sheet to read the PDF.
       </p>
-      <ul className="mt-10 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
+      <ul className="mt-8 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3">
         {pieces.map((p, i) => (
           <li key={p.file} data-reveal style={R(i % 4)}>
-            <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className="paper group block">
-              <div className="stack mr-2">
-                <div className="sheet" style={{ "--tilt": tilts[i % tilts.length] } as React.CSSProperties}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/images/work/${p.thumb}.jpg`} width={413} height={584} loading="lazy" alt="" className="h-full w-full object-cover object-top" />
-                </div>
+            <a href={pdf(p.file)} target="_blank" rel="noopener noreferrer" className="doc group block">
+              <div className="doc-frame">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/images/work/${p.thumb}.jpg`} width={413} height={584} loading="lazy" alt="" />
               </div>
-              <p className="mt-5 text-small text-muted">{p.kind}</p>
+              <p className="mt-4 text-small text-signal">{p.kind}</p>
               <p className="mt-0.5 font-medium leading-snug">{p.title}</p>
               <span className="sr-only"> PDF (opens in a new tab)</span>
             </a>
