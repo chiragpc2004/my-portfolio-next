@@ -105,7 +105,7 @@ export default function ProductWork() {
                 {p.title}
                 <span className="sr-only"> PDF (opens in a new tab)</span>
               </a>
-              <p className="mt-1.5 text-small text-muted">{p.line}</p>
+              <p className="mt-1.5 text-muted">{p.line}</p>
               {p.extra ? (
                 <a
                   href={pdf(p.extra.file)}

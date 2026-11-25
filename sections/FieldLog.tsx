@@ -5,14 +5,14 @@ export default function FieldLog() {
   return (
     <Row id="journey" title="Journey" note="Newest first">
       <ol>
-        <li className="grid gap-1 pb-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+        <li className="grid gap-1 rounded-2xl bg-white/[0.05] px-4 py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-6 sm:-mx-4">
           <p className="flex items-center gap-2 text-small text-signal"><span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-signal shadow-[0_0_10px_rgb(var(--signal))]" />Next</p>
           <p className="font-medium">{next}</p>
         </li>
         {journey.map((e) => (
           <li
             key={e.dates + e.place}
-            className="grid gap-1 border-t border-line/[0.12] py-8 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
+            className="grid gap-1 py-7 sm:grid-cols-[8.5rem_1fr] sm:gap-6"
           >
             <p className="text-small text-muted tabular-nums sm:pt-0.5">{e.dates}</p>
             <div>
@@ -24,7 +24,7 @@ export default function FieldLog() {
                   <p key={p}>{p}</p>
                 ))}
               </div>
-              <ul className="mt-3 grid gap-1 text-small">
+              <ul className="mt-3 grid gap-1">
                 {e.note ? (
                   <li>
                     <span className="text-muted">{e.note.label}: </span>

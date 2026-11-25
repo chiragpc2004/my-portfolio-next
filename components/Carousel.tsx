@@ -57,47 +57,69 @@ export default function Carousel({
     const items = Array.from(t.children) as HTMLElement[];
     const to = items[Math.max(0, Math.min(count - 1, i))];
     if (!to) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    t.scrollTo({ left: to.offsetLeft - items[0].offsetLeft, behavior: reduce ? "auto" : "smooth" });
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    t.scrollTo({
+      left: to.offsetLeft - items[0].offsetLeft,
+      behavior: reduce ? "auto" : "smooth",
+    });
   };
 
   return (
     <div>
       <div className="wrap mb-6 flex items-end justify-between gap-4">
         <div>
-          <h2 id="projects-title" className="text-[clamp(1.6rem,1.2rem+1.2vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
+          <h2
+            id="projects-title"
+            className="text-[clamp(1.6rem,1.2rem+1.2vw,2.1rem)] font-semibold leading-[1.1] tracking-[-0.03em]"
+          >
             {title}
           </h2>
           {note ? <p className="mt-1 text-muted">{note}</p> : null}
         </div>
         <div className="hidden shrink-0 gap-2 sm:flex">
-          <button type="button" onClick={() => go(cur - 1)} disabled={cur === 0} aria-label="Previous project" className="btn btn-light !h-11 !w-11 !p-0 disabled:opacity-35 disabled:hover:translate-y-0">
+          <button
+            type="button"
+            onClick={() => go(cur - 1)}
+            disabled={cur === 0}
+            aria-label="Previous project"
+            className="btn btn-light !h-11 !w-11 !p-0 disabled:opacity-35 disabled:hover:translate-y-0"
+          >
             <ArrowLeft size={17} aria-hidden="true" />
           </button>
-          <button type="button" onClick={() => go(cur + 1)} disabled={cur === count - 1} aria-label="Next project" className="btn btn-light !h-11 !w-11 !p-0 disabled:opacity-35 disabled:hover:translate-y-0">
+          <button
+            type="button"
+            onClick={() => go(cur + 1)}
+            disabled={cur === count - 1}
+            aria-label="Next project"
+            className="btn btn-light !h-11 !w-11 !p-0 disabled:opacity-35 disabled:hover:translate-y-0"
+          >
             <ArrowRight size={17} aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      <div
-        ref={track}
-        className="track"
-        tabIndex={0}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label={title}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowRight") {
-            e.preventDefault();
-            go(cur + 1);
-          } else if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            go(cur - 1);
-          }
-        }}
-      >
-        {children}
+      <div className="wrap">
+        <div
+          ref={track}
+          className="track"
+          tabIndex={0}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={title}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              go(cur + 1);
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              go(cur - 1);
+            }
+          }}
+        >
+          {children}
+        </div>
       </div>
 
       <div className="flex justify-center">

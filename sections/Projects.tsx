@@ -4,7 +4,6 @@ type Link = { href: string; label: string };
 
 type CaseStudy = {
   id: string;
-  kicker: string;
   title: string;
   summary: string;
   stats: { value: string; label: string }[];
@@ -21,10 +20,9 @@ type CaseStudy = {
 const caseStudies: CaseStudy[] = [
   {
     id: "gr1",
-    kicker: "NextLeap graduation project",
     title: "Keep SIP Active",
     summary:
-      "Raising the share of first-time Groww investors who still have an active SIP 12 months after starting. Research, an AI discovery engine and a shipped AI MVP.",
+      "My NextLeap graduation project: raising the share of first-time Groww investors who still have an active SIP 12 months after starting. Research, an AI discovery engine and a shipped AI MVP.",
     stats: [
       { value: "219", label: "stories of stopping, from 7,600 posts" },
       { value: "0", label: "unsafe answers across 7 eval runs" },
@@ -66,10 +64,9 @@ const caseStudies: CaseStudy[] = [
   },
   {
     id: "pol",
-    kicker: "Product case study on ChatGPT in India",
     title: "Practice Out Loud",
     summary:
-      "Increasing voice input on ChatGPT mobile in India, from market landscape to user research to a clickable prototype.",
+      "A product case study on increasing voice input on ChatGPT mobile in India, from market landscape to user research to a clickable prototype.",
     stats: [
       { value: "65%", label: "held back by people around them" },
       { value: "68%", label: "would try voice for mock interviews" },
@@ -142,8 +139,7 @@ function Slide({ c }: { c: CaseStudy }) {
   return (
     <article id={c.id} aria-labelledby={`${c.id}-title`} className="glass grid content-start gap-7 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-[1fr_1.1fr] md:items-center md:p-9">
       <div className="min-w-0">
-        <p className="text-small font-semibold text-signal">{c.kicker}</p>
-        <h3 id={`${c.id}-title`} className="mt-1.5 text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+        <h3 id={`${c.id}-title`} className="text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
           {c.title}
         </h3>
         <p className="mt-3 text-muted">{c.summary}</p>
@@ -164,8 +160,8 @@ function Slide({ c }: { c: CaseStudy }) {
             </a>
           ))}
         </div>
-        <details className="group mt-6 border-t border-line/[0.12] pt-4">
-          <summary className="cursor-pointer list-none text-small font-medium text-ink marker:hidden [&::-webkit-details-marker]:hidden">
+        <details className="group mt-6 rounded-2xl bg-white/[0.05] px-4 py-3">
+          <summary className="cursor-pointer list-none font-medium text-ink marker:hidden [&::-webkit-details-marker]:hidden">
             <span className="inline-flex items-center gap-2">
               How I got there
               <span aria-hidden="true" className="text-muted transition-transform duration-200 group-open:rotate-45">+</span>
@@ -174,17 +170,17 @@ function Slide({ c }: { c: CaseStudy }) {
           <dl className="mt-4 grid gap-4">
             {c.steps.map((s) => (
               <div key={s.label}>
-                <dt className="text-small font-medium">{s.label}</dt>
-                <dd className="mt-0.5 text-small text-muted">{s.text}</dd>
+                <dt className="font-medium">{s.label}</dt>
+                <dd className="mt-0.5 text-muted">{s.text}</dd>
               </div>
             ))}
             <div>
-              <dt className="text-small font-medium">{c.note.label}</dt>
-              <dd className="mt-0.5 text-small text-muted">{c.note.text}</dd>
+              <dt className="font-medium">{c.note.label}</dt>
+              <dd className="mt-0.5 text-muted">{c.note.text}</dd>
             </div>
           </dl>
         </details>
-        {c.disclaimer ? <p className="mt-4 text-[0.8rem] text-muted">{c.disclaimer}</p> : null}
+        {c.disclaimer ? <p className="mt-4 text-small text-muted">{c.disclaimer}</p> : null}
       </div>
 
       {c.media.kind === "phones" ? (
@@ -224,17 +220,16 @@ export default function Projects() {
         ))}
         <article id="builds" aria-labelledby="builds-title" className="glass grid content-start gap-7 rounded-[22px] p-5 sm:rounded-[28px] sm:p-8 md:grid-cols-2 md:p-9">
           <div>
-            <p className="text-small font-semibold text-signal">Earlier builds</p>
-            <h3 id="builds-title" className="mt-1.5 text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
-              Where it started
+            <h3 id="builds-title" className="text-[clamp(1.6rem,1.2rem+1.4vw,2.3rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
+              Earlier builds
             </h3>
-            <p className="mt-3 text-muted">Small things I built to learn how models behave once real people use them.</p>
+            <p className="mt-3 text-muted">Where it started: small things I built to learn how models behave once real people use them.</p>
           </div>
           <ul>
-            {builds.map((b, i) => (
-              <li key={b.title} className={`grid gap-1 py-4 ${i ? "border-t border-line/[0.12]" : "pt-0"}`}>
+            {builds.map((b) => (
+              <li key={b.title} className="grid gap-1 pb-6 last:pb-0">
                 <p className="font-semibold">{b.title}</p>
-                <p className="text-small text-muted">{b.text}</p>
+                <p className="text-muted">{b.text}</p>
                 <p className="text-small text-muted">{b.stack}</p>
                 <a href={b.link.href} {...out} className="text-small font-medium text-signal hover:underline underline-offset-4">
                   {b.link.label} &#8599;<span className="sr-only"> (opens in a new tab)</span>
