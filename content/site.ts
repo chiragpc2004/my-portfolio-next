@@ -11,7 +11,7 @@ export const site = {
     "I'm Chirag. I studied data science at Manipal, test platform software at Jar, and spend my evenings building AI products.",
   introMuted:
     "Testing taught me how products break; building taught me how they ship. Product management is where those meet.",
-  lookingFor: "APM, Associate PM and AI PM roles",
+  lookingFor: "Moving toward product roles",
   location: "India",
   email: "chiragpc2004@gmail.com",
   socials: [

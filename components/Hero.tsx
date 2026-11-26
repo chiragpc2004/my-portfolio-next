@@ -63,7 +63,7 @@ export default function Hero() {
             <p>{currentRole.now ?? `${currentRole.title}, ${currentRole.org}`}</p>
           </div>
           <div>
-            <p className="label">Looking for</p>
+            <p className="label">Next</p>
             <p>{site.lookingFor}</p>
           </div>
           <div>
