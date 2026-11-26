@@ -1602,6 +1602,33 @@ html.is-leaving #main {
   transform: translateY(135%);
 }
 
+/* Big titles: each letter turns into an outline under the pointer, then fills back in slowly,
+   so moving across a word leaves a short trail. The outline is a ring of text-shadows around a
+   letter filled with the section's background colour. That traces only the letter's outer shape
+   (a stroke would also trace the font's internal overlapping contours, which looked broken on e, t
+   and k), and the hovered letter sits above its neighbours so their edges don't cross it.
+   Only on devices with a real hover. */
+[data-theme="dark"] { --ol-ink: var(--paper); --ol-bg: var(--navy); }
+[data-theme="light"] { --ol-ink: var(--navy); --ol-bg: var(--paper); }
+.big-name { --ol-ink: var(--yellow); --ol-bg: var(--navy); }
+@media (hover: hover) and (pointer: fine) {
+  .display .split-char,
+  .hero-name .rise {
+    --ol-c: transparent;
+    position: relative;
+    text-shadow: 1.5px 0 var(--ol-c), -1.5px 0 var(--ol-c), 0 1.5px var(--ol-c), 0 -1.5px var(--ol-c), 1.1px 1.1px var(--ol-c), -1.1px -1.1px var(--ol-c), 1.1px -1.1px var(--ol-c), -1.1px 1.1px var(--ol-c), 1.4px 0.6px var(--ol-c), -1.4px -0.6px var(--ol-c), 0.6px -1.4px var(--ol-c), -0.6px 1.4px var(--ol-c);
+    transition: color 0.9s ease, text-shadow 0.9s ease;
+  }
+  .display .split-char:hover,
+  .hero-name .rise:hover {
+    --ol-c: var(--ol-ink);
+    z-index: 1;
+    color: var(--ol-bg);
+    text-shadow: 1.5px 0 var(--ol-c), -1.5px 0 var(--ol-c), 0 1.5px var(--ol-c), 0 -1.5px var(--ol-c), 1.1px 1.1px var(--ol-c), -1.1px -1.1px var(--ol-c), 1.1px -1.1px var(--ol-c), -1.1px 1.1px var(--ol-c), 1.4px 0.6px var(--ol-c), -1.4px -0.6px var(--ol-c), 0.6px -1.4px var(--ol-c), -0.6px 1.4px var(--ol-c);
+    transition-duration: 0.12s;
+  }
+}
+
 @media (max-width: 640px) {
   /* Pill moves right so the PC mark has the left corner */
   .nav {
