@@ -243,7 +243,10 @@ html.is-intro .loader {
   position: relative;
   display: block;
   overflow: hidden;
-  padding: 0 0.02em 0.06em;
+  /* Room for the glyph's full width; the negative margin keeps the tight spacing */
+  padding: 0.04em 0.1em 0.08em;
+  margin: 0 -0.11em;
+  letter-spacing: 0;
 }
 .loader-ghost,
 .loader-ink {
@@ -257,7 +260,7 @@ html.is-intro .loader {
 }
 .loader-ink {
   position: absolute;
-  inset: 0 0.02em 0.06em;
+  inset: 0.04em 0.1em 0.08em;
   color: var(--paper);
   clip-path: inset(100% 0 0 0);
   animation:
@@ -332,6 +335,63 @@ html.is-intro .loader {
   to {
     visibility: hidden;
   }
+}
+
+/* ---------- PC mark (top left): replays the intro ---------- */
+.intro-mark {
+  position: fixed;
+  top: 16px;
+  left: var(--gutter);
+  z-index: 101;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(244, 241, 234, 0.08);
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 19px;
+  letter-spacing: -0.04em;
+  color: var(--paper);
+  text-decoration: none;
+  transition:
+    color 0.4s,
+    background-color 0.4s,
+    border-color 0.4s,
+    opacity 0.3s ease,
+    transform 0.6s var(--ease-out);
+}
+.intro-mark[data-theme="light"] {
+  color: var(--ink);
+  background: rgba(244, 241, 234, 0.72);
+  border-color: rgba(10, 20, 48, 0.1);
+}
+.intro-mark[data-hidden="true"] {
+  transform: translateY(-140%);
+}
+.intro-mark::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  right: 19px;
+  bottom: 15px;
+  height: 2px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+.intro-mark:hover::after,
+.intro-mark:focus-visible::after {
+  transform: scaleX(1);
+}
+html.is-intro .intro-mark {
+  opacity: 0;
+  animation: fade-in 0.6s var(--ease-out) 2.3s forwards;
 }
 
 /* ---------- Nav ---------- */
@@ -1541,4 +1601,16 @@ html.is-leaving #main {
 }
 .hero-name .rise {
   transform: translateY(135%);
+}
+
+@media (max-width: 640px) {
+  /* Pill moves right so the PC mark has the left corner */
+  .nav {
+    left: auto;
+    right: var(--gutter);
+    transform: none;
+  }
+  .nav[data-hidden="true"] {
+    transform: translateY(-140%);
+  }
 }
