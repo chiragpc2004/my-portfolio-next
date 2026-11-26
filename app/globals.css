@@ -1383,3 +1383,13 @@ html.is-intro .fade-in {
     gap: 20px 14px;
   }
 }
+
+/* Hero name: the tight line-height clipped the descender of the "g".
+   Give each masked line room below the baseline, and start the letters lower so they stay hidden. */
+.hero-name .split-line {
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
+}
+.hero-name .rise {
+  transform: translateY(135%);
+}
