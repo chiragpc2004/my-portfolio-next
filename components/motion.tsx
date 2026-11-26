@@ -25,7 +25,7 @@ export function SplitText({
   const lines = text.split("\n");
   let n = 0;
   const char = {
-    hidden: { y: "110%" },
+    hidden: { y: "135%" },
     shown: (i: number) => ({ y: "0%", transition: { duration: 0.9, ease, delay: delay + i * stagger } }),
   };
   return (

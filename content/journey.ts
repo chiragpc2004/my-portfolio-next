@@ -27,8 +27,8 @@ export const journey: JourneyEntry[] = [
       "Built Teachable Machine, an image classifier that trains on the device, so nothing has to be uploaded.",
   },
   {
-    when: "2026 – now",
-    title: "SDET, intern to full time",
+    when: "Jan 2026 – now",
+    title: "SDET",
     org: "Jar, platform pod",
     blurb:
       "Joined as an SDET intern and converted to SDET-1 in Jul 2026. Backend API testing with Java, TestNG and Rest Assured. Rocketeer of the Month in my first quarter, and built an internal AI agent with Claude Code that automates API test work.",
