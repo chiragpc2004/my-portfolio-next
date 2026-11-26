@@ -362,7 +362,8 @@ html.is-intro .loader {
   width: calc(100vw - 2 * var(--gutter));
   height: 58px;
   padding: 6px 0;
-  border-radius: 999px;
+  /* Square while open, so the rounded clip never cuts into the PC underline */
+  border-radius: 0;
   border: 1px solid transparent;
   background: transparent;
   color: var(--paper);
@@ -381,6 +382,7 @@ html.is-intro .loader {
   color: var(--ink);
 }
 .nav[data-compact="true"] {
+  border-radius: 999px;
   width: min(var(--pill-w), calc(100vw - 2 * var(--gutter)));
   padding: 6px 6px 6px 20px;
   backdrop-filter: blur(14px) saturate(140%);
@@ -432,7 +434,7 @@ html.is-intro .loader {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -3px;
+  bottom: -1px;
   height: 3px;
   background: var(--yellow);
   transform: scaleX(0);
