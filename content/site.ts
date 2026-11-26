@@ -2,6 +2,8 @@
 export const site = {
   name: "Chirag P C",
   firstName: "Chirag",
+  /** What people call me; used for the intro mark. */
+  monogram: "PC",
   title: "Chirag P C · SDET, builder, aspiring product manager",
   description:
     "I test software for a living, build products on the side, and I'm working my way into product management.",
