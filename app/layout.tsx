@@ -15,7 +15,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://chiragpc-portfolio.vercel.app"),
   title: site.tabTitle,
   description: site.description,
-  openGraph: { title: site.tabTitle, description: site.description, type: "website" },
+  openGraph: {
+    title: site.tabTitle,
+    description: site.description,
+    type: "website",
+    url: "/",
+    siteName: site.tabTitle,
+    locale: "en_IN",
+  },
+  twitter: { card: "summary_large_image", title: site.tabTitle, description: site.description },
 };
 
 export const viewport: Viewport = { themeColor: "#0A1430" };

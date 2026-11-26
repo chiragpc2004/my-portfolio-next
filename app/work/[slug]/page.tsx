@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProject, getProjects } from "@/lib/work";
+import { site } from "@/content/site";
 import Cover from "@/components/covers/Cover";
 import NextProjectGate from "@/components/NextProjectGate";
 import { mdxComponents } from "@/components/mdx";
@@ -20,7 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = getProject(slug);
   if (!found) return {};
-  return { description: found.project.summary };
+  const { project } = found;
+  const title = `${project.title} · ${site.name}`;
+  return {
+    description: project.summary,
+    openGraph: { title, description: project.summary, type: "article", url: `/work/${slug}`, siteName: site.tabTitle },
+    twitter: { card: "summary_large_image", title, description: project.summary },
+  };
 }
 
 export default async function ProjectPage({ params }: Props) {
