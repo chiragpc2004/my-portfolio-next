@@ -8,7 +8,7 @@ export default function Journey() {
     <section id="journey" data-theme="light" aria-label="About me">
       <div className="intro cols">
         <Reveal className="intro-photo">
-          <Image src="/portrait.jpg" alt={`Portrait of ${site.name}`} width={460} height={460} priority={false} />
+          <Image src="/portrait.jpg" alt={`Portrait of ${site.name}`} width={800} height={1000} sizes="(max-width: 700px) 92vw, 400px" priority={false} />
         </Reveal>
         <ScrollRevealText className="intro-text" text={site.intro} muted={site.introMuted} />
       </div>
