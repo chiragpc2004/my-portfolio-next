@@ -342,59 +342,14 @@ html.is-intro .loader {
   }
 }
 
-/* ---------- PC mark (top left): replays the intro ---------- */
+/* ---------- Nav ----------
+   Open at the top (PC left, links right, no background); folds into a centred glass pill
+   with the full name once you scroll. */
 .site-header {
   display: contents;
 }
-.intro-mark {
-  position: fixed;
-  top: 16px;
-  left: var(--gutter);
-  z-index: 101;
-  display: grid;
-  place-items: center;
-  height: 58px;
-  padding: 0 2px;
-  font-family: var(--font-display);
-  font-weight: 750;
-  font-size: 24px;
-  letter-spacing: -0.04em;
-  color: var(--paper);
-  text-decoration: none;
-  transition:
-    color 0.4s,
-    opacity 0.3s ease,
-    transform 0.6s var(--ease-out);
-}
-.intro-mark[data-theme="light"] {
-  color: var(--ink);
-}
-.intro-mark[data-hidden="true"] {
-  transform: translateY(-140%);
-}
-.intro-mark::after {
-  content: "";
-  position: absolute;
-  left: 2px;
-  right: 2px;
-  bottom: 13px;
-  height: 3px;
-  background: var(--yellow);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s var(--ease-out);
-}
-.intro-mark:hover::after,
-.intro-mark:focus-visible::after {
-  transform: scaleX(1);
-}
-html.is-intro .intro-mark {
-  opacity: 0;
-  animation: fade-in 0.6s var(--ease-out) 2.3s forwards;
-}
-
-/* ---------- Nav ---------- */
 .nav {
+  --pill-w: 460px;
   position: fixed;
   top: 16px;
   left: 50%;
@@ -402,34 +357,103 @@ html.is-intro .intro-mark {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: clamp(14px, 2vw, 26px);
-  padding: 6px 6px 6px 20px;
+  justify-content: space-between;
+  gap: 26px;
+  width: calc(100vw - 2 * var(--gutter));
+  height: 58px;
+  padding: 6px 0;
   border-radius: 999px;
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  transition: background-color 0.4s, color 0.4s, border-color 0.4s, transform 0.5s var(--ease-out);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--paper);
   font-size: 15px;
   white-space: nowrap;
-  width: max-content;
-}
-.nav[data-theme="dark"] {
-  background: rgba(244, 241, 234, 0.08);
-  border: 1px solid rgba(244, 241, 234, 0.14);
-  color: var(--paper);
+  overflow: hidden;
+  transition:
+    width 0.7s var(--ease-out),
+    padding 0.7s var(--ease-out),
+    background-color 0.4s,
+    border-color 0.4s,
+    color 0.4s,
+    backdrop-filter 0.4s;
 }
 .nav[data-theme="light"] {
-  background: rgba(244, 241, 234, 0.72);
-  border: 1px solid rgba(10, 20, 48, 0.1);
   color: var(--ink);
 }
-.nav[data-hidden="true"] {
-  transform: translate(-50%, -140%);
+.nav[data-compact="true"] {
+  width: min(var(--pill-w), calc(100vw - 2 * var(--gutter)));
+  padding: 6px 6px 6px 20px;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+.nav[data-compact="true"][data-theme="dark"] {
+  background: rgba(244, 241, 234, 0.08);
+  border-color: rgba(244, 241, 234, 0.14);
+}
+.nav[data-compact="true"][data-theme="light"] {
+  background: rgba(244, 241, 234, 0.72);
+  border-color: rgba(10, 20, 48, 0.1);
 }
 .nav a {
   text-decoration: none;
 }
-.nav-name {
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex: none;
+}
+/* Brand: "PC" and the full name share one cell and cross-fade */
+.nav-brand {
+  position: relative;
+  display: grid;
+  align-items: center;
+  flex: none;
+  height: 46px;
   font-weight: 650;
+}
+.nav-mark,
+.nav-word {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.45s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+.nav-mark {
+  justify-self: start;
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 750;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+}
+.nav-mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 3px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+.nav-brand:hover .nav-mark::after,
+.nav-brand:focus-visible .nav-mark::after {
+  transform: scaleX(1);
+}
+.nav-word {
+  opacity: 0;
+  transform: translateY(40%);
+}
+.nav[data-compact="true"] .nav-mark {
+  opacity: 0;
+  transform: translateY(-40%);
+}
+.nav[data-compact="true"] .nav-word {
+  opacity: 1;
+  transform: none;
 }
 .nav-link {
   opacity: 0.8;
@@ -437,16 +461,31 @@ html.is-intro .intro-mark {
 .nav-link:hover {
   opacity: 1;
 }
+/* Outlined while open, filled yellow in the pill */
 .nav-cta {
   font-weight: 600;
   padding: 11px 18px;
   border-radius: 999px;
+  border: 1px solid currentColor;
+  transition:
+    background-color 0.4s,
+    border-color 0.4s,
+    color 0.4s;
+}
+.nav[data-compact="true"] .nav-cta {
   background: var(--yellow);
+  border-color: var(--yellow);
   color: var(--navy);
 }
 @media (max-width: 520px) {
   .nav {
     font-size: 14px;
+    gap: 14px;
+  }
+  .nav-links {
+    gap: 14px;
+  }
+  .nav[data-compact="true"] {
     padding-left: 16px;
   }
   .nav-journey {
@@ -1626,17 +1665,5 @@ html.is-leaving #main {
     color: var(--ol-bg);
     text-shadow: 1.5px 0 var(--ol-c), -1.5px 0 var(--ol-c), 0 1.5px var(--ol-c), 0 -1.5px var(--ol-c), 1.1px 1.1px var(--ol-c), -1.1px -1.1px var(--ol-c), 1.1px -1.1px var(--ol-c), -1.1px 1.1px var(--ol-c), 1.4px 0.6px var(--ol-c), -1.4px -0.6px var(--ol-c), 0.6px -1.4px var(--ol-c), -0.6px 1.4px var(--ol-c);
     transition-duration: 0.12s;
-  }
-}
-
-@media (max-width: 640px) {
-  /* Pill moves right so the PC mark has the left corner */
-  .nav {
-    left: auto;
-    right: var(--gutter);
-    transform: none;
-  }
-  .nav[data-hidden="true"] {
-    transform: translateY(-140%);
   }
 }
