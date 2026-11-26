@@ -136,8 +136,9 @@ button {
 .split-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  /* Room below the baseline so descenders (g, y, p) aren't clipped by the mask */
+  padding-bottom: 0.24em;
+  margin-bottom: -0.24em;
 }
 .split-word {
   display: inline-block;
