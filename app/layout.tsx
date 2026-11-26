@@ -1,40 +1,49 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, Inter_Tight } from "next/font/google";
+import { site } from "@/content/site";
+import SmoothScroll from "@/components/SmoothScroll";
+import Nav from "@/components/Nav";
+import Loader from "@/components/Loader";
+import Cursor from "@/components/Cursor";
+import MotionRoot from "@/components/MotionRoot";
 import "./globals.css";
-import type { Metadata } from "next";
-import { Onest, Unbounded } from "next/font/google";
 
-// Display: a wide, constructed face used only for the name and headings.
-const unbounded = Unbounded({
-  subsets: ["latin"],
-  weight: ["600", "800"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-// Text: a clean grotesk for everything people actually read.
-const onest = Onest({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-sans",
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-text", display: "swap" });
+const interTight = Inter_Tight({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Chirag P C · Machine learning engineer",
-  description:
-    "Chirag P C trains machine learning models and builds the products around them. Selected work, résumé and contact.",
+  metadataBase: new URL("https://chiragpc-portfolio.vercel.app"),
+  title: { default: site.title, template: `%s · ${site.name}` },
+  description: site.description,
+  openGraph: { title: site.title, description: site.description, type: "website" },
 };
 
-// Runs before paint: marks JS as available (for reveal animations) and applies
-// the saved or system theme so the page never flashes the wrong colours.
-const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');var dark=true;try{var t=localStorage.getItem('theme');dark=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;}catch(e){}if(dark)d.classList.add('dark');})();`;
+export const viewport: Viewport = { themeColor: "#0A1430" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${unbounded.variable} ${onest.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${interTight.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+        {/* Play the intro once per session, before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!sessionStorage.getItem('intro')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('is-intro');sessionStorage.setItem('intro','1')}}catch(e){}",
+          }}
+        />
       </head>
-      <body className="bg-ground text-ink font-sans text-body antialiased">{children}</body>
+      <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
+        <Loader />
+        <SmoothScroll />
+        <Cursor />
+        <Nav />
+        <main id="main">
+          <MotionRoot>{children}</MotionRoot>
+        </main>
+      </body>
     </html>
   );
 }
