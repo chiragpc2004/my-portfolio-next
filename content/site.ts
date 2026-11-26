@@ -11,10 +11,8 @@ export const site = {
     "I test software for a living, build products on the side, and I'm working my way into product management.",
   pitch:
     "I test software for a living, build products on the side, and I'm working my way into product management.",
-  intro:
-    "I'm Chirag. I studied data science at Manipal, test platform software at Jar, and spend my evenings building AI products.",
-  introMuted:
-    "Testing taught me how products break; building taught me how they ship. Product management is where those meet.",
+  intro: "I'm Chirag, an SDET at Jar who builds AI products after hours.",
+  introMuted: "Testing shows me how products break. Building shows me how they ship.",
   lookingFor: "Moving toward product roles",
   location: "India",
   email: "chiragpc2004@gmail.com",
