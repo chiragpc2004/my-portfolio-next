@@ -33,7 +33,7 @@ export default function Work() {
   return (
     <section id="work" className="work cols" data-theme="light" aria-labelledby="work-h">
       <div className="work-top">
-        <SplitText id="work-h" text="Selected work" className="display section-head" stagger={0.02} />
+        <SplitText id="work-h" text="My work" className="display section-head" stagger={0.02} />
       </div>
       <WorkCarousel projects={slides} />
       <div className="lists">
