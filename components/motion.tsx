@@ -32,11 +32,11 @@ export function SplitText({
     <Tag
       className={className}
       id={id}
-      aria-label={text.replace(/\n/g, " ")}
       initial="hidden"
       whileInView="shown"
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      viewport={{ once: true, amount: 0.2 }}
     >
+      <span className="sr-only">{text.replace(/\n/g, " ")}</span>
       {lines.map((line, li) => (
         <span className="split-line" key={li} aria-hidden="true">
           {line.split(" ").map((word, wi, arr) => (
@@ -117,7 +117,8 @@ export function ScrollRevealText({ text, muted, className }: { text: string; mut
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.4"] });
   const words = `${text} ${muted ?? ""}`.trim().split(/\s+/);
   return (
-    <p ref={ref} className={className} aria-label={`${text} ${muted ?? ""}`.trim()}>
+    <p ref={ref} className={className}>
+      <span className="sr-only">{`${text} ${muted ?? ""}`.trim()}</span>
       <span aria-hidden="true">
         {words.map((w, i) => (
           <span key={i}>

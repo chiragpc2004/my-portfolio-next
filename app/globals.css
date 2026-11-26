@@ -1375,3 +1375,11 @@ html.is-intro .fade-in {
     display: none;
   }
 }
+
+/* Phones: show gallery phone screens two per row instead of one giant screen each. */
+@media (max-width: 640px) {
+  .gallery.phones-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
+  }
+}

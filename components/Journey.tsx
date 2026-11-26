@@ -25,7 +25,7 @@ export default function Journey() {
               <Reveal delay={0.15}>
                 <h3 className="j-title">
                   {i + 1}. {j.title}
-                  {j.current ? <span className="now-tag">Now</span> : null}
+                  {j.current ? <> <span className="now-tag">Now</span></> : null}
                 </h3>
                 <p className="j-org">{j.org}</p>
               </Reveal>

@@ -74,7 +74,7 @@ export default async function ProjectPage({ params }: Props) {
                 <p className="label">Links</p>
                 {p.links.map((l) => (
                   <a key={l.href} href={l.href} target="_blank" rel="noreferrer">
-                    {l.label} ↗<span className="sr-only"> (opens in a new tab)</span>
+                    {l.label}{"\u00a0"}↗<span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 ))}
               </div>

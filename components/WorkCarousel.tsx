@@ -22,7 +22,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 function Slide({ p, priority }: { p: SlideData; priority?: boolean }) {
   return (
-    <Link href={`/work/${p.slug}`} className="slide" data-cursor="view" aria-label={`${p.title}: read the case study`}>
+    <Link href={`/work/${p.slug}`} className="slide" data-cursor="view">
       <Cover cover={p.cover} priority={priority} />
       <div className="slide-meta">
         <h3 className="slide-title">{p.title}</h3>
@@ -75,7 +75,11 @@ function Pinned({ projects }: { projects: SlideData[] }) {
   useIso(() => {
     const measure = () => {
       if (!track.current) return;
-      setDist(Math.max(0, track.current.scrollWidth - window.innerWidth));
+      // Measure to the last slide plus the side gutter, so the final slide lines up with the page margin.
+      const last = track.current.lastElementChild as HTMLElement | null;
+      const pad = parseFloat(getComputedStyle(track.current).paddingLeft) || 0;
+      const end = last ? last.offsetLeft + last.offsetWidth + pad : track.current.scrollWidth;
+      setDist(Math.max(0, end - window.innerWidth));
       const first = track.current.firstElementChild as HTMLElement | null;
       setStep(first ? first.offsetWidth + 32 : 0);
     };
