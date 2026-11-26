@@ -1393,3 +1393,19 @@ html.is-intro .fade-in {
 .hero-name .rise {
   transform: translateY(135%);
 }
+
+/* Big titles: each letter turns into an outline under the pointer, then fills back in slowly,
+   so moving across a word leaves a short trail. Only on devices with a real hover. */
+@media (hover: hover) and (pointer: fine) {
+  .display .split-char,
+  .hero-name .rise {
+    -webkit-text-stroke: 0.022em transparent;
+    transition: -webkit-text-fill-color 0.9s ease, -webkit-text-stroke-color 0.9s ease;
+  }
+  .display .split-char:hover,
+  .hero-name .rise:hover {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: currentColor;
+    transition-duration: 0.12s;
+  }
+}
