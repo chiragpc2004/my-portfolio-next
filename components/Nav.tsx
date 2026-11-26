@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import RollText from "./RollText";
+import IntroMark from "./IntroMark";
 import { site } from "@/content/site";
 
 /**
@@ -20,7 +21,12 @@ export default function Nav() {
       ticking = false;
       const y = window.scrollY;
       const probe = document.elementsFromPoint(window.innerWidth / 2, 40);
-      const section = probe.find((el) => el instanceof HTMLElement && el.closest("[data-theme]") && !el.closest(".nav"));
+      const section = probe.find(
+        (el) =>
+          el instanceof HTMLElement &&
+          el.closest("[data-theme]") &&
+          !el.closest(".nav"),
+      );
       const t = section?.closest<HTMLElement>("[data-theme]")?.dataset.theme;
       if (t === "dark" || t === "light") setTheme(t);
       setHidden(y > 200 && y > last.current + 4);
@@ -43,19 +49,27 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className="nav" aria-label="Primary" data-theme={theme} data-hidden={hidden}>
-      <Link href="/" className="nav-name">
-        <RollText>{site.name}</RollText>
-      </Link>
-      <Link href="/#journey" className="nav-link nav-journey">
-        <RollText>Journey</RollText>
-      </Link>
-      <Link href="/#work" className="nav-link">
-        <RollText>Work</RollText>
-      </Link>
-      <Link href="/#contact" className="nav-cta">
-        <RollText>Get in touch</RollText>
-      </Link>
-    </nav>
+    <header className="site-header">
+      <IntroMark theme={theme} hidden={hidden} />
+      <nav
+        className="nav"
+        aria-label="Primary"
+        data-theme={theme}
+        data-hidden={hidden}
+      >
+        <Link href="/" className="nav-name">
+          <RollText>{site.name}</RollText>
+        </Link>
+        <Link href="/#journey" className="nav-link nav-journey">
+          <RollText>Journey</RollText>
+        </Link>
+        <Link href="/#work" className="nav-link">
+          <RollText>Work</RollText>
+        </Link>
+        <Link href="/#contact" className="nav-cta">
+          <RollText>Get in touch</RollText>
+        </Link>
+      </nav>
+    </header>
   );
 }

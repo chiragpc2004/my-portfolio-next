@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getProject, getProjects } from "@/lib/work";
 import Cover from "@/components/covers/Cover";
-import Contact from "@/components/Contact";
+import NextProjectGate from "@/components/NextProjectGate";
 import { mdxComponents } from "@/components/mdx";
 import { Reveal, SplitText } from "@/components/motion";
 import CoverReveal from "@/components/CoverReveal";
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = getProject(slug);
   if (!found) return {};
-  return { title: found.project.title, description: found.project.summary };
+  return { description: found.project.summary };
 }
 
 export default async function ProjectPage({ params }: Props) {
@@ -93,15 +92,8 @@ export default async function ProjectPage({ params }: Props) {
           </aside>
         </div>
 
-        <Link href={`/work/${next.slug}`} className="p-next" data-cursor="view">
-          <span className="q">Next?</span>
-          <span>
-            {next.title} <span className="arrow-big" aria-hidden="true">→</span>
-          </span>
-        </Link>
-        <div style={{ height: 96 }} />
+        <NextProjectGate key={p.slug} slug={next.slug} title={next.title} />
       </article>
-      <Contact />
     </>
   );
 }
