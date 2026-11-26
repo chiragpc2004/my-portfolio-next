@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = getProject(slug);
   if (!found) return {};
-  return { title: found.project.title, description: found.project.summary };
+  return { description: found.project.summary };
 }
 
 export default async function ProjectPage({ params }: Props) {

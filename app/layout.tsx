@@ -13,9 +13,9 @@ const interTight = Inter_Tight({ subsets: ["latin"], variable: "--font-display",
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chiragpc-portfolio.vercel.app"),
-  title: { default: site.title, template: `%s · ${site.name}` },
+  title: site.tabTitle,
   description: site.description,
-  openGraph: { title: site.title, description: site.description, type: "website" },
+  openGraph: { title: site.tabTitle, description: site.description, type: "website" },
 };
 
 export const viewport: Viewport = { themeColor: "#0A1430" };
