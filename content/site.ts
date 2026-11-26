@@ -8,9 +8,9 @@ export const site = {
   tabTitle: "Chirag's Portfolio",
   title: "Chirag P C · SDET, builder, aspiring product manager",
   description:
-    "I test software for a living, build products on the side, and I'm working my way into product management.",
+    "I build AI products, I know how software breaks, and I'm moving into product management.",
   pitch:
-    "I test software for a living, build products on the side, and I'm working my way into product management.",
+    "I build AI products, I know how software breaks, and I'm moving into product management.",
   intro: "I'm Chirag, a builder based in Bengaluru, working my way into product.",
   introMuted: "Testing shows me how products break. Building shows me how they ship.",
   lookingFor: "Moving toward product roles",
