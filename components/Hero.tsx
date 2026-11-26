@@ -48,6 +48,10 @@ export default function Hero() {
             </span>
           </h1>
           <div className="hero-side">
+            <p className="hero-role fade-in" style={{ ["--d" as string]: "0.55s" }}>
+              <span className="dot" aria-hidden="true" />
+              {currentRole.heroRole ?? currentRole.title} ↘
+            </p>
             <p className="hero-pitch fade-in" style={{ ["--d" as string]: "0.7s" }}>
               {site.pitch}
             </p>
