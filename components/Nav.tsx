@@ -49,7 +49,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <>
+    <header className="site-header">
       <IntroMark theme={theme} hidden={hidden} />
       <nav
         className="nav"
@@ -70,6 +70,6 @@ export default function Nav() {
           <RollText>Get in touch</RollText>
         </Link>
       </nav>
-    </>
+    </header>
   );
 }

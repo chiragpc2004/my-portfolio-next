@@ -338,6 +338,9 @@ html.is-intro .loader {
 }
 
 /* ---------- PC mark (top left): replays the intro ---------- */
+.site-header {
+  display: contents;
+}
 .intro-mark {
   position: fixed;
   top: 16px;

@@ -43,7 +43,7 @@ export default function IntroMark({ theme, hidden }: { theme: "dark" | "light"; 
       className="intro-mark"
       data-theme={theme}
       data-hidden={hidden}
-      aria-label={`${site.name}, play the intro again`}
+      aria-label={`${site.monogram}, play the intro again`}
       onClick={(e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
         e.preventDefault();
