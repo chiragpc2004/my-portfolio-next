@@ -230,13 +230,17 @@ html.is-intro .loader {
   background: linear-gradient(to bottom, rgba(10, 20, 48, 0), rgba(255, 207, 58, 0.5) 70%, var(--yellow));
 }
 .loader-mark {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   display: flex;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(96px, 16vw, 200px);
+  /* Drawn 8x larger and scaled down, so it stays sharp as it rushes toward you */
+  font-size: calc(clamp(96px, 16vw, 200px) * 8);
   letter-spacing: -0.05em;
   line-height: 1;
+  transform: translate(-50%, -50%) scale(0.125);
   animation: loader-rush 0.75s cubic-bezier(0.6, 0, 0.9, 0.4) 1.45s forwards;
 }
 .loader-ch {
@@ -272,8 +276,8 @@ html.is-intro .loader {
   position: absolute;
   left: 0.04em;
   right: 0.04em;
-  bottom: -14px;
-  height: 3px;
+  bottom: -0.085em;
+  height: 0.018em;
   background: var(--yellow);
   transform: scaleX(0);
   transform-origin: left;
@@ -301,17 +305,18 @@ html.is-intro .loader {
 }
 @keyframes loader-rush {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(0.125);
     opacity: 1;
-    filter: blur(0);
   }
   15% {
-    transform: scale(0.94);
+    transform: translate(-50%, -50%) scale(0.1175);
+  }
+  70% {
+    opacity: 1;
   }
   100% {
-    transform: scale(14);
+    transform: translate(-50%, -50%) scale(1.75);
     opacity: 0;
-    filter: blur(6px);
   }
 }
 @keyframes loader-strip {
@@ -348,30 +353,21 @@ html.is-intro .loader {
   z-index: 101;
   display: grid;
   place-items: center;
-  width: 58px;
   height: 58px;
-  border-radius: 50%;
-  background: rgba(244, 241, 234, 0.08);
-  border: 1px solid rgba(244, 241, 234, 0.14);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  padding: 0 2px;
   font-family: var(--font-display);
-  font-weight: 650;
-  font-size: 19px;
+  font-weight: 750;
+  font-size: 24px;
   letter-spacing: -0.04em;
   color: var(--paper);
   text-decoration: none;
   transition:
     color 0.4s,
-    background-color 0.4s,
-    border-color 0.4s,
     opacity 0.3s ease,
     transform 0.6s var(--ease-out);
 }
 .intro-mark[data-theme="light"] {
   color: var(--ink);
-  background: rgba(244, 241, 234, 0.72);
-  border-color: rgba(10, 20, 48, 0.1);
 }
 .intro-mark[data-hidden="true"] {
   transform: translateY(-140%);
@@ -379,10 +375,10 @@ html.is-intro .loader {
 .intro-mark::after {
   content: "";
   position: absolute;
-  left: 19px;
-  right: 19px;
-  bottom: 15px;
-  height: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 13px;
+  height: 3px;
   background: var(--yellow);
   transform: scaleX(0);
   transform-origin: left;
