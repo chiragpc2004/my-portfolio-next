@@ -1,44 +1,45 @@
 # Chirag P C · Portfolio
 
-My personal site: who I am, what I've built, and how to reach me.
+My personal site: who I am, my journey, my work, and how to reach me.
 
 **Live:** [chiragpc-portfolio.vercel.app](https://chiragpc-portfolio.vercel.app)
 
-## What's on it
+## Updating the site
 
-- **Hero:** a short intro and links to GitHub, LinkedIn and Kaggle
-- **About:** my background in testing, data science and product
-- **Projects:** selected work, including **Iris Lab**, an interactive demo where you drag petal length and width and watch a depth-2 decision tree classify the flower live, plotted against Fisher's original 150 samples
-- **Contact:** a form that sends through [FormSubmit](https://formsubmit.co), with a direct email fallback
+Everything that changes lives in `content/`. Components never hardcode facts.
+
+| To change | Edit |
+| --- | --- |
+| Name, pitch, intro, email, socials, "Looking for" line | `content/site.ts` |
+| Journey rows, and the current role in the hero | `content/journey.ts` (move `current: true` when you change jobs) |
+| "More builds" and "Product writing" lists | `content/lists.ts` |
+| A project | `content/work/<slug>.mdx` |
+
+### Adding a project
+
+1. Copy any file in `content/work/` to `content/work/<new-slug>.mdx`.
+2. Put its images in `public/work/<new-slug>/`.
+3. Edit the frontmatter: `title`, `summary`, `year`, `role`, `type`, and a `cover`:
+   - `kind: phones` with one to three phone screenshots, or
+   - `kind: image` with one wide image.
+4. Set `featured: true` and an `order` to put it in the carousel.
+5. Write the case study below the frontmatter. `<Gallery images={[...]} />` (add `phones` for phone screenshots) and `<Note>` are available.
+
+The project then appears in the carousel, gets its own page at `/work/<new-slug>`, and joins the "Next?" chain. The frontmatter is checked at build time, so a missing or misspelled field fails the build with a clear message.
 
 ## Built with
 
-- [Next.js 15](https://nextjs.org) (App Router) and React 19
-- TypeScript
-- Tailwind CSS
-- Framer Motion for animation; Lucide and React Icons for icons
-- Deployed on [Vercel](https://vercel.com)
+- Next.js 15 (App Router), React 19, TypeScript
+- Motion for animation, Lenis for smooth scrolling, a small WebGL shader for the hero
+- MDX case studies (next-mdx-remote), validated with Zod
+- Inter and Inter Tight via next/font
+- Deployed on Vercel
 
-## Project structure
+Animations respect the visitor's reduced-motion setting.
+
+## Running locally
 
 ```
-app/          layout, page and global styles
-sections/     Hero, About, Projects, Contact
-components/   Navbar, IrisLab and its data, scroll-reveal hook
-public/       images and icons
-```
-
-## Run locally
-
-```bash
-git clone https://github.com/chiragpc2004/my-portfolio-next.git
-cd my-portfolio-next
 npm install
 npm run dev
 ```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
-## Image credits
-
-The iris photos are from Wikimedia Commons (CC BY / CC BY-SA). The painting is from the Art Institute of Chicago (CC0). Each image is credited on the site.

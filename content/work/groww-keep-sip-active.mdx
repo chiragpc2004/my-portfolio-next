@@ -1,0 +1,77 @@
+---
+title: "Groww: Keep SIP Active"
+summary: "An MVP that catches investors at the moment a SIP is about to stop, and shows them the lighter option that fits. Built from 219 first-person stop stories."
+year: 2026
+role: "PM Fellow, solo"
+type: "Product case study"
+featured: true
+order: 1
+context: "NextLeap PM Fellowship, graduation project"
+tools: ["Claude Code", "Rules engine", "LLM evals", "Python"]
+cover:
+  kind: phones
+  stage: "#E8E3D6"
+  images:
+    - src: "/work/groww-keep-sip-active/gr1_cancel.png"
+      alt: "GR-1 asking why the investor is stopping before they cancel"
+    - src: "/work/groww-keep-sip-active/gr1_failed.png"
+      alt: "GR-1 explaining a failed SIP instalment and how to pay it"
+    - src: "/work/groww-keep-sip-active/gr1_tight.png"
+      alt: "GR-1 suggesting the investor skip one instalment when money is tight"
+links:
+  - { label: "Live MVP", href: "https://nextleap-groww-mvp.vercel.app" }
+  - { label: "Discovery engine", href: "https://nextleap-groww-sip-discovery-engine.vercel.app" }
+  - { label: "Deck, PRD and code", href: "https://github.com/chiragpc2004/groww-sip-gr-1" }
+stats:
+  - { value: "219", label: "first-person stop stories coded" }
+  - { value: "30/32", label: "eval questions passed on the latest run" }
+  - { value: "0", label: "unsafe answers across all 7 runs" }
+---
+
+## The problem
+
+The goal was to raise the share of first-time mutual fund investors on Groww who still have an active SIP twelve months after starting. Before deciding what to build, I wanted to know why SIPs stop, in investors' own words.
+
+## What I found
+
+I collected 7,600 public posts from app stores, Reddit, YouTube and forums, narrowed them to 2,586 about SIPs, 443 about stopping, and finally **219 first-person stories**. AI coded them, and I checked its coding against 20 posts I had hand-labelled blind.
+
+The finding: **many SIPs stop by accident**. A salary comes in late, a payment fails, and three misses in a row cancel the SIP. The lighter options (skip a month, pay less, move the date) already exist, but people find them too late. Six interviews backed this up.
+
+<Gallery
+  images={[
+    { src: "/work/groww-keep-sip-active/discovery.png", alt: "The AI discovery engine that coded the public posts", caption: "The discovery engine: 7,600 public posts down to 219 stop stories." },
+  ]}
+/>
+
+## What I built
+
+**GR-1** puts an AI assistant at the moment a SIP is at risk: a failed payment, a tight month, or a tap on Cancel. A rules engine works out what is actually allowed for that fund and that date. The AI then explains it in plain language and points to the option that fits the moment.
+
+Because this is about people's money, the AI is gated. Every answer passes five code checks and an AI reviewer before anyone sees it.
+
+<Gallery
+  phones
+  images={[
+    { src: "/work/groww-keep-sip-active/gr1_failed.png", alt: "Failed instalment screen", caption: "A failed payment: what happens next, and how to pay before it counts as a miss." },
+    { src: "/work/groww-keep-sip-active/gr1_cancel.png", alt: "Before you cancel screen", caption: "Before you cancel: the reason you pick changes the advice." },
+    { src: "/work/groww-keep-sip-active/gr1_tight.png", alt: "Money is tight screen", caption: "A tight month: skip one instalment instead of stopping." },
+    { src: "/work/groww-keep-sip-active/gr1_blocked.png", alt: "Skipping not allowed screen", caption: "When skipping isn't allowed, it says so and offers what is." },
+  ]}
+/>
+
+## How I knew it was ready
+
+I wrote 32 test questions, including the tricky and unsafe ones, and ran the MVP against them seven times, fixing what failed each round. The latest run passed 30 of 32, with **zero unsafe answers in all seven runs**. Three user tests on the live MVP followed.
+
+<Gallery
+  images={[
+    { src: "/work/groww-keep-sip-active/quality.png", alt: "The MVP quality report", caption: "The quality report: every eval run and correction is public." },
+  ]}
+/>
+
+## What I'd do next
+
+Run it with real Groww data behind a small experiment, and measure twelve-month SIP survival against a control group.
+
+<Note>Independent student case study built on public posts and sample data. Not affiliated with or endorsed by Groww. Not investment advice.</Note>

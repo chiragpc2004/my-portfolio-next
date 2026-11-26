@@ -1,0 +1,66 @@
+---
+title: "Practice Out Loud"
+summary: "A private, reviewable voice mock interview inside ChatGPT, designed to get job seekers in India talking to it."
+year: 2026
+role: "Product, research and prototype"
+type: "Product case study"
+featured: true
+order: 2
+context: "Product case study"
+tools: ["User research", "Wireframes", "Prototype", "Metrics"]
+cover:
+  kind: phones
+  stage: "#14204A"
+  images:
+    - src: "/work/practice-out-loud/pol-1.png"
+      alt: "A practice card offered in ChatGPT after a job-prep message"
+    - src: "/work/practice-out-loud/pol-3.png"
+      alt: "Hold to answer the interview question out loud"
+    - src: "/work/practice-out-loud/pol-5.png"
+      alt: "Feedback on structure, clarity and filler words"
+links:
+  - { label: "Live prototype", href: "https://practice-out-loud.vercel.app" }
+  - { label: "Decks and 3-pager", href: "https://github.com/chiragpc2004/practice-out-loud" }
+stats:
+  - { value: "6", label: "steps, from discovery to return" }
+  - { value: "3", label: "languages: English, Hinglish, Hindi" }
+  - { value: "15→25%", label: "target weekly voice users among job seekers" }
+---
+
+## The problem
+
+India already talks to its phone: voice notes are a daily habit and Hindi-English mixing is normal. Yet few Indian users speak to ChatGPT, even though India is now its largest market. The question was how to grow voice input on ChatGPT mobile in India.
+
+## What I found
+
+I mapped the voice landscape, picked job seekers as the segment, and ran research on what stops them. The barrier isn't awareness, it's **context and control**: people around them in shared rooms, not being able to review what they said before it sends, and worry about accent and Hinglish accuracy. Mock interviews came out as the use they'd most like to try with voice.
+
+<Note>The survey in this study used simulated responses, approved by my mentor, to practise the method. The interviews and the design are my own.</Note>
+
+## What I designed
+
+A practice mode that answers each fear directly. It appears only after a job-prep message, works quietly with earphones, lets you speak English, Hinglish or Hindi, and always lets you **review the transcript before anything is scored**.
+
+<Gallery
+  phones
+  images={[
+    { src: "/work/practice-out-loud/pol-1.png", alt: "Discover", caption: "1. Discover: a card appears after a job-prep message." },
+    { src: "/work/practice-out-loud/pol-2.png", alt: "Set up", caption: "2. Set up: language and quiet mode." },
+    { src: "/work/practice-out-loud/pol-3.png", alt: "Answer", caption: "3. Answer: hold to talk, or type instead." },
+    { src: "/work/practice-out-loud/pol-4.png", alt: "Review", caption: "4. Review: fix the transcript before scoring." },
+    { src: "/work/practice-out-loud/pol-5.png", alt: "Feedback", caption: "5. Feedback: scores and a stronger rewrite." },
+    { src: "/work/practice-out-loud/pol-6.png", alt: "Return", caption: "6. Return: a summary and a reminder." },
+  ]}
+/>
+
+<Gallery
+  images={[
+    { src: "/work/practice-out-loud/all-screens.png", alt: "Annotated wireframes", caption: "The annotated wireframes behind the prototype." },
+  ]}
+/>
+
+## How I'd measure it
+
+The North Star is weekly voice messages from India: weekly active voice users times messages per voice user. A four-week A/B test would aim to take weekly active voice users among job seekers from 15% to 25%.
+
+<Note>Concept prototype. Not affiliated with OpenAI.</Note>
