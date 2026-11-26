@@ -45,6 +45,17 @@ export default async function ProjectPage({ params }: Props) {
           <Cover cover={p.cover} priority />
         </CoverReveal>
 
+        {p.stats.length > 0 && (
+          <div className="p-stats">
+            {p.stats.map((s, i) => (
+              <Reveal key={s.label} delay={i * 0.1}>
+                <p className="display p-stat-v">{s.value}</p>
+                <p className="p-stat-l">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        )}
+
         <div className="p-body">
           <div className="prose">
             <MDXRemote source={p.body} components={mdxComponents} options={{ blockJS: false }} />
@@ -81,17 +92,6 @@ export default async function ProjectPage({ params }: Props) {
             )}
           </aside>
         </div>
-
-        {p.stats.length > 0 && (
-          <div className="p-stats">
-            {p.stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.1}>
-                <p className="display p-stat-v">{s.value}</p>
-                <p className="p-stat-l">{s.label}</p>
-              </Reveal>
-            ))}
-          </div>
-        )}
 
         <Link href={`/work/${next.slug}`} className="p-next" data-cursor="view">
           <span className="q">Next?</span>

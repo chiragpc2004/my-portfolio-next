@@ -1291,8 +1291,8 @@ html.is-intro .fade-in {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
-  margin: 0 var(--gutter);
-  padding: 48px 0;
+  margin: clamp(40px, 5vw, 64px) var(--gutter) 0;
+  padding: 40px 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
